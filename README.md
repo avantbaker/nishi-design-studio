@@ -1,34 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Nishi Design Studio :: Website
 
 ## Getting Started
 
-First, run the development server:
+1. Install Dependencies
+2. Run `yarn dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Development Notes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aliasing
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Use the aliased paths for all imports: components, styles, lib, etc.
+- for any new files added please add them to the list of aliases
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Styles / Styled Components
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Trying to keep all styles to Styled components
+- Use the theme file to add common theme properties
+- access colors, logos, typography related stuff here
+- Put all global styles in `styles/globalStyles.ts` and access global theme props from `styles/theme.ts`
 
-## Learn More
+Images
 
-To learn more about Next.js, take a look at the following resources:
+- Will probably move most images to a CDN
+- Updates soon on this
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Typography
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Coming soon
 
-## Deploy on Vercel
+Components
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Coming soon
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deploying - Coming Soon
