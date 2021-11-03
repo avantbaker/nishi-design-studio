@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle`
      font-weight: 400;
      transition: all 0.50s linear; 
      margin: 0;
+     overflow-x: hidden;
   }
   a {
     text-decoration: none;

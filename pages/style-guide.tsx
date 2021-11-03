@@ -7,7 +7,7 @@ import Twitter from 'components/common/icons/twitter';
 import Facebook from 'components/common/icons/facebook';
 import Instagram from 'components/common/icons/instagram';
 import LinkedIn from 'components/common/icons/linkedin';
-import ArrowButton from 'components/common/icons/arrow-button';
+// import ArrowFilled from 'components/common/icons/arrow-button';
 import ArrowButtonEmpty from 'components/common/icons/arrow-button-empty';
 import Input from 'components/common/input';
 import HamburgerMenu from 'components/common/hamburger';
@@ -25,6 +25,7 @@ export default function StyleGuide() {
           <PrimaryButton mr={rem(16)}>Primary Button</PrimaryButton>
           <PrimaryButton size="large">Primary Button Large</PrimaryButton>
           <HamburgerMenu isOpen={false} toggleMobileNav={() => {}} />
+          {/* @ts-expect-error */}
           <ListingCard
             location="Atlanta, GA"
             year="2021"
@@ -57,7 +58,6 @@ export default function StyleGuide() {
           <Twitter />
           <Facebook />
           <LinkedIn />
-          <ArrowButton />
           <ArrowButtonEmpty />
         </Box>
       </Flex>
