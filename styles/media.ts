@@ -7,3 +7,8 @@ export const breakpoints = {
   laptopLarge: rem(1440),
 }
 
+export const queries ={
+  minMobile: `(min-width: ${breakpoints.mobile})`,
+  minTablet: `(min-width: ${breakpoints.tablet})`,
+  minLaptop: `(min-width: ${breakpoints.laptop})`
+}

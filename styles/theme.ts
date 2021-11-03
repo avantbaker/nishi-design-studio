@@ -46,6 +46,7 @@ const theme = {
 		gray: '#505050',
 		textGray: '#959595',
 		orange: '#D78B32',
+		lightOrange: '#FFB000',
 		black: '#252525',
 		sand: '#D3C69E',
 		tan: '#EBE4CF',

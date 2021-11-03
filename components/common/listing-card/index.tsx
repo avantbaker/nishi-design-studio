@@ -5,7 +5,7 @@ import { Flex } from 'rebass/styled-components';
 import styled from 'styled-components';
 import Text from 'components/common/text';
 import theme from 'styles/theme';
-import { SecondaryButton } from '../button';
+import { SecondaryButton } from 'components/common/button';
 
 const Container = styled.div`
   padding: ${rem(20)} ${rem(30)} ${rem(10)} ${rem(30)};
@@ -44,7 +44,9 @@ export default function ListingCard({
       </Text>
       {asCard && (
         <Link href={href} passHref>
-          <SecondaryButton>explore</SecondaryButton>
+          <a>
+            <SecondaryButton>explore</SecondaryButton>
+          </a>
         </Link>
       )}
     </Container>

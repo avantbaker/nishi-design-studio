@@ -14,7 +14,7 @@ const NavContainer = styled.nav`
   padding: ${rem(22)};
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding: ${rem(24)} ${rem(91)};
+    padding: ${rem(24)} ${rem(91)} ${rem(38)} ${rem(91)};
   }
 `;
 
