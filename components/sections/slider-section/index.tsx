@@ -54,7 +54,8 @@ const TabletLineImg = styled.img`
   display: none;
   @media only screen and (min-width: ${breakpoints.laptop}) {
     display: block;
-    width: ${rem(130)};
+    width: ${rem(150)};
+    z-index: -1;
     transform: scaleX(-1) rotate(100deg);
     position: absolute;
     right: ${rem(150)};

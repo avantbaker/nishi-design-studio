@@ -30,18 +30,20 @@ const Container = styled.section`
   }
 `;
 
-export default function StartYourSpace() {
+export default function StartYourSpace({ hasLogo, ...rest }) {
   return (
-    <Container>
-      <Link href="/" passHref>
-        <a>
-          <img
-            alt="LOGO NISHI design+studio"
-            className="logoImg"
-            src="/images/nishi-slate.png"
-          />
-        </a>
-      </Link>
+    <Container {...rest}>
+      {hasLogo && (
+        <Link href="/">
+          <a>
+            <img
+              alt="LOGO NISHI design+studio"
+              className="logoImg"
+              src="/images/nishi-slate.png"
+            />
+          </a>
+        </Link>
+      )}
       <Text
         mb={[rem(16), rem(29)]}
         width={[rem(250), rem(250), 'auto']}
