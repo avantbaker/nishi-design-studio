@@ -195,7 +195,7 @@ export default function FooterComponent() {
             <img
               alt="LOGO NISHI design+studio"
               className="logoImg"
-              src={theme.logos.black.png}
+              src="/images/nishi-slate.png"
             />
           </a>
         </Link>

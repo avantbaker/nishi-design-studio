@@ -135,7 +135,11 @@ export default function Nav() {
         )}
         <Link href="/" passHref>
           <LogoAnchor>
-            <Img isOpen={isOpen} src={theme.logos.black.png} alt="Black Logo" />
+            <Img
+              isOpen={isOpen}
+              src="/images/nishi-slate.png"
+              alt="Black Logo"
+            />
           </LogoAnchor>
         </Link>
         <DesktopNav>
