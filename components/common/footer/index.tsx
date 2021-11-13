@@ -129,7 +129,7 @@ export default function FooterComponent() {
           <NavContainer>
             <ul>
               <li>
-                <Link href="/space" passHref>
+                <Link href="/spaces" passHref>
                   <NavItem>/ space</NavItem>
                 </Link>
               </li>
@@ -171,17 +171,17 @@ export default function FooterComponent() {
                 <Twitter fill={theme.colors.orange} />
               </a>
             </Link>
-            <Link href="/">
+            <Link href="https://www.instagram.com/nishidesignstudio">
               <a>
                 <Instagram fill={theme.colors.orange} />
               </a>
             </Link>
-            <Link href="/">
+            <Link href="https://www.facebook.com/nishidesignstudio/">
               <a>
                 <Facebook fill={theme.colors.orange} />
               </a>
             </Link>
-            <Link href="/">
+            <Link href="https://www.linkedin.com/in/nishidonovan/">
               <a>
                 <LinkedIn fill={theme.colors.orange} />
               </a>
@@ -201,7 +201,7 @@ export default function FooterComponent() {
         </Link>
         <div>
           <Flex justifyContent="flex-end">
-            <Link href="/privacy" passHref>
+            <Link href="/legal" passHref>
               <Text
                 as="a"
                 variant={['actionMobile', 'actionMobile', 'action']}
@@ -212,7 +212,7 @@ export default function FooterComponent() {
                 Privacy
               </Text>
             </Link>
-            <Link href="/terms" passHref>
+            <Link href="/legal" passHref>
               <Text
                 as="a"
                 variant={['actionMobile', 'actionMobile', 'action']}

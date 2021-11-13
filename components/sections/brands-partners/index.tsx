@@ -149,7 +149,7 @@ export default function BrandsPartners() {
         m="0 auto"
         zIndex={1}
       >
-        <Flex flexWrap="wrap" mt={[rem(72), rem(72), null]}>
+        <Flex flexWrap="wrap" mt={[rem(72), rem(72), rem(24)]}>
           <Text
             className="your"
             variant={['headingMobile', 'headingMobile', 'heading']}

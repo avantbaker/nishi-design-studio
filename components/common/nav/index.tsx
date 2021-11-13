@@ -60,6 +60,10 @@ const MobileNav = styled.div`
     line-height: ${rem(48)};
     text-decoration: none;
     color: ${theme.colors.gray};
+
+    :active {
+      color: ${theme.colors.orange};
+    }
   }
 
   > ${Flex} {
@@ -116,12 +120,12 @@ export default function Nav() {
             </Flex>
             <MobileFooter>
               <Flex mb={rem(4)}>
-                <Link href="/privacy" passHref>
+                <Link href="/legal" passHref>
                   <Text as="a" variant="caption" fontWeight="bold" mr={rem(16)}>
                     Privacy
                   </Text>
                 </Link>
-                <Link href="/terms" passHref>
+                <Link href="/legal" passHref>
                   <Text as="a" variant="caption" fontWeight="bold">
                     Terms
                   </Text>

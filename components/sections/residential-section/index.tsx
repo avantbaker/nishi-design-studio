@@ -1,42 +1,55 @@
 import styled from 'styled-components';
-import theme from 'styles/theme';
 import Image from 'next/image';
-import { Flex } from 'rebass/styled-components';
 import { rem } from 'polished';
 import Text from 'components/common/text';
 import SpaceCard from 'components/common/space-card';
-import Input from 'components/common/input';
 import { PrimaryButton } from 'components/common/button';
 import { breakpoints, queries } from 'styles/media';
-import useMediaQuery from 'hooks/use-media-query';
 
-const Container = styled.section`
+const Container = styled.div`
   position: relative;
-  padding: 0 ${rem(20)} ${rem(170)} ${rem(20)};
+  padding: 0 ${rem(20)} ${rem(113)} ${rem(20)};
 
   ${PrimaryButton} {
     display: none;
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding: 0 ${rem(20)} ${rem(203)} ${rem(20)};
-    max-width: 1250px;
-    margin: 0 auto;
+    padding: 0 0 ${rem(203)} ${rem(20)};
 
     ${PrimaryButton} {
       display: block;
       width: ${rem(274)};
-      margin: ${rem(83)} auto 0 auto;
+      margin: 0 auto;
     }
   }
 `;
 
+const ContentWrap = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    max-width: 1300px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+`;
+
 const ImgWrap = styled.div`
-  width: ${rem(274)};
-  height: ${rem(393)};
+  width: ${rem(130)};
+  height: ${rem(168)};
   position: absolute;
-  padding-top: ${rem(13)};
-  left: ${rem(85)};
+  left: calc(50% - 65px);
+  bottom: -${rem(75)};
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    width: ${rem(274)};
+    height: ${rem(393)};
+    left: ${rem(85)};
+    padding-top: ${rem(13)};
+    bottom: initial;
+  }
 `;
 
 const mockData = [
@@ -80,21 +93,24 @@ const mockData = [
 export default function ResidentialSection() {
   return (
     <Container>
-      <Text
-        mb={[rem(41), rem(41), rem(89)]}
-        variant={['headingSmall', 'headingSmall', 'heading']}
-      >
-        residential spaces
-      </Text>
-      {mockData.map((space) => (
-        <SpaceCard key={space.title} {...space} />
-      ))}
+      <ContentWrap>
+        <Text
+          mb={[rem(41), rem(41), rem(89)]}
+          variant={['headingSmall', 'headingSmall', 'heading']}
+        >
+          residential spaces
+        </Text>
+        {mockData.map((space) => (
+          <SpaceCard key={space.title} {...space} />
+        ))}
+      </ContentWrap>
       <PrimaryButton large>load more</PrimaryButton>
       <ImgWrap>
         <Image
+          alt="Nishi Logo"
           src="/images/signature-ochre.png"
-          width={'274px'}
-          height={'353px'}
+          width="274px"
+          height="353px"
         />
       </ImgWrap>
     </Container>

@@ -53,6 +53,7 @@ const theme = {
 		brown: '#322E2E',
 		opaqueOrange: 'rgba(215,139,50,0.57)',
 		lightTan: '#fbf9f2',
+		white: "#FFF",
 	},
 	breakpoints: ['26.5625em', '48em', '64em'],
 };

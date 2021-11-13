@@ -13,28 +13,41 @@ const TextContent = styled.div`
   flex-direction: column;
   margin-right: ${rem(25)};
   margin-left: auto;
-  width: ${rem(205)};
+  padding: 0 ${rem(20)} 0 ${rem(16)};
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    margin: 0 auto;
+    max-width: ${rem(400)};
+  }
 
   @media only screen and (min-width: ${breakpoints.laptop}) {
-    margin-right: 0;
-    margin: 0 auto;
-    width: ${rem(400)};
+    max-width: ${rem(400)};
   }
 `;
 
-const TopFlex = styled(Flex)`
+const Container = styled(Flex)`
   flex-wrap: wrap-reverse;
   position: relative;
+
+  .right-box {
+    position: relative;
+  }
 `;
 
 const StyledListingCard = styled(ListingCard)`
   width: 100%;
-  @media only screen and (min-width: ${breakpoints.laptop}) {
+  @media only screen and (min-width: ${breakpoints.tablet}) {
     position: absolute;
     left: 45%;
-    bottom: 30%;
+    bottom: 35%;
     z-index: 1;
     width: auto;
+    max-width: ${rem(350)};
+  }
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    left: 40%;
+    bottom: 30%;
   }
 `;
 
@@ -45,21 +58,21 @@ const MobileLineImg = styled.img`
   left: 0;
   width: 100%;
 
-  @media only screen and (min-width: ${breakpoints.laptop}) {
+  @media only screen and (min-width: ${breakpoints.tablet}) {
     display: none;
   }
 `;
 
 const TabletLineImg = styled.img`
   display: none;
-  @media only screen and (min-width: ${breakpoints.laptop}) {
+  @media only screen and (min-width: ${breakpoints.tablet}) {
     display: block;
     width: ${rem(150)};
     z-index: -1;
-    transform: scaleX(-1) rotate(100deg);
     position: absolute;
-    right: ${rem(150)};
-    top: ${rem(60)};
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%) scaleX(-1) rotate(100deg);
   }
 `;
 
@@ -70,6 +83,7 @@ const ArrowRight = styled.div`
   height: ${rem(35)};
   transform: rotate(180deg);
   margin-left: ${rem(11)};
+  cursor: pointer;
 
   :hover {
     color: initial;
@@ -93,7 +107,7 @@ const ArrowRight = styled.div`
         transform: initial;
       }
     `}
-  @media only screen and (min-width: ${breakpoints.laptop}) {
+  @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(69)};
     height: ${rem(69)};
   }
@@ -104,6 +118,7 @@ const ArrowLeft = styled.div`
   height: ${rem(35)};
   background-image: url('/images/enabled-left-arrow.png');
   background-size: cover;
+  cursor: pointer;
 
   :hover {
     color: initial;
@@ -128,7 +143,7 @@ const ArrowLeft = styled.div`
       }
     `}
 
-  @media only screen and (min-width: ${breakpoints.laptop}) {
+  @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(69)};
     height: ${rem(69)};
   }
@@ -195,7 +210,7 @@ const PagerWrap = styled.div`
       }
 
       &.selected {
-        font-weight: bold;
+        text-shadow: ${rem(0)} ${rem(0)} ${rem(1)} ${theme.colors.gray};
       }
 
       @media only screen and (min-width: ${breakpoints.tablet}) {
@@ -213,7 +228,7 @@ const PagerWrap = styled.div`
 export default function SliderSection() {
   const sliderRef = React.useRef(null);
   const [activeArrow, setActiveArrow] = useState('right');
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const sliderItems = [1, 2, 3, 4, 5, 6];
 
   function handleSliderChange(str) {
@@ -224,8 +239,6 @@ export default function SliderSection() {
   }
 
   function handleBeforeChange(prev, next) {
-    const incrementing = next - prev === 1 || next === 0;
-    setActiveArrow(incrementing ? 'right' : 'left');
     setActiveIndex(next);
   }
 
@@ -235,7 +248,7 @@ export default function SliderSection() {
   }
 
   return (
-    <TopFlex>
+    <Container>
       <PagerWrap>
         <Flex
           alignItems="center"
@@ -270,14 +283,19 @@ export default function SliderSection() {
         href=""
         asCard
       />
-      <Box width={[1, 1, 1, 3 / 5]}>
+      <Box width={[1, 1, 3 / 5, 3 / 5]}>
         <HeaderSlider
           beforeChange={handleBeforeChange}
           ref={sliderRef}
           items={sliderItems}
         />
       </Box>
-      <Box width={[1, 1, 1, 2 / 5]} pt={rem(8)} pb={rem(25)}>
+      <Box
+        className="right-box"
+        width={[1, 1, 2 / 5, 2 / 5]}
+        pt={rem(8)}
+        pb={rem(25)}
+      >
         <TextContent>
           <Text as="h2" textAlign="right" variant="highlight" mb={rem(10)}>
             DECISIVELY DIFFERENT
@@ -299,6 +317,6 @@ export default function SliderSection() {
         <MobileLineImg src="/elements/goldlines/Gold-Line-6.png" />
         <TabletLineImg src="/elements/goldlines/Gold-Line-4.png" />
       </Box>
-    </TopFlex>
+    </Container>
   );
 }
