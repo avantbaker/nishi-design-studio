@@ -91,6 +91,10 @@ const ImgWrap = styled.div`
   height: ${rem(250)};
   margin-bottom: ${rem(24)};
 
+  img {
+    object-fit: cover;
+  }
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(550)};
   }

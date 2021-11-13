@@ -23,7 +23,7 @@ export default function ListingCard({
 }) {
   return (
     <Container className={className} asCard={asCard} {...rest}>
-      <Flex mb={rem(62)} justifyContent="space-between">
+      <Flex mb={[rem(62), rem(62), rem(42)]} justifyContent="space-between">
         <Text
           variant="caption"
           letterSpacing="normal"
@@ -39,7 +39,11 @@ export default function ListingCard({
           {year}
         </Text>
       </Flex>
-      <Text variant="headingSmall" mt={rem(20)} mb={rem(34)}>
+      <Text
+        variant="headingSmall"
+        mt={rem(20)}
+        mb={[rem(34), rem(34), rem(16), rem(34)]}
+      >
         {title}
       </Text>
       {asCard && (

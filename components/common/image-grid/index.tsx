@@ -32,13 +32,7 @@ const Container = styled.section`
     margin-bottom: ${rem(3)} !important;
   }
 
-  @media only screen and (min-width: ${breakpoints.mobile}) {
-    .my-masonry-grid {
-      margin-left: -${rem(25)}; /* gutter size offset */
-    }
-  }
-
-  @media only screen and (min-width: ${breakpoints.tablet}) {
+  @media only screen and (min-width: ${breakpoints.mobileLarge}) {
     width: initial;
     .my-masonry-grid {
       margin-left: -${rem(25)}; /* gutter size offset */
@@ -69,10 +63,10 @@ const breakpointColumnsObj = {
   640: 1,
 };
 
-export default function ImageGrid({ className, ...rest }) {
+export default function ImageGrid({ ...rest }) {
   const isMobileLarge = useMediaQuery(queries.minMobileLarge);
   return (
-    <Container className={className} {...rest}>
+    <Container {...rest}>
       <MasonryGrid
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"

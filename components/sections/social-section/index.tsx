@@ -15,6 +15,10 @@ const Container = styled.section`
     padding-bottom: ${rem(21)};
   }
 
+  @media only screen and (min-width: ${breakpoints.mobileLarge}) {
+    padding: 0 ${rem(24)} ${rem(38)} ${rem(24)};
+  }
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
     padding-bottom: ${rem(94)};
   }

@@ -1,17 +1,23 @@
 import Link from 'next/link';
-import theme from 'styles/theme';
 import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
-import styled from 'styled-components';
+import { Flex } from 'rebass/styled-components';
+import styled, { css } from 'styled-components';
 import Text from 'components/common/text';
 import { PrimaryButton } from 'components/common/button';
 
-const Container = styled.section`
+const Container = styled(Flex)`
   padding: ${rem(54)} ${rem(20)} ${rem(86)};
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  ${({ hasLogo }) =>
+    hasLogo &&
+    css`
+      padding-top: ${rem(107)};
+    `}
 
   a {
     margin-bottom: ${rem(6)};
@@ -30,9 +36,14 @@ const Container = styled.section`
   }
 `;
 
-export default function StartYourSpace({ hasLogo, ...rest }) {
+export default function StartYourSpace({
+  hasLogo,
+  ...rest
+}: {
+  hasLogo?: boolean;
+}) {
   return (
-    <Container {...rest}>
+    <Container hasLogo {...rest}>
       {hasLogo && (
         <Link href="/">
           <a>
