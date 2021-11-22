@@ -40,13 +40,20 @@ const StyledButton = styled(SecondaryButton)`
   }
 `;
 
-export default function BlogCard({ title, date, description, tags, src }) {
+export default function BlogCard({
+  title,
+  date,
+  description,
+  tags,
+  src,
+  ...rest
+}) {
   const dateObj = new Date(date);
   const dateString = `${dateObj.getMonth()}.${dateObj.getDate()}.${dateObj.getFullYear()}`;
 
   return (
     <Link href={`/`} passHref>
-      <a>
+      <a {...rest}>
         <Flex backgroundColor="#fff" flexDirection="column">
           <ImageWrap>
             <Image alt={title} src={src} layout="fill" />

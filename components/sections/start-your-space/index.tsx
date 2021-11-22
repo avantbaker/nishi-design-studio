@@ -41,6 +41,7 @@ export default function StartYourSpace({
   ...rest
 }: {
   hasLogo?: boolean;
+  backgroundColor?: string;
 }) {
   return (
     <Container hasLogo {...rest}>

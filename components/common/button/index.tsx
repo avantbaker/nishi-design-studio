@@ -89,11 +89,13 @@ export function SecondaryButton({
   children,
   large,
   color,
+  m,
   ...rest
 }: {
   large?: boolean;
   color?: string;
   children: React.ReactNode;
+  m: any;
 }) {
   return (
     <SecondaryBtn large={large} color={color} {...rest}>

@@ -60,11 +60,25 @@ const TextContentRight = styled.div`
   }
 `;
 
+const GoldBadgeWrap = styled.div`
+  position: relative;
+  width: ${rem(97)};
+  height: ${rem(97)};
+  margin: 0 auto;
+  bottom: ${rem(50)};
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    margin-left: auto;
+    margin-right: -${rem(40)};
+    bottom: ${rem(55)};
+  }
+`;
+
 export default function MeetTheBoss() {
   return (
     <Container flexDirection={['column', 'column', 'column', 'row']}>
       <Box
-        backgroundColor={rgba(215, 139, 50, 0.55)}
+        backgroundColor={rgba(215, 139, 50, 0.75)}
         width={[1, 1, 1, 1 / 2]}
         pt={[rem(80), rem(80), rem(80), rem(223)]}
         pb={[rem(70), rem(70), rem(70), rem(200)]}
@@ -100,6 +114,14 @@ export default function MeetTheBoss() {
           width="786px"
           height="948px"
         />
+        <GoldBadgeWrap>
+          <Image
+            alt="Nishi Gold Badge"
+            className="gold-badge"
+            src="/images/green-gold-badge.png"
+            layout="fill"
+          />
+        </GoldBadgeWrap>
       </ImageWrap>
       <Box
         width={[1, 1, 1, 1 / 2]}

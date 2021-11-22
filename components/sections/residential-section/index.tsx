@@ -4,7 +4,8 @@ import { rem } from 'polished';
 import Text from 'components/common/text';
 import SpaceCard from 'components/common/space-card';
 import { PrimaryButton } from 'components/common/button';
-import { breakpoints, queries } from 'styles/media';
+import { breakpoints } from 'styles/media';
+import { mockSpacesData } from 'pages/api/mocks';
 
 const Container = styled.div`
   position: relative;
@@ -52,44 +53,6 @@ const ImgWrap = styled.div`
   }
 `;
 
-const mockData = [
-  {
-    location: 'New York, NY',
-    year: '2021',
-    title: 'runaway getaway',
-    href: '/',
-    src: '/elements/residential/runaway.png',
-  },
-  {
-    location: 'Atlanta, GA',
-    year: '2021',
-    title: 'generations haven',
-    href: '/',
-    src: '/elements/residential/red-couch.png',
-  },
-  {
-    location: 'Austin, TX',
-    year: '2021',
-    title: 'underground escape',
-    href: '/',
-    src: '/elements/residential/billiards.png',
-  },
-  {
-    location: 'Mexico City, Mexico',
-    year: '2021',
-    title: 'international crashpad',
-    href: '/',
-    src: '/elements/residential/pool.png',
-  },
-  {
-    location: 'New York, NY',
-    year: '2021',
-    title: 'urban retreat',
-    href: '/',
-    src: '/elements/residential/urban-retreat.png',
-  },
-];
-
 export default function ResidentialSection() {
   return (
     <Container>
@@ -100,7 +63,7 @@ export default function ResidentialSection() {
         >
           residential spaces
         </Text>
-        {mockData.map((space) => (
+        {mockSpacesData.map((space) => (
           <SpaceCard key={space.title} {...space} />
         ))}
       </ContentWrap>

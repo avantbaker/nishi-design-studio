@@ -10,6 +10,7 @@ import useMediaQuery from 'hooks/use-media-query';
 import { useState } from 'react';
 
 const Container = styled(Flex)`
+  position: relative;
   display: flex;
   background-color: ${theme.colors.lightTan};
   padding: ${rem(96)} ${rem(22)} ${rem(50)} ${rem(24)};
@@ -103,6 +104,18 @@ const TriangleImg = styled.img`
   }
 `;
 
+const BadgeWrap = styled.div`
+  position: absolute;
+  top: -${rem(10)};
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    left: auto;
+    right: 10%;
+  }
+`;
+
 export default function ExpertiseSection() {
   const [selectedService, setSelectedService] = useState(
     'service installation'
@@ -121,6 +134,15 @@ export default function ExpertiseSection() {
 
   return (
     <Container as="section" flexDirection={['column', 'column', 'row']}>
+      <BadgeWrap>
+        <Image
+          alt="Nishi Badge Logo"
+          src="/images/nishi-badge-home.png"
+          layout="intrinsic"
+          width={isTablet ? '168px' : '135px'}
+          height={isTablet ? '168px' : '135px'}
+        />
+      </BadgeWrap>
       <Box
         width={[1, 1, 2 / 5]}
         mb={[rem(33), rem(33), rem(60)]}

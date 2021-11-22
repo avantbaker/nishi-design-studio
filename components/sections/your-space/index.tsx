@@ -52,18 +52,6 @@ const Container = styled.section`
       right: 0;
     }
 
-    :after {
-      content: '';
-      background-image: url(/images/your-space-bg.png);
-      background-size: cover;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: ${rem(315)};
-      z-index: -1;
-    }
-
     .your {
       width: auto;
     }
@@ -96,6 +84,7 @@ const SquareWrap = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: -1;
 `;
 
 const Square = styled.div`

@@ -7,11 +7,12 @@ import StartYourSpace from 'components/sections/start-your-space';
 import { Box, Flex } from 'rebass/styled-components';
 import styled from 'styled-components';
 import { rem } from 'polished';
-import AboutHeader from 'components/sections/about-header';
+import SimpleHeader from 'components/sections/simple-header';
+import TeamSlider from 'components/sections/team-slider';
 import MeetTheBoss from 'components/sections/meet-the-boss';
 import ImageGrid from 'components/common/image-grid';
 
-const PageContent = styled.section`
+const HeaderWrap = styled.section`
   background-color: ${theme.colors.lightTan};
   background-image: url('/images/tan-bg.png');
   overflow-x: hidden;
@@ -20,6 +21,11 @@ const PageContent = styled.section`
 const ContentWrap = styled.div`
   background-color: ${theme.colors.lightTan};
 `;
+const MiddleWrap = styled.div`
+  background-color: ${theme.colors.lightTan};
+  background-image: url('/images/tan-bg.png');
+  background-size: cover;
+`;
 
 const OffsetText = styled(Text)`
   margin-left: ${rem(40)};
@@ -27,18 +33,26 @@ const OffsetText = styled(Text)`
 
 export default function About() {
   return (
-    <PageContent>
-      <Nav />
-      <AboutHeader />
+    <>
+      <HeaderWrap>
+        <Nav />
+        <SimpleHeader
+          src="/images/about-header-image.png"
+          title="lorem ipsum"
+          subTitle="lorem ipsum dolor"
+        />
+      </HeaderWrap>
       <MediaSection />
-      <MeetTheBoss />
+      <MiddleWrap>
+        <MeetTheBoss />
+        <TeamSlider />
+      </MiddleWrap>
       <ContentWrap>
         <Flex
           maxWidth={rem(1076)}
           m="0 auto"
           flexDirection={['column', 'column', 'row']}
           p={`${rem(88)} ${rem(24)} ${rem(91)} ${rem(24)}`}
-          backgroundColor={theme.colors.lightTan}
         >
           <Box width={[1, 1, 1 / 2]}>
             <Text variant="highlight" mb={[rem(14), rem(14)]}>
@@ -76,6 +90,6 @@ export default function About() {
       </ContentWrap>
       <StartYourSpace hasLogo backgroundColor={theme.colors.lightTan} />
       <Footer />
-    </PageContent>
+    </>
   );
 }

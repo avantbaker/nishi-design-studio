@@ -13,6 +13,14 @@ const NavContainer = styled.nav`
   justify-content: space-between;
   padding: ${rem(22)};
 
+  && a {
+    :active,
+    :hover,
+    :focus {
+      color: ${theme.colors.orange};
+    }
+  }
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
     padding: ${rem(24)} ${rem(91)} ${rem(38)} ${rem(91)};
   }
@@ -60,10 +68,6 @@ const MobileNav = styled.div`
     line-height: ${rem(48)};
     text-decoration: none;
     color: ${theme.colors.gray};
-
-    :active {
-      color: ${theme.colors.orange};
-    }
   }
 
   > ${Flex} {

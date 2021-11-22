@@ -11,8 +11,7 @@ import BrandsParters from 'components/sections/brands-partners';
 import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
 import ImageGrid from 'components/common/image-grid';
-
-export default function ResidencePage() {
+import DarkSlider from 'components/common/dark-slider';
 
 const PageContent = styled.section`
   background-color: ${theme.colors.lightTan};
@@ -222,7 +221,8 @@ export default function ResidencePage() {
         </BannerWrap>
       </Flex>
       <BrandsParters />
-      <StartYourSpaceTan hasLogo />
+      <DarkSlider />
+      <StartYourSpace backgroundColor={theme.colors.tan} hasLogo />
       <Footer />
     </PageContent>
   );
