@@ -5,6 +5,7 @@ import { Flex, Box } from 'rebass/styled-components';
 import { rem } from 'polished';
 import Text from 'components/common/text';
 import Footer from 'components/common/footer';
+import RelatedArticles from 'components/sections/related-articles';
 import Nav from 'components/common/nav';
 import { SecondaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
@@ -62,7 +63,7 @@ export default function BlogDetail() {
         flexDirection="column"
         margin="0 auto"
         mt={[rem(2), rem(2)]}
-        px={[rem(26), rem(26), 'initial']}
+        px={rem(26)}
         mb={[rem(128), rem(128), rem(134)]}
       >
         <Flex
@@ -197,6 +198,7 @@ export default function BlogDetail() {
             </Flex>
           </Box>
         </Flex>
+        <RelatedArticles />
       </Flex>
       <Footer />
     </PageContent>

@@ -11,6 +11,7 @@ import SocialSection from 'components/sections/social-section';
 import SignupSection from 'components/sections/signup-section';
 import StartYourSpace from 'components/sections/start-your-space';
 import MediaSection from 'components/sections/media-section';
+import { mockBlogData } from 'pages/api/mocks';
 
 const PageContent = styled.div`
   position: relative;
@@ -88,23 +89,29 @@ const SearchInput = styled.input`
   border: ${rem(1)} solid ${theme.colors.orange};
   background-color: transparent;
   padding: ${rem(18)};
-  width: ${rem(299)};
   font-size: ${rem(15)};
   line-height: ${rem(18)};
   letter-spacing: ${rem(0.15)};
   font-family: ${theme.typography.fonts.primary};
   font-weight: bold;
   color: ${theme.colors.orange};
-  margin-right: ${rem(24)};
+  margin-bottom: ${rem(15)};
 
   ::placeholder {
     color: ${theme.colors.orange};
+  }
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    margin-right: ${rem(24)};
+    margin-bottom: 0;
+    width: ${rem(299)};
   }
 `;
 
 const SelectContainer = styled.div`
   position: relative;
   cursor: pointer;
+  width: 100%;
   :after {
     content: '';
     border-radius: 50%;
@@ -137,6 +144,7 @@ const Select = styled.select`
   color: ${theme.colors.orange};
   appearance: none;
   cursor: pointer;
+  width: 100%;
 `;
 
 const PagerContainer = styled.ul`
@@ -167,37 +175,6 @@ const PagerContainer = styled.ul`
   }
 `;
 
-const mockBlogData = [
-  {
-    title: 'Pillows galore',
-    date: '12/24/2021',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit…',
-    tags: ['Decor', 'Process', 'NDS'],
-    src: '/elements/blog/blog-1.png',
-  },
-  {
-    title: 'Naming a theme',
-    date: '12/24/2021',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit…',
-    tags: ['Decor', 'Process', 'NDS'],
-    src: '/elements/blog/blog-2.png',
-  },
-  {
-    title: 'Location, location.',
-    date: '12/24/2021',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit…',
-    tags: ['Decor', 'Process', 'NDS'],
-    src: '/elements/blog/blog-3.png',
-  },
-  {
-    title: 'Picking greenry',
-    date: '12/24/2021',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit…',
-    tags: ['Decor', 'Process', 'NDS'],
-    src: '/elements/blog/blog-4.png',
-  },
-];
-
 export default function Blog() {
   function handleBlogSearch() {
     // pass query string to api
@@ -217,11 +194,17 @@ export default function Blog() {
       <BlogContent>
         <Flex
           justifyContent="space-between"
-          alignItems="center"
+          alignItems={['flex-start', 'flex-start', 'center']}
           mb={[rem(46), rem(46)]}
+          flexDirection={['column', 'column', 'row']}
         >
-          <Text variant="headingSmall">blog</Text>
-          <Flex>
+          <Text variant="headingSmall" mb={[rem(22), rem(22), 'initial']}>
+            blog
+          </Text>
+          <Flex
+            flexDirection={['column', 'column', 'row']}
+            width={['100%', '100%', 'initial']}
+          >
             <SearchInput placeholder="search" onChange={handleBlogSearch} />
             <SelectContainer>
               <Select onChange={handleFilterChange}>

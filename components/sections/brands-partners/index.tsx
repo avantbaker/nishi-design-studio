@@ -1,5 +1,6 @@
 import { Flex, Box } from 'rebass/styled-components';
 import Text from 'components/common/text';
+import Image from 'next/image';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 import { breakpoints } from 'styles/media';
@@ -125,8 +126,23 @@ const List = styled.ul`
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     :first-of-type {
-      margin-right: ${rem(40)};
+      margin-right: ${rem(24)};
     }
+  }
+`;
+
+const BadgeWrap = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: ${rem(153)};
+  height: ${rem(153)};
+  z-index: 1;
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    left: auto;
+    right: 10%;
   }
 `;
 
@@ -135,6 +151,9 @@ const TextContentWrap = styled.div``;
 export default function BrandsPartners() {
   return (
     <Container>
+      <BadgeWrap>
+        <Image src="/images/spaces-badge-black.png" layout="fill" />
+      </BadgeWrap>
       <SquareWrap>
         <Square>
           <img src="/images/triangle-orange.png" />
@@ -172,7 +191,7 @@ export default function BrandsPartners() {
       >
         <Flex
           pt={[null, null, rem(32)]}
-          flexDirection={['column', 'column', 'column', 'row']}
+          flexDirection={['column', 'column', 'row']}
         >
           <Flex flexDirection="column" mb={[rem(40), rem(40), null]}>
             <Text

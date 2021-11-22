@@ -64,7 +64,7 @@ export default function MediaSection() {
           height="158px"
           src="/images/press-logos.jpg"
         />
-        <Link href="/">
+        <Link href="/press">
           <a>
             <SecondaryButton color="#fff">all press</SecondaryButton>
           </a>

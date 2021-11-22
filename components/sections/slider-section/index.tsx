@@ -84,6 +84,7 @@ const ArrowRight = styled.div`
   transform: rotate(180deg);
   margin-left: ${rem(11)};
   cursor: pointer;
+  position: relative;
 
   :hover {
     color: initial;
@@ -110,6 +111,18 @@ const ArrowRight = styled.div`
   @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(69)};
     height: ${rem(69)};
+
+    :after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      border: ${rem(1)} solid #d78b32;
+      width: ${rem(34)};
+      height: ${rem(34)};
+      position: absolute;
+      right: -${rem(6)};
+      bottom: -${rem(6)};
+    }
   }
 `;
 
