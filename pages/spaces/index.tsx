@@ -12,41 +12,42 @@ import SpacesSliderHeader from 'components/sections/spaces-slider-header';
 import ResidentialSection from 'components/sections/residential-section';
 
 const PageContent = styled.div`
-  position: relative;
-  overflow: hidden;
-  :before {
-    content: '';
-    background-image: url('/images/tan-bg.png');
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-  }
+	position: relative;
+	overflow: hidden;
+	:before {
+		content: '';
+		background-image: url('/images/tan-bg.png');
+		background-size: contain;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+	}
 `;
 
 const StartYourSpaceTan = styled(StartYourSpace)`
-  background-color: ${theme.colors.lightTan};
+	background-color: ${theme.colors.lightTan};
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding-top: ${rem(121)};
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		padding-top: ${rem(121)};
+	}
 `;
 
 export default function Residential() {
-  const isTablet = useMediaQuery(queries.minTablet);
-  return (
-    <>
-      <PageContent>
-        <Nav />
-        <Flex maxWidth={`${rem(1460)}`} m="0 auto">
-          <SliderSection />
-        </Flex>
-        <ResidentialSection />
-        <StartYourSpaceTan />
-        <Footer />
-      </PageContent>
-    </>
-  );
+	const isTablet = useMediaQuery(queries.minTablet);
+	return (
+		<>
+			<PageContent>
+				<Nav />
+				<Flex maxWidth={`${rem(1460)}`} m="0 auto">
+					<SliderSection />
+				</Flex>
+				<ResidentialSection />
+				<StartYourSpaceTan />
+				<Footer />
+			</PageContent>
+		</>
+	);
 }
