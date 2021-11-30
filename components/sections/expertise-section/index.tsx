@@ -43,7 +43,8 @@ const ServiceList = styled.ul`
 `;
 
 const ServiceItem = styled(Text)<{ selected?: boolean }>`
-  margin-bottom: ${rem(32)};
+  margin-bottom: ${rem(16)};
+  padding-bottom: ${rem(16)};
   color: rgba(215, 139, 50, 0.57);
   font-size: ${rem(11)};
   cursor: pointer;
@@ -53,6 +54,36 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
     css`
       color: ${theme.colors.gray};
       cursor: initial;
+
+      @media only screen and (min-width: ${breakpoints.tablet}) {
+        a {
+          position: relative;
+          :before {
+            content: '';
+            display: block;
+            border-radius: 50%;
+            border: ${rem(1)} solid ${theme.colors.orange};
+            width: ${rem(34)};
+            height: ${rem(34)};
+            position: absolute;
+            right: -${rem(12)};
+            bottom: ${rem(4)};
+            top: -${rem(10)};
+          }
+        }
+
+        :after {
+          content: '';
+          width: 100%;
+          height: ${rem(1)};
+          background-color: ${theme.colors.sand};
+          display: block;
+          width: calc(100% - 12px);
+          left: 0;
+          margin-top: ${rem(12)};
+          position: absolute;
+        }
+      }
     `}
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
@@ -149,6 +180,7 @@ export default function ExpertiseSection() {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        className="left-box"
       >
         <Flex flexDirection="column" width={['100%', '100%', 'initial']}>
           <Text variant="highlight" mb={[rem(24), rem(24), rem(52)]}>

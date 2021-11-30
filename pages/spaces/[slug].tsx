@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import Link from 'next/link';
 import Image from 'next/image';
+import { SecondaryButton } from 'components/common/button';
 import { Flex, Box } from 'rebass/styled-components';
 import { rem } from 'polished';
 import Text from 'components/common/text';
@@ -88,6 +90,53 @@ const BannerWrap = styled.div`
   }
 `;
 
+const NextSpace = styled.a`
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: ${theme.colors.orange};
+  font-weight: 800;
+  font-size: ${rem(15)};
+  line-height: ${rem(18)};
+  letter-spacing: ${rem(0.15)};
+
+  :before {
+    content: '';
+    width: ${rem(34)};
+    height: ${rem(34)};
+    border: ${rem(1)} solid ${theme.colors.orange};
+    border-radius: 50%;
+    position: absolute;
+    left: 45%;
+  }
+`;
+
+const GoldLineLeft = styled.img`
+  width: ${rem(462)};
+  height: ${rem(180)};
+  position: absolute;
+  left: -${rem(24)};
+  top: 50%;
+`;
+const GoldLineRight = styled.img`
+  height: ${rem(62.12)};
+  width: ${rem(301.72)};
+  right: 0;
+  top: 60%;
+  position: absolute;
+`;
+
+const ArrowRightSolid = styled.div`
+  background-image: url('/images/active-right-arrow.png');
+  background-size: cover;
+  width: ${rem(34)};
+  height: ${rem(34)};
+  margin-left: ${rem(11)};
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+`;
+
 export default function ResidencePage() {
   const isTablet = useMediaQuery(queries.minTablet);
 
@@ -171,6 +220,12 @@ export default function ResidencePage() {
             </List>
           </Box>
         </Flex>
+        {isTablet && (
+          <>
+            <GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
+            <GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
+          </>
+        )}
         <BannerContainer>
           <Image
             src={`/elements/residential/residence-detail${
@@ -211,6 +266,7 @@ export default function ResidencePage() {
         <StyledImageGrid />
         <BannerWrap>
           <Image
+            alt="Residential banner"
             src={`${
               isTablet
                 ? '/elements/residential/residence-banner.png'
@@ -222,7 +278,30 @@ export default function ResidencePage() {
       </Flex>
       <BrandsParters />
       <DarkSlider />
-      <StartYourSpace backgroundColor={theme.colors.tan} hasLogo />
+      <Flex
+        maxWidth={rem(400)}
+        justifyContent="space-between"
+        alignItems="center"
+        flexDirection={['column', 'column', 'row']}
+        ml="auto"
+        mr="auto"
+        mt={[rem(40), rem(40), rem(64)]}
+      >
+        <Link href="/spaces">
+          <a>
+            <SecondaryButton mr={[rem(40), null, null]} large arrowLeft>
+              back to gallery
+            </SecondaryButton>
+          </a>
+        </Link>
+        <Link href="/" passHref>
+          <NextSpace>
+            next space
+            <ArrowRightSolid />
+          </NextSpace>
+        </Link>
+      </Flex>
+      <StartYourSpace hasLogo />
       <Footer />
     </PageContent>
   );

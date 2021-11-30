@@ -8,7 +8,8 @@ import Footer from 'components/common/footer';
 import RelatedArticles from 'components/sections/related-articles';
 import Nav from 'components/common/nav';
 import { SecondaryButton } from 'components/common/button';
-import { breakpoints } from 'styles/media';
+import { breakpoints, queries } from 'styles/media';
+import useMediaQuery from 'hooks/use-media-query';
 import Link from 'next/link';
 import Twitter from 'components/common/icons/twitter';
 import LinkedIn from 'components/common/icons/linkedin';
@@ -54,7 +55,23 @@ const SocialFlex = styled(Flex)`
   }
 `;
 
+const GoldLineLeft = styled.img`
+  width: ${rem(462)};
+  height: ${rem(180)};
+  position: absolute;
+  left: -${rem(24)};
+  top: 50%;
+`;
+const GoldLineRight = styled.img`
+  height: ${rem(62.12)};
+  width: ${rem(301.72)};
+  right: 0;
+  top: 60%;
+  position: absolute;
+`;
+
 export default function BlogDetail() {
+  const isTablet = useMediaQuery(queries.minTablet);
   return (
     <PageContent>
       <Nav />
@@ -96,6 +113,12 @@ export default function BlogDetail() {
             </Text>
           </Box>
         </Flex>
+        {isTablet && (
+          <>
+            <GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
+            <GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
+          </>
+        )}
         <BannerContainer>
           <Image
             alt="Nishi blog"

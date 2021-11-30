@@ -5,8 +5,7 @@ import Image from 'next/image';
 import Text from 'components/common/text';
 import { Flex } from 'rebass/styled-components';
 import { SecondaryButton } from 'components/common/button';
-import { breakpoints, queries } from 'styles/media';
-import useMediaQuery from 'hooks/use-media-query';
+import { breakpoints } from 'styles/media';
 import theme from 'styles/theme';
 
 const ImageWrap = styled.div`

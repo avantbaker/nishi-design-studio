@@ -125,7 +125,7 @@ const SelectContainer = styled.div`
     background: url('/images/down-arrow.png') no-repeat;
     background-position-x: 9px;
     background-position-y: 14px;
-    backgroundd-size: cover;
+    background-size: cover;
     z-index: -1;
   }
 `;
