@@ -39,11 +39,9 @@ export default function SocialSection() {
       </Flex>
       <ImageGrid />
       <SecondaryButton
-        m={[
-          `${rem(16)} auto 0 auto`,
-          `${rem(16)} auto 0 auto`,
-          `${rem(10)} auto 0 auto`,
-        ]}
+        mt={[rem(16), rem(16), rem(10)]}
+        ml="auto"
+        mr="auto"
         large
       >
         follow us

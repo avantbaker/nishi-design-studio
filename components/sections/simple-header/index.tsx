@@ -32,6 +32,9 @@ const Container = styled.section`
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
+    .left-box {
+      z-index: 2;
+    }
     .right-box {
       position: relative;
       z-index: 1;
@@ -74,11 +77,7 @@ export default function SimpleHeader({ src, title, subTitle }) {
         flexDirection={['column', 'column', 'row']}
         pr={[rem(55), rem(55), rem(24)]}
       >
-        <Box
-          className="left-box"
-          css={{ zIndex: 999 }}
-          width={[1, 1, 1 / 2, 3 / 5]}
-        >
+        <Box className="left-box" width={[1, 1, 1 / 2, 3 / 5]}>
           <Image alt="Nishi About" src={src} layout="fill" />
         </Box>
         <Box
@@ -95,6 +94,10 @@ export default function SimpleHeader({ src, title, subTitle }) {
           ]}
         >
           <TextContentRight>
+            <LineImg
+              alt="gold line"
+              src="/elements/goldlines/Gold-Line-4.png"
+            />
             <Text
               pb={[rem(19), rem(19)]}
               variant="highlight"
@@ -110,10 +113,6 @@ export default function SimpleHeader({ src, title, subTitle }) {
             >
               {title}
             </Text>
-            <LineImg
-              alt="gold line"
-              src="/elements/goldlines/Gold-Line-4.png"
-            />
           </TextContentRight>
         </Box>
       </Flex>

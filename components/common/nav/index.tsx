@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Flex } from 'rebass/styled-components';
 import theme from 'styles/theme';
 import { breakpoints } from 'styles/media';
@@ -19,6 +20,10 @@ const NavContainer = styled.nav`
     :focus {
       color: ${theme.colors.orange};
     }
+  }
+
+  a.selected {
+    color: ${theme.colors.orange};
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
@@ -93,44 +98,61 @@ const LogoAnchor = styled.a`
 `;
 
 export default function Nav() {
+  const { pathname } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   function toggleMobileNav() {
     setIsOpen(!isOpen);
   }
+
+  function isSelected(str) {
+    return pathname === str ? 'selected' : '';
+  }
+  console.log('pathname', pathname);
   return (
     <>
       <NavContainer>
         {isOpen && (
           <MobileNav>
             <Link href="/spaces" passHref>
-              <a>Spaces</a>
+              <a className={isSelected('/spaces')}>Spaces</a>
             </Link>
             <Link href="/expertise" passHref>
-              <a>Expertise</a>
+              <a className={isSelected('/expertise')}>Expertise</a>
             </Link>
             <Link href="/contact" passHref>
-              <a>Contact</a>
+              <a className={isSelected('/contact')}>Contact</a>
             </Link>
             <Link href="/about" passHref>
-              <a>About</a>
+              <a className={isSelected('/about')}>About</a>
             </Link>
             <Flex flexDirection="column" mt={rem(19)}>
               <Link href="/press" passHref>
-                <a>Press</a>
+                <a className={isSelected('/press')}>Press</a>
               </Link>
               <Link href="/blog" passHref>
-                <a>Blog</a>
+                <a className={isSelected('/blog')}>Blog</a>
               </Link>
             </Flex>
             <MobileFooter>
               <Flex mb={rem(4)}>
                 <Link href="/legal" passHref>
-                  <Text as="a" variant="caption" fontWeight="bold" mr={rem(16)}>
+                  <Text
+                    as="a"
+                    className={isSelected('/privacy')}
+                    variant="caption"
+                    fontWeight="bold"
+                    mr={rem(16)}
+                  >
                     Privacy
                   </Text>
                 </Link>
                 <Link href="/legal" passHref>
-                  <Text as="a" variant="caption" fontWeight="bold">
+                  <Text
+                    className={isSelected('/terms')}
+                    as="a"
+                    variant="caption"
+                    fontWeight="bold"
+                  >
                     Terms
                   </Text>
                 </Link>
@@ -152,22 +174,22 @@ export default function Nav() {
         </Link>
         <DesktopNav>
           <Link href="/spaces" passHref>
-            <Text as="a" variant="action">
+            <Text className={isSelected('/spaces')} as="a" variant="action">
               Spaces
             </Text>
           </Link>
           <Link href="/expertise" passHref>
-            <Text as="a" variant="action">
+            <Text className={isSelected('/expertise')} as="a" variant="action">
               Expertise
             </Text>
           </Link>
           <Link href="/contact" passHref>
-            <Text as="a" variant="action">
+            <Text className={isSelected('/contact')} as="a" variant="action">
               Contact
             </Text>
           </Link>
           <Link href="/about" passHref>
-            <Text as="a" variant="action">
+            <Text className={isSelected('/about')} as="a" variant="action">
               About
             </Text>
           </Link>
