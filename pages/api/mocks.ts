@@ -76,7 +76,6 @@ export const mockDarkSliderData = [
     src: '/images/dark-slider-placeholder.png',
   },
   {
-
     src: '/images/dark-slider-placeholder.png',
   },
   {
