@@ -40,7 +40,8 @@ export function FilterButton({ children }) {
 const SecondaryBtn = styled.button<{
   large?: boolean;
   color?: string;
-  m?: string;
+  mt?: string[] | string;
+  mr?: string[] | string;
 }>`
   padding: ${rem(16)} ${rem(4)};
   border: none;
@@ -104,6 +105,9 @@ export function SecondaryButton({
   color?: string;
   children: React.ReactNode;
   m?: any;
+  mt?: string[] | string;
+  mr?: string[] | string;
+  ml?: string[] | string;
 }) {
   return (
     <SecondaryBtn large={large} color={color} {...rest}>
