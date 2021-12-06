@@ -15,11 +15,18 @@ const ImageWrap = styled.div`
 
   img {
     object-fit: cover;
+     transition transform 0.5s ease-in-out;
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     max-width: ${rem(454)};
     margin: 0 auto;
+  }
+`;
+
+const StyledFlex = styled(Flex)`
+  :hover ${ImageWrap} img {
+    transform: scale(1.05);
   }
 `;
 
@@ -48,7 +55,7 @@ export default function PressCard({
 }) {
   return (
     <Link href={link} {...rest} passHref>
-      <Flex
+      <StyledFlex
         as="a"
         flexDirection={['column', 'column', 'row']}
         mb={[rem(40), rem(40)]}
@@ -83,7 +90,7 @@ export default function PressCard({
           </Text>
           <StyledButton>read article</StyledButton>
         </Box>
-      </Flex>
+      </StyledFlex>
     </Link>
   );
 }

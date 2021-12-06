@@ -11,7 +11,10 @@ import { rem } from 'polished';
 import SocialSection from 'components/sections/social-section';
 import SignupSection from 'components/sections/signup-section';
 import VendorsContractors from 'components/sections/vendors-contractors';
-import { PrimaryButton, SecondaryButton } from 'components/common/button';
+import Designers from 'components/sections/designers';
+import { PrimaryButton } from 'components/common/button';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const HeaderWrap = styled.div`
   background-color: ${theme.colors.lightTan};
@@ -80,7 +83,7 @@ const BottomLayout = styled.div`
 
 export default function Contact() {
   return (
-    <>
+    <motion.div {...framerOptions}>
       <HeaderWrap>
         <Nav />
         <ContactHeader>
@@ -158,12 +161,13 @@ export default function Contact() {
         </PageContent>
       </PageBackground>
       <VendorsContractors />
+      <Designers />
       <BottomLayout>
         <StartYourSpace hasLogo />
         <SocialSection />
       </BottomLayout>
       <SignupSection />
       <Footer />
-    </>
+    </motion.div>
   );
 }

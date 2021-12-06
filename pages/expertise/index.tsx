@@ -8,6 +8,8 @@ import OurSpacesSlider from 'components/sections/our-spaces';
 import DarkSlider from 'components/common/dark-slider';
 import Footer from 'components/common/footer';
 import SimpleHeader from 'components/sections/simple-header';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const PageContent = styled.section`
   background-color: ${theme.colors.lightTan};
@@ -21,20 +23,26 @@ const HeaderWrap = styled.div`
 
 export default function Expertise() {
   return (
-    <PageContent>
-      <HeaderWrap>
-        <Nav />
-        <SimpleHeader
-          src="/images/poodle-header-image.png"
-          title="every step"
-          subTitle="we're there for"
+    <motion.div {...framerOptions}>
+      <PageContent>
+        <HeaderWrap>
+          <Nav />
+          <SimpleHeader
+            src="/images/poodle-header-image.png"
+            title="every step"
+            subTitle="we're there for"
+          />
+        </HeaderWrap>
+        <ExpertisePageContent />
+        <DarkSlider />
+        <OurSpacesSlider />
+        <StartYourSpace
+          hasLogo
+          hasLargeLogo
+          backgroundColor={theme.colors.lightTan}
         />
-      </HeaderWrap>
-      <ExpertisePageContent />
-      <DarkSlider />
-      <OurSpacesSlider />
-      <StartYourSpace hasLogo backgroundColor={theme.colors.lightTan} />
-      <Footer />
-    </PageContent>
+        <Footer />
+      </PageContent>
+    </motion.div>
   );
 }

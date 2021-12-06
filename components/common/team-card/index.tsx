@@ -13,8 +13,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: ${rem(249)};
-  overflow: auto;
   text-align: center;
+
+  div {
+    overflow: visible !important;
+  }
+
+  :hover img {
+    transform: scale(1.05);
+  }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(187)};
@@ -29,6 +36,11 @@ const ImageWrap = styled.div`
   height: ${rem(187)};
   margin-bottom: ${rem(24)};
 
+  img {
+    transition transform 0.5s ease-in-out;
+    object-fit: cover;
+  }
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
     width: ${rem(249)};
     height: ${rem(249)};
@@ -39,11 +51,7 @@ export default function TeamCard({ name, title, description, src, ...rest }) {
   return (
     <Container {...rest}>
       <ImageWrap>
-        <Image
-          src={src}
-          layout="fill"
-          // width="249px" height="249px"
-        />
+        <Image alt={name} src={src} layout="fill" />
       </ImageWrap>
       <Text variant="highlight" mb={rem(16)} color={theme.colors.gray}>
         {name.toUpperCase()}

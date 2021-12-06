@@ -50,29 +50,38 @@ const TextContentRight = styled.div`
   }
 `;
 
-const LineImg = styled.img`
-  height: ${rem(115)};
-  width: ${rem(22.26)};
+const LineWrap = styled.div`
   position: absolute;
-  top: 20%;
-  right 0;
-  transform: translate(-50%, -40%) scaleX(-1) rotate(118deg);
+  pointer-events: none;
+  top: 7%;
+  right: -${rem(25)};
+  width: 60%;
+  height: 246px;
+  z-index: 0;
+
+  img {
+    object-fit: contain;
+  }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    display: block;
-    height: ${rem(770)};
-    width: ${rem(126)};
-    position: absolute;
-    top: 20%;
-    right: ${rem(170)};
-    z-index: -1;
-    transform: translate(-50%, -40%) scaleX(-1) rotate(118deg);
+    transform: rotate(-15deg);
+  }
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    right: -${rem(50)};
+    transform: rotate(-10deg);
+    top: -22%;
+    height: ${rem(600)};
+    width: 48%;
   }
 `;
 
 export default function SimpleHeader({ src, title, subTitle }) {
   return (
     <Container>
+      <LineWrap>
+        <Image alt="" layout="fill" src="/images/gold-line-four.png" />
+      </LineWrap>
       <Flex
         flexDirection={['column', 'column', 'row']}
         pr={[rem(55), rem(55), rem(24)]}
@@ -94,10 +103,6 @@ export default function SimpleHeader({ src, title, subTitle }) {
           ]}
         >
           <TextContentRight>
-            <LineImg
-              alt="gold line"
-              src="/elements/goldlines/Gold-Line-4.png"
-            />
             <Text
               pb={[rem(19), rem(19)]}
               variant="highlight"

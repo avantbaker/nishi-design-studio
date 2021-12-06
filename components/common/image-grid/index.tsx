@@ -14,6 +14,11 @@ const Container = styled.section`
 
   img {
     object-fit: cover;
+    transition transform 0.5s ease-in-out;
+
+    :hover {
+      transform: scale(1.05);
+    }
   }
 
   .my-masonry-grid {

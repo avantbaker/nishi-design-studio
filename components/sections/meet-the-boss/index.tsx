@@ -5,14 +5,10 @@ import theme from 'styles/theme';
 import Image from 'next/image';
 import { breakpoints } from 'styles/media';
 import { rem, rgba } from 'polished';
+import OrangeBadge from 'components/common/badges/orange-badge';
 
 const Container = styled(Flex)`
-  padding-bottom: ${rem(80)};
   position: relative;
-
-  @media only screen and (min-width: ${breakpoints.laptop}) {
-    padding: 0;
-  }
 `;
 
 const HeadingText = styled(Text)`
@@ -60,7 +56,7 @@ const TextContentRight = styled.div`
   }
 `;
 
-const GoldBadgeWrap = styled.div`
+const StyledOrangeBadge = styled(OrangeBadge)`
   position: relative;
   width: ${rem(97)};
   height: ${rem(97)};
@@ -114,14 +110,7 @@ export default function MeetTheBoss() {
           width="786px"
           height="948px"
         />
-        <GoldBadgeWrap>
-          <Image
-            alt="Nishi Gold Badge"
-            className="gold-badge"
-            src="/images/green-gold-badge.png"
-            layout="fill"
-          />
-        </GoldBadgeWrap>
+        <StyledOrangeBadge />
       </ImageWrap>
       <Box
         width={[1, 1, 1, 1 / 2]}

@@ -5,6 +5,8 @@ import BrandsParters from 'components/sections/brands-partners';
 import styled from 'styled-components';
 import PressHeader from 'components/sections/press-header';
 import PressArticles from 'components/sections/press-articles';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const PageContent = styled.section`
   background-color: ${theme.colors.lightTan};
@@ -12,12 +14,14 @@ const PageContent = styled.section`
 
 export default function Press() {
   return (
-    <PageContent>
-      <Nav />
-      <PressHeader />
-      <PressArticles />
-      <BrandsParters />
-      <Footer />
-    </PageContent>
+    <motion.div {...framerOptions}>
+      <PageContent>
+        <Nav />
+        <PressHeader />
+        <PressArticles />
+        <BrandsParters />
+        <Footer noPadding />
+      </PageContent>
+    </motion.div>
   );
 }

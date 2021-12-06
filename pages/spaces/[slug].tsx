@@ -14,6 +14,8 @@ import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
 import ImageGrid from 'components/common/image-grid';
 import DarkSlider from 'components/common/dark-slider';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const PageContent = styled.section`
   background-color: ${theme.colors.lightTan};
@@ -78,6 +80,14 @@ const BannerWrap = styled.div`
   margin: 0 auto;
   margin-left: -${rem(26)};
 
+  img {
+    transition transform 0.5s ease-in-out;
+  }
+
+  :hover img {
+    transform: scale(1.05);
+  }
+
   @media only screen and (min-width: ${breakpoints.mobileLarge}) {
     width: 100%;
     margin-left: 0;
@@ -112,17 +122,17 @@ const NextSpace = styled.a`
 `;
 
 const GoldLineLeft = styled.img`
-  width: ${rem(462)};
+  width: 53%;
   height: ${rem(180)};
   position: absolute;
-  left: -${rem(24)};
-  top: 50%;
+  left: -${rem(75)};
+  top: ${rem(375)};
 `;
 const GoldLineRight = styled.img`
   height: ${rem(62.12)};
-  width: ${rem(301.72)};
+  width: 50%;
   right: 0;
-  top: 60%;
+  top: ${rem(490)};
   position: absolute;
 `;
 
@@ -174,135 +184,140 @@ export default function ResidencePage() {
   ];
 
   return (
-    <PageContent>
-      <Nav />
-      <Flex
-        maxWidth={rem(1044)}
-        flexDirection="column"
-        margin="0 auto"
-        mt={[rem(2), rem(2)]}
-        px={[rem(26), rem(26)]}
-        mb={[rem(128), rem(128), rem(134)]}
-      >
+    <motion.div {...framerOptions}>
+      <PageContent>
+        <Nav />
         <Flex
-          flexDirection={['column', 'column', 'row']}
-          justifyContent="space-between"
+          maxWidth={rem(1044)}
+          flexDirection="column"
+          margin="0 auto"
+          mt={[rem(2), rem(2)]}
+          px={[rem(26), rem(26)]}
+          mb={[rem(128), rem(128), rem(134)]}
         >
-          <Box width={[1, 1, 1 / 4]} mb={[rem(43), rem(43)]}>
-            <Flex justifyContent="space-between">
-              <Text mb={[rem(12), rem(12)]} variant="bodySmall">
-                New York, NY
+          <Flex
+            flexDirection={['column', 'column', 'row']}
+            justifyContent="space-between"
+          >
+            <Box width={[1, 1, 1 / 4]} mb={[rem(43), rem(43)]}>
+              <Flex justifyContent="space-between">
+                <Text mb={[rem(12), rem(12)]} variant="bodySmall">
+                  New York, NY
+                </Text>
+                <Text variant="bodySmall" fontSize={rem(15)}>
+                  2021
+                </Text>
+              </Flex>
+              <Text variant="headingSmall" width={['60%', '60%']}>
+                elemental villa
               </Text>
-              <Text variant="bodySmall" fontSize={rem(15)}>
-                2021
+            </Box>
+            <Box width={[1, 1, 1 / 3]} pb={[rem(30), rem(30)]}>
+              <Text
+                variant="highlight"
+                width={['60%', '60%']}
+                ml={['auto', 'auto']}
+                textAlign={['right', 'right']}
+              >
+                EXPERTISE RENDERED
               </Text>
-            </Flex>
-            <Text variant="headingSmall" width={['60%', '60%']}>
-              elemental villa
-            </Text>
-          </Box>
-          <Box width={[1, 1, 1 / 3]} pb={[rem(30), rem(30)]}>
-            <Text
-              variant="highlight"
-              width={['60%', '60%']}
-              ml={['auto', 'auto']}
-              textAlign={['right', 'right']}
-            >
-              EXPERTISE RENDERED
-            </Text>
-            <List>
-              <li>Planning</li>
-              <li>Design Operation</li>
-              <li>Ordering + Buying</li>
-              <li>Planning</li>
-              <li>Design Operation</li>
-              <li>Ordering + Buying</li>
-            </List>
-          </Box>
+              <List>
+                <li>Planning</li>
+                <li>Design Operation</li>
+                <li>Ordering + Buying</li>
+                <li>Planning</li>
+                <li>Design Operation</li>
+                <li>Ordering + Buying</li>
+              </List>
+            </Box>
+          </Flex>
+          {isTablet && (
+            <>
+              <GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
+              <GoldLineRight
+                alt="Gold line"
+                src="/images/blog-lines-right.png"
+              />
+            </>
+          )}
+          <BannerContainer>
+            <Image
+              src={`/elements/residential/residence-detail${
+                !isTablet ? '-small' : ''
+              }.png`}
+              layout="fill"
+            />
+          </BannerContainer>
+          <Flex flexDirection={['column', 'column', 'row']}>
+            <Box width={[1, 1, 2 / 6]}>
+              <Text
+                mb={[rem(12), rem(12)]}
+                variant="highlight"
+                width={['60%', '60%']}
+              >
+                RESIDENTIAL FULL HOME
+              </Text>
+            </Box>
+            <Box width={[1, 1, 4 / 6]}>
+              <Text
+                variant="body"
+                mb={[rem(47), rem(47)]}
+                color={theme.colors.textGray}
+                className="text-content"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                semper odio eunum dignissim porta. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Vivamus semper odio eunum dignissim
+                porta.
+                <Divider />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                semper odio eunum dignissim porta. Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Vivamus semper odio eunum dignissim
+                porta.
+              </Text>
+            </Box>
+          </Flex>
+          <StyledImageGrid />
+          <BannerWrap>
+            <Image
+              alt="Residential banner"
+              src={`${
+                isTablet
+                  ? '/elements/residential/residence-banner.png'
+                  : '/elements/residential/residence-banner-mobile.png'
+              }`}
+              layout="fill"
+            />
+          </BannerWrap>
         </Flex>
-        {isTablet && (
-          <>
-            <GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
-            <GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
-          </>
-        )}
-        <BannerContainer>
-          <Image
-            src={`/elements/residential/residence-detail${
-              !isTablet ? '-small' : ''
-            }.png`}
-            layout="fill"
-          />
-        </BannerContainer>
-        <Flex flexDirection={['column', 'column', 'row']}>
-          <Box width={[1, 1, 2 / 6]}>
-            <Text
-              mb={[rem(12), rem(12)]}
-              variant="highlight"
-              width={['60%', '60%']}
-            >
-              RESIDENTIAL FULL HOME
-            </Text>
-          </Box>
-          <Box width={[1, 1, 4 / 6]}>
-            <Text
-              variant="body"
-              mb={[rem(47), rem(47)]}
-              color={theme.colors.textGray}
-              className="text-content"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              semper odio eunum dignissim porta. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Vivamus semper odio eunum dignissim
-              porta.
-              <Divider />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              semper odio eunum dignissim porta. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Vivamus semper odio eunum dignissim
-              porta.
-            </Text>
-          </Box>
+        <BrandsParters />
+        <DarkSlider />
+        <Flex
+          maxWidth={rem(400)}
+          justifyContent="space-between"
+          alignItems="center"
+          flexDirection={['column', 'column', 'row']}
+          ml="auto"
+          mr="auto"
+          mt={[rem(40), rem(40), rem(64)]}
+        >
+          <Link href="/spaces">
+            <a>
+              <SecondaryButton mr={[rem(40), null, null]} large arrowLeft>
+                back to gallery
+              </SecondaryButton>
+            </a>
+          </Link>
+          <Link href="/" passHref>
+            <NextSpace>
+              next space
+              <ArrowRightSolid />
+            </NextSpace>
+          </Link>
         </Flex>
-        <StyledImageGrid />
-        <BannerWrap>
-          <Image
-            alt="Residential banner"
-            src={`${
-              isTablet
-                ? '/elements/residential/residence-banner.png'
-                : '/elements/residential/residence-banner-mobile.png'
-            }`}
-            layout="fill"
-          />
-        </BannerWrap>
-      </Flex>
-      <BrandsParters />
-      <DarkSlider />
-      <Flex
-        maxWidth={rem(400)}
-        justifyContent="space-between"
-        alignItems="center"
-        flexDirection={['column', 'column', 'row']}
-        ml="auto"
-        mr="auto"
-        mt={[rem(40), rem(40), rem(64)]}
-      >
-        <Link href="/spaces">
-          <a>
-            <SecondaryButton mr={[rem(40), null, null]} large arrowLeft>
-              back to gallery
-            </SecondaryButton>
-          </a>
-        </Link>
-        <Link href="/" passHref>
-          <NextSpace>
-            next space
-            <ArrowRightSolid />
-          </NextSpace>
-        </Link>
-      </Flex>
-      <StartYourSpace hasLogo />
-      <Footer />
-    </PageContent>
+        <StartYourSpace hasLogo />
+        <Footer />
+      </PageContent>
+    </motion.div>
   );
 }

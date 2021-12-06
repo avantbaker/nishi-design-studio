@@ -11,6 +11,7 @@ const Input = styled.input<{ color?: string; large?: boolean }>`
   padding: ${rem(14)};
   font-size: ${rem(12.14)};
   font-weight: bold;
+  font-family: ${theme.typography.fonts.primary};
   letter-spacing: ${rem(0.12)};
   line-height: ${rem(14)};
   color: ${({ color }) => (color ? color : theme.colors.gray)};

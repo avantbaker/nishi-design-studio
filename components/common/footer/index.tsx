@@ -13,9 +13,34 @@ import Instagram from 'components/common/icons/instagram';
 import LinkedIn from 'components/common/icons/linkedin';
 import Facebook from 'components/common/icons/facebook';
 
-const Footer = styled.footer`
-  padding: ${rem(56)} ${rem(27)} ${rem(20)} ${rem(27)};
+const FullWidthContainer = styled.section<{ noPadding?: boolean }>`
   background-color: ${theme.colors.lightTan};
+  padding-top: ${rem(56)};
+  :before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: ${rem(39)};
+    position: relative;
+    left: 0;
+    border-top: ${rem(1)} solid ${theme.colors.orange};
+  }
+
+  ${({ noPadding }) => noPadding && `padding-top: 0;`};
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    padding-top: ${rem(89)};
+    :before {
+      height: ${rem(47)};
+    }
+    ${({ noPadding }) => noPadding && `padding-top: 0;`};
+  }
+`;
+
+const Footer = styled.footer`
+  padding: 0 ${rem(27)} ${rem(20)} ${rem(27)};
+  max-width: ${rem(1440)};
+  margin: 0 auto;
 
   a {
     color: ${theme.colors.orange};
@@ -30,24 +55,8 @@ const Footer = styled.footer`
     }
   }
 
-  :before {
-    content: '';
-    display: block;
-    width: 100vw;
-    height: ${rem(39)};
-    margin: 0 -${rem(27)};
-    position: relative;
-    left: 0;
-    border-top: ${rem(1)} solid ${theme.colors.orange};
-  }
-
   @media only screen and (min-width: ${breakpoints.laptop}) {
-    padding: ${rem(89)} ${rem(96)} ${rem(41)} ${rem(92)};
-
-    :before {
-      height: ${rem(47)};
-      margin: 0 -${rem(96)} 0 -${rem(92)};
-    }
+    padding: 0 ${rem(96)} ${rem(41)} ${rem(92)};
   }
 `;
 
@@ -95,6 +104,8 @@ const NavItem = styled.a`
 `;
 
 const SocialFlex = styled(Flex)`
+  align-items: center;
+
   a {
     padding: 0 ${rem(8)};
 
@@ -107,130 +118,136 @@ const SocialFlex = styled(Flex)`
   }
 `;
 
-export default function FooterComponent() {
+export default function FooterComponent({
+  noPadding,
+}: {
+  noPadding?: boolean;
+}) {
   return (
-    <Footer>
-      <Flex
-        flexDirection={['column', 'column', 'row']}
-        mb={[rem(50), rem(50), null]}
-        justifyContent="space-between"
-        className="left-content"
-      >
-        <Flex flexDirection="column">
-          <Text color={theme.colors.orange} mb={rem(23)} variant="highlight">
-            NDS IN YOUR INBOX
-          </Text>
-          <Form>
-            <Input placeholder="email address" />
-            <PrimaryButton>submit</PrimaryButton>
-          </Form>
-        </Flex>
-        <Flex flexDirection="column">
-          <NavContainer>
-            <ul>
-              <li>
-                <Link href="/spaces" passHref>
-                  <NavItem>/ space</NavItem>
-                </Link>
-              </li>
-              <li>
-                <Link href="/expertise" passHref>
-                  <NavItem>/ expertise</NavItem>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" passHref>
-                  <NavItem>/ about</NavItem>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" passHref>
-                  <NavItem>/ contact</NavItem>
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" passHref>
-                  <NavItem>/ blog</NavItem>
-                </Link>
-              </li>
-              <li>
-                <Link href="/press" passHref>
-                  <NavItem>/ press</NavItem>
-                </Link>
-              </li>
-            </ul>
-          </NavContainer>
-          <SocialFlex mt={[rem(44), rem(44), rem(60)]}>
-            <Link href="/">
-              <a>
-                <House fill={theme.colors.orange} />
-              </a>
-            </Link>
-            <Link href="https://twitter.com/nishidesignatl">
-              <a>
-                <Twitter fill={theme.colors.orange} />
-              </a>
-            </Link>
-            <Link href="https://www.instagram.com/nishidesignstudio">
-              <a>
-                <Instagram fill={theme.colors.orange} />
-              </a>
-            </Link>
-            <Link href="https://www.facebook.com/nishidesignstudio/">
-              <a>
-                <Facebook fill={theme.colors.orange} />
-              </a>
-            </Link>
-            <Link href="https://www.linkedin.com/in/nishidonovan/">
-              <a>
-                <LinkedIn fill={theme.colors.orange} />
-              </a>
-            </Link>
-          </SocialFlex>
-        </Flex>
-      </Flex>
-      <Flex mb={rem(4)} alignItems="end" justifyContent="space-between">
-        <Link href="/" passHref>
-          <a>
-            <img
-              alt="LOGO NISHI design+studio"
-              className="logoImg"
-              src="/images/nishi-slate.png"
-            />
-          </a>
-        </Link>
-        <div>
-          <Flex justifyContent="flex-end">
-            <Link href="/legal" passHref>
-              <Text
-                as="a"
-                variant={['actionMobile', 'actionMobile', 'action']}
-                fontWeight="bold"
-                mr={rem(16)}
-                color={theme.colors.orange}
-              >
-                Privacy
-              </Text>
-            </Link>
-            <Link href="/legal" passHref>
-              <Text
-                as="a"
-                variant={['actionMobile', 'actionMobile', 'action']}
-                fontWeight="bold"
-                color={theme.colors.orange}
-              >
-                Terms
-              </Text>
-            </Link>
+    <FullWidthContainer noPadding={noPadding}>
+      <Footer>
+        <Flex
+          flexDirection={['column', 'column', 'row']}
+          mb={[rem(50), rem(50), null]}
+          justifyContent="space-between"
+          className="left-content"
+        >
+          <Flex flexDirection="column">
+            <Text color={theme.colors.orange} mb={rem(23)} variant="highlight">
+              NDS IN YOUR INBOX
+            </Text>
+            <Form>
+              <Input placeholder="email address" />
+              <PrimaryButton>submit</PrimaryButton>
+            </Form>
           </Flex>
-          <Text
-            variant={['captionMobile', 'captionMobile', 'caption']}
-            textAlign="right"
-          >
-            Copyright © 2021 - NISHI design+studio
-          </Text>
-        </div>
-      </Flex>
-    </Footer>
+          <Flex flexDirection="column">
+            <NavContainer>
+              <ul>
+                <li>
+                  <Link href="/spaces" passHref>
+                    <NavItem>/ space</NavItem>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/expertise" passHref>
+                    <NavItem>/ expertise</NavItem>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" passHref>
+                    <NavItem>/ about</NavItem>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" passHref>
+                    <NavItem>/ contact</NavItem>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" passHref>
+                    <NavItem>/ blog</NavItem>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/press" passHref>
+                    <NavItem>/ press</NavItem>
+                  </Link>
+                </li>
+              </ul>
+            </NavContainer>
+            <SocialFlex mt={[rem(44), rem(44), rem(60)]}>
+              <Link href="/">
+                <a>
+                  <House fill={theme.colors.orange} />
+                </a>
+              </Link>
+              <Link href="https://twitter.com/nishidesignatl">
+                <a>
+                  <Twitter fill={theme.colors.orange} />
+                </a>
+              </Link>
+              <Link href="https://www.instagram.com/nishidesignstudio">
+                <a>
+                  <Instagram fill={theme.colors.orange} />
+                </a>
+              </Link>
+              <Link href="https://www.facebook.com/nishidesignstudio/">
+                <a>
+                  <Facebook fill={theme.colors.orange} />
+                </a>
+              </Link>
+              <Link href="https://www.linkedin.com/in/nishidonovan/">
+                <a>
+                  <LinkedIn fill={theme.colors.orange} />
+                </a>
+              </Link>
+            </SocialFlex>
+          </Flex>
+        </Flex>
+        <Flex mb={rem(4)} alignItems="end" justifyContent="space-between">
+          <Link href="/" passHref>
+            <a>
+              <img
+                alt="LOGO NISHI design+studio"
+                className="logoImg"
+                src="/images/nishi-slate.png"
+              />
+            </a>
+          </Link>
+          <div>
+            <Flex justifyContent="flex-end">
+              <Link href="/legal" passHref>
+                <Text
+                  as="a"
+                  variant={['actionMobile', 'actionMobile', 'action']}
+                  fontWeight="bold"
+                  mr={rem(16)}
+                  color={theme.colors.orange}
+                >
+                  Privacy
+                </Text>
+              </Link>
+              <Link href="/legal" passHref>
+                <Text
+                  as="a"
+                  variant={['actionMobile', 'actionMobile', 'action']}
+                  fontWeight="bold"
+                  color={theme.colors.orange}
+                >
+                  Terms
+                </Text>
+              </Link>
+            </Flex>
+            <Text
+              variant={['captionMobile', 'captionMobile', 'caption']}
+              textAlign="right"
+            >
+              Copyright © 2021 - NISHI design+studio
+            </Text>
+          </div>
+        </Flex>
+      </Footer>
+    </FullWidthContainer>
   );
 }

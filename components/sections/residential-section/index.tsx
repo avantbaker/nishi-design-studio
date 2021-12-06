@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import { rem } from 'polished';
 import Text from 'components/common/text';
 import SpaceCard from 'components/common/space-card';
@@ -8,7 +7,6 @@ import { breakpoints } from 'styles/media';
 import { mockSpacesData } from 'pages/api/mocks';
 
 const Container = styled.div`
-  position: relative;
   padding: 0 ${rem(20)} ${rem(113)} ${rem(20)};
 
   ${PrimaryButton} {
@@ -30,26 +28,20 @@ const ContentWrap = styled.section`
   display: flex;
   flex-direction: column;
 
+  ${Text} {
+    text-indent: -${rem(20)};
+    margin-left: ${rem(20)};
+  }
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
     max-width: 1300px;
     margin-right: 0;
     margin-left: auto;
-  }
-`;
 
-const ImgWrap = styled.div`
-  width: ${rem(130)};
-  height: ${rem(168)};
-  position: absolute;
-  left: calc(50% - 65px);
-  bottom: -${rem(75)};
-
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    width: ${rem(274)};
-    height: ${rem(393)};
-    left: ${rem(85)};
-    padding-top: ${rem(13)};
-    bottom: initial;
+    ${Text} {
+      text-indent: 0;
+      margin-left: 0;
+    }
   }
 `;
 
@@ -59,7 +51,7 @@ export default function ResidentialSection() {
       <ContentWrap>
         <Text
           mb={[rem(41), rem(41), rem(89)]}
-          variant={['headingSmall', 'headingSmall', 'heading']}
+          variant={['headingMobile', 'headingMobile', 'heading']}
         >
           residential spaces
         </Text>
@@ -68,14 +60,6 @@ export default function ResidentialSection() {
         ))}
       </ContentWrap>
       <PrimaryButton large>load more</PrimaryButton>
-      <ImgWrap>
-        <Image
-          alt="Nishi Logo"
-          src="/images/signature-ochre.png"
-          width="274px"
-          height="353px"
-        />
-      </ImgWrap>
     </Container>
   );
 }

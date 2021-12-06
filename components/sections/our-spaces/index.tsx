@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Flex } from 'rebass/styled-components';
 import Text from 'components/common/text';
 import { SecondaryButton } from 'components/common/button';
@@ -52,6 +51,7 @@ const StyledSpaceCard = styled(SpaceCard)`
   margin-right: ${rem(33)};
 
   .right-box {
+    position: relative;
     padding-right: ${rem(16)};
   }
 
@@ -62,19 +62,24 @@ const StyledSpaceCard = styled(SpaceCard)`
   }
 `;
 
-const ImgWrap = styled.div`
-  width: ${rem(130)};
-  height: ${rem(168)};
-  position: absolute;
-  left: calc(50% - 65px);
-  bottom: -${rem(75)};
+const StyledPagerList = styled(PagerList)`
+  width: ${rem(230)};
+  li {
+    :first-child a {
+      padding-left: 0;
+    }
+    a {
+      padding: 0 ${rem(16)} ${rem(14)} ${rem(16)};
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    width: ${rem(274)};
-    height: ${rem(393)};
+      :last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  :after {
     left: 0;
-    padding-top: ${rem(13)};
-    bottom: -${rem(220)};
+    width: 77%;
   }
 `;
 
@@ -106,7 +111,7 @@ const OurSpacesSlider = ({}: {}) => {
       <Container>
         <Text
           variant={['headingMobile', 'headingMobile', 'heading']}
-          mb={[rem(27), rem(27), rem(32)]}
+          mb={[rem(27), rem(27), rem(57)]}
         >
           our spaces
         </Text>
@@ -124,7 +129,7 @@ const OurSpacesSlider = ({}: {}) => {
           width={['fit-content', 'auto', 'auto']}
         >
           <Flex flexDirection="column">
-            <PagerList>
+            <StyledPagerList>
               {mockSpacesData.map((item, idx) => (
                 <li
                   key={item.src}
@@ -133,7 +138,7 @@ const OurSpacesSlider = ({}: {}) => {
                   <a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>
                 </li>
               ))}
-            </PagerList>
+            </StyledPagerList>
             <Link href="/spaces" passHref>
               <a>
                 <SecondaryButton>explore all spaces</SecondaryButton>
@@ -150,14 +155,6 @@ const OurSpacesSlider = ({}: {}) => {
             <ArrowRight active className="embla__next" onClick={scrollNext} />
           </Flex>
         </Flex>
-        <ImgWrap>
-          <Image
-            alt="Nishi Logo"
-            src="/images/signature-ochre.png"
-            width="274px"
-            height="353px"
-          />
-        </ImgWrap>
       </Container>
     </>
   );
