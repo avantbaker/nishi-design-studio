@@ -2,10 +2,12 @@ import { Flex, Box } from 'rebass/styled-components';
 import Link from 'next/link';
 import Text from 'components/common/text';
 import Image from 'next/image';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import theme from 'styles/theme';
+import Marquee from 'components/common/marquee';
 import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
+
 import { SecondaryButton } from 'components/common/button';
 
 const Container = styled.section`
@@ -39,10 +41,6 @@ const TextContent = styled.div`
   flex-direction: column;
   align-items: flex-end;
   padding-top: ${rem(36)};
-`;
-
-const StyledLogo = styled(Image)`
-  margin-bottom: ${rem(34)};
 `;
 
 export default function PressHeader() {
@@ -109,16 +107,13 @@ export default function PressHeader() {
           </TextContent>
         </Box>
       </Flex>
-      <Text
-        className="heading"
+      <Flex
+        pb={rem(84)}
         mt={[rem(70), rem(70), rem(78)]}
         mb={[rem(55), rem(55), rem(78)]}
-        ml={[rem(27), rem(27), rem(121)]}
-        variant="heading"
-        color={theme.colors.orange}
       >
-        “Their work is stunning. They’re not bound by trends
-      </Text>
+        <Marquee />
+      </Flex>
     </Container>
   );
 }

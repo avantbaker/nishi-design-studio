@@ -1,65 +1,106 @@
-import React, { useState } from 'react';
-import Text from 'components/common/text';
-import styled, { css } from 'styled-components';
+import React, { useState, useCallback, useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import ListingCard from 'components/common/listing-card';
+import Image from 'next/image';
+import styled from 'styled-components';
+import { Box, Flex } from 'rebass/styled-components';
+import Text from 'components/common/text';
 import theme from 'styles/theme';
-import { breakpoints } from 'styles/media';
-import HeaderSlider from 'components/common/header-slider';
-import { Flex, Box } from 'rebass/styled-components';
+import { breakpoints, queries } from 'styles/media';
+import useMediaQuery from 'hooks/use-media-query';
+import { ArrowLeft, ArrowRight } from 'components/common/slider/styles';
 import { rem } from 'polished';
+import { PagerList } from 'components/common/slider/styles';
+
+const FullWidthContainer = styled.section`
+  position: relative;
+`;
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column-reverse;
+  padding: ${rem(4)} 0 ${rem(65)} 0;
+  max-width: ${rem(1440)};
+  margin: 0 auto;
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    flex-direction: row;
+    padding: ${rem(86)} 0 ${rem(65)} 0;
+  }
+`;
 
 const TextContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: ${rem(25)};
   margin-left: auto;
-  padding: 0 ${rem(20)} 0 ${rem(16)};
+
+  max-width: ${rem(226)};
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     margin: 0 auto;
     max-width: ${rem(400)};
-  }
-
-  @media only screen and (min-width: ${breakpoints.laptop}) {
-    max-width: ${rem(400)};
+    padding: 0 ${rem(20)} 0 ${rem(16)};
   }
 `;
 
-const Container = styled(Flex)`
-  flex-wrap: wrap-reverse;
-  position: relative;
-
-  .right-box {
-    position: relative;
-  }
-`;
-
-const StyledListingCard = styled(ListingCard)`
-  width: 100%;
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    position: absolute;
-    left: 45%;
-    bottom: 35%;
-    z-index: 1;
-    width: auto;
-    max-width: ${rem(350)};
-  }
-
-  @media only screen and (min-width: ${breakpoints.laptop}) {
-    left: 40%;
-    bottom: 30%;
-  }
-`;
-
-const MobileLineImg = styled.img`
-  transform: scaleY(1) scaleX(-1);
-  height: ${rem(75.78)};
-  position: relative;
-  left: 0;
-  width: 100%;
+const EmblaContainer = styled.div`
+  display: flex;
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    display: none;
+    margin-bottom: ${rem(31)};
+    flex-direction: row;
+  }
+`;
+
+const EmblaParent = styled.div`
+  overflow: hidden;
+  width: 100%;
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    width: ${rem(734)};
+  }
+`;
+
+const StyledPagerList = styled(PagerList)`
+  justify-content: right;
+  li {
+    color: ${theme.colors.gray};
+
+    a {
+      padding: 0 ${rem(16)} ${rem(14)} ${rem(16)};
+
+      :last-child {
+        padding-right: 0;
+      }
+    }
+
+    &.selected {
+      text-shadow: ${rem(0)} ${rem(0)} ${rem(1)} ${theme.colors.gray};
+    }
+  }
+
+  :after {
+    left: 0;
+    width: 77%;
+  }
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    min-width: ${rem(230)};
+  }
+`;
+
+const ImageWrap = styled.div`
+  position: relative;
+  min-width: 100vw;
+  height: ${rem(205)};
+
+  img {
+    object-fit: cover;
+  }
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    min-width: ${rem(734)};
+    height: ${rem(582)};
   }
 `;
 
@@ -67,269 +108,227 @@ const TabletLineImg = styled.img`
   display: none;
   @media only screen and (min-width: ${breakpoints.tablet}) {
     display: block;
-    width: ${rem(150)};
+    width: 50%;
     z-index: -1;
     position: absolute;
+    right: -${rem(10)};
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -40%) scaleX(-1) rotate(100deg);
   }
 `;
 
-const ArrowRight = styled.div`
-  background-image: url('/images/enabled-left-arrow.png');
-  background-size: cover;
-  width: ${rem(35)};
-  height: ${rem(35)};
-  transform: rotate(180deg);
-  margin-left: ${rem(11)};
-  cursor: pointer;
+const LineWrap = styled.div`
   position: relative;
+  height: ${rem(145)};
+  width: 100vw;
+  margin-bottom: ${rem(12)};
 
-  :hover {
-    color: initial;
-    outline: none;
-    background-image: url('/images/enabled-left-arrow.png');
-    transform: rotate(180deg);
+  img {
+    object-fit: contain;
   }
 
-  ${({ active }) =>
-    active &&
-    css`
-      background-image: url('/images/active-right-arrow.png');
-      background-size: cover;
-      border-radius: 50%;
-      transform: initial;
-
-      :hover {
-        color: initial;
-        outline: none;
-        background-image: url('/images/active-right-arrow.png');
-        transform: initial;
-      }
-    `}
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    width: ${rem(69)};
-    height: ${rem(69)};
-
-    :after {
-      content: '';
-      display: block;
-      border-radius: 50%;
-      border: ${rem(1)} solid #d78b32;
-      width: ${rem(34)};
-      height: ${rem(34)};
-      position: absolute;
-      right: -${rem(6)};
-      bottom: -${rem(6)};
+    width: 40%;
+    position: absolute;
+    height: ${rem(275)};
+    left: -6%;
+    top: ${rem(245)};
+    z-index: -1;
+    img {
+      object-fit: contain;
     }
   }
 `;
 
-const ArrowLeft = styled.div`
-  width: ${rem(35)};
-  height: ${rem(35)};
-  background-image: url('/images/enabled-left-arrow.png');
-  background-size: cover;
-  cursor: pointer;
-
-  :hover {
-    color: initial;
-    outline: none;
-    background-image: url('/images/enabled-left-arrow.png');
-  }
-
-  ${({ active }) =>
-    active &&
-    css`
-      background-image: url('/images/active-right-arrow.png');
-      background-size: cover;
-      border-radius: 50%;
-      transform: rotate(180deg);
-
-      :hover {
-        color: initial;
-        outline: none;
-        background-image: url('/images/active-right-arrow.png');
-        border-radius: 50%;
-        transform: rotate(180deg);
-      }
-    `}
-
+const StyledListingCard = styled(ListingCard)`
+  margin-bottom: ${rem(32)};
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    width: ${rem(69)};
-    height: ${rem(69)};
+    margin-bottom: 0;
+    position: absolute;
+    left: 50%;
+    bottom: ${rem(84)};
+    transform: translate(-50%, -50%);
   }
 `;
 
-const SliderButtons = styled.div`
-  display: flex;
-  justify-content: flex-end;
+const HeroSlider = () => {
+  const [currentIndex, setSelectedIndex] = useState(0);
+  const isTablet = useMediaQuery(queries.minTablet);
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    margin-right: 10%;
-  }
-`;
+  const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
 
-const FeaturedText = styled.div`
-  font-size: ${rem(10)};
-  line-height: ${rem(11)};
-  letter-spacing: ${rem(6.24)};
-  color: ${theme.colors.gray};
-  font-family: ${theme.typography.fonts.secondary};
-  font-weight: bold;
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    setNextBtnEnabled(emblaApi.canScrollNext());
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    font-size: ${rem(13)};
-    line-height: ${rem(15)};
-  }
-`;
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    onSelect();
+  }, [emblaApi, onSelect]);
 
-const PagerWrap = styled.div`
-  padding: ${rem(32)} ${rem(14)} ${rem(49)} ${rem(24)};
-  width: 100%;
-
-  ul {
-    display: flex;
-    position: relative;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border-bottom: ${rem(0.6)} solid ${theme.colors.sand};
-
-    :after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      display: block;
-      height: ${rem(0.6)};
-      width: ${rem(50.31)};
-      background-color: ${theme.colors.orange};
-    }
-
-    li {
-      font-size: ${rem(8.45)};
-      line-height: ${rem(10)};
-      font-family: ${theme.typography.fonts.secondary};
-      letter-spacing: ${rem(5.28)};
-      text-align: right;
-      color: ${theme.colors.gray};
-      overflow: auto;
-
-      a {
-        padding: 0 ${rem(4)} ${rem(9)} ${rem(4)};
-        cursor: pointer;
-        display: block;
-      }
-
-      &.selected {
-        text-shadow: ${rem(0)} ${rem(0)} ${rem(1)} ${theme.colors.gray};
-      }
-
-      @media only screen and (min-width: ${breakpoints.tablet}) {
-        font-size: ${rem(11)};
-        line-height: ${rem(13)};
-
-        a {
-          padding-bottom: ${rem(16)};
-        }
-      }
-    }
-  }
-`;
-
-export default function SliderSection() {
-  const sliderRef = React.useRef(null);
-  const [activeArrow, setActiveArrow] = useState('right');
-  const [activeIndex, setActiveIndex] = useState(0);
-  const sliderItems = [1, 2, 3, 4, 5, 6];
-
-  function handleSliderChange(str) {
-    if (str === 'left') {
-      sliderRef.current.slickPrev();
-    }
-    sliderRef.current.slickNext();
-  }
-
-  function handleBeforeChange(prev, next) {
-    setActiveIndex(next);
-  }
-
-  function handleIndexChange(idx) {
-    sliderRef.current.slickGoTo(idx);
-    setActiveIndex(idx);
-  }
+  // @ts-ignore -- array
+  const mockArray = [...Array(3).keys()];
 
   return (
-    <Container>
-      <PagerWrap>
-        <Flex
-          alignItems="center"
-          justifyContent="space-between"
-          mb={[rem(24), rem(24)]}
-          width={['auto', 'auto', '50%']}
-        >
-          <FeaturedText>FEATURED</FeaturedText>
-          <ul>
-            {sliderItems.map((item, idx) => (
-              <li key={item} className={activeIndex === idx ? 'selected' : ''}>
-                <a onClick={() => handleIndexChange(idx)}>{`0${idx + 1}`}</a>
-              </li>
-            ))}
-          </ul>
-        </Flex>
-        <SliderButtons>
-          <ArrowLeft
-            active={activeArrow === 'left'}
-            onClick={() => handleSliderChange('left')}
-          />
-          <ArrowRight
-            active={activeArrow === 'right'}
-            onClick={() => handleSliderChange('right')}
-          />
-        </SliderButtons>
-      </PagerWrap>
-      <StyledListingCard
-        location="Atlanta, GA"
-        year="2021"
-        title="jungle oasis"
-        href=""
-        asCard
-      />
-      <Box width={[1, 1, 3 / 5, 3 / 5]}>
-        <HeaderSlider
-          beforeChange={handleBeforeChange}
-          ref={sliderRef}
-          items={sliderItems}
-        />
-      </Box>
-      <Box
-        className="right-box"
-        width={[1, 1, 2 / 5, 2 / 5]}
-        pt={rem(8)}
-        pb={rem(25)}
-      >
-        <TextContent>
-          <Text as="h2" textAlign="right" variant="highlight" mb={rem(10)}>
-            DECISIVELY DIFFERENT
-          </Text>
-          <Text
-            as="h2"
-            textAlign="right"
-            variant={[
-              'headingMobile',
-              'headingMobile',
-              'headingMobile',
-              'heading',
-            ]}
-            mb={rem(40)}
+    <FullWidthContainer>
+      <Container>
+        <Box width={[1, 1, 1 / 2]}>
+          <Flex maxWidth={[null, null, rem(1103)]} margin="0 auto">
+            <EmblaParent className="embla" ref={emblaRef}>
+              <EmblaContainer className="embla__container">
+                {mockArray.map((slide, idx) => (
+                  <ImageWrap key={`${slide.src}-${idx}`}>
+                    <Image src="/images/header-placeholder.jpg" layout="fill" />
+                  </ImageWrap>
+                ))}
+              </EmblaContainer>
+            </EmblaParent>
+          </Flex>
+          {currentIndex === 0 && (
+            <StyledListingCard
+              location="New York, NY"
+              year="2021"
+              title="elemental villa"
+              href=""
+              asCard
+              selected={currentIndex === 0}
+            />
+          )}
+          {currentIndex === 1 && (
+            <StyledListingCard
+              location="Atlanta, GA"
+              year="2021"
+              title="jungle oasis"
+              href=""
+              asCard
+              selected={currentIndex === 1}
+            />
+          )}
+          {currentIndex === 2 && (
+            <StyledListingCard
+              location="New York, NY"
+              year="2021"
+              title="urban retreat"
+              href=""
+              asCard
+              selected={currentIndex === 2}
+            />
+          )}
+          <Flex
+            justifyContent={['flex-end', 'flex-end', 'space-between']}
+            alignItems={['initial', 'initial', 'center']}
+            flexDirection={['column', 'column', 'row']}
+            flexWrap="wrap"
+            margin="0 auto"
+            pl={[rem(24), rem(24), 0]}
+            pr={[rem(14), rem(14), 0]}
           >
-            luxury interiors
-          </Text>
-        </TextContent>
-        <MobileLineImg src="/elements/goldlines/Gold-Line-6.png" />
-        <TabletLineImg src="/elements/goldlines/Gold-Line-4.png" />
-      </Box>
-    </Container>
+            <Flex
+              flexGrow={1}
+              justifyContent="space-between"
+              mb={[rem(24), rem(24), null]}
+              pl={[0, 0, rem(24)]}
+            >
+              <Text
+                flexGrow={1}
+                textAlign="center"
+                variant={['highlightMobile', 'highlightMobile', 'highlight']}
+              >
+                FEATURED
+              </Text>
+              <StyledPagerList>
+                {mockArray.map((item, idx) => (
+                  <li
+                    key={`${item.src}-${idx}`}
+                    className={idx === currentIndex ? 'selected' : ''}
+                  >
+                    <a onClick={() => emblaApi.scrollTo(idx)}>{`0${
+                      idx + 1
+                    }`}</a>
+                  </li>
+                ))}
+              </StyledPagerList>
+            </Flex>
+            {!isTablet && (
+              <Flex
+                justifyContent={['flex-end', 'flex-end', 'initial']}
+                mt="auto"
+                ml="auto"
+              >
+                <ArrowLeft onClick={scrollPrev} />
+                <ArrowRight
+                  active
+                  className="embla__next"
+                  onClick={scrollNext}
+                />
+              </Flex>
+            )}
+          </Flex>
+        </Box>
+        <Box
+          className="right-box"
+          width={[1, 1, 1 / 2]}
+          flexDirection="column"
+          display="flex"
+        >
+          <Flex flexDirection="column" ml="auto">
+            <TextContent>
+              <Text as="h2" textAlign="right" variant="highlight" mb={rem(10)}>
+                DECISIVELY DIFFERENT
+              </Text>
+              <Text
+                as="h2"
+                textAlign="right"
+                variant={[
+                  'headingMobile',
+                  'headingMobile',
+                  'headingMobile',
+                  'heading',
+                ]}
+                mb={[0, 0, rem(40)]}
+              >
+                luxury interiors
+              </Text>
+            </TextContent>
+            <LineWrap>
+              <Image
+                layout="fill"
+                src="/elements/goldlines/gold-line-six.png"
+                alt=""
+              />
+            </LineWrap>
+          </Flex>
+          {isTablet && (
+            <Flex
+              justifyContent={['flex-end', 'flex-end', 'initial']}
+              mt="auto"
+              mb={rem(24)}
+              mr={rem(20)}
+              ml="auto"
+            >
+              <ArrowLeft onClick={scrollPrev} />
+              <ArrowRight active className="embla__next" onClick={scrollNext} />
+            </Flex>
+          )}
+        </Box>
+      </Container>
+      <TabletLineImg src="/elements/goldlines/Gold-Line-4.png" />
+    </FullWidthContainer>
   );
-}
+};
+
+export default HeroSlider;
+HeroSlider.displayName = 'HeroSlider';

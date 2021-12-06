@@ -5,8 +5,16 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
+import BlackBadge from 'components/common/badges/black-badge';
+
+const FullWidthContainer = styled.section`
+  width: 100%;
+  background-image: url('/images/tan-bg.png');
+`;
 
 const Container = styled.section`
+  max-width: ${rem(1440)};
+  margin: 0 auto;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -15,7 +23,6 @@ const Container = styled.section`
   padding-right: ${rem(16)};
   padding-top: ${rem(187)};
   padding-bottom: ${rem(63)};
-  background-image: url('/images/tan-bg.png');
 
   .space-mobile {
     padding-left: ${rem(30)};
@@ -131,13 +138,11 @@ const List = styled.ul`
   }
 `;
 
-const BadgeWrap = styled.div`
+const StyledBlackBadge = styled(BlackBadge)`
   position: absolute;
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: ${rem(153)};
-  height: ${rem(153)};
   z-index: 1;
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
@@ -146,94 +151,92 @@ const BadgeWrap = styled.div`
   }
 `;
 
-const TextContentWrap = styled.div``;
-
 export default function BrandsPartners() {
   return (
-    <Container>
-      <BadgeWrap>
-        <Image src="/images/spaces-badge-black.png" layout="fill" />
-      </BadgeWrap>
-      <SquareWrap>
-        <Square>
-          <img src="/images/triangle-orange.png" />
-        </Square>
-      </SquareWrap>
-      <Box
-        width={[1, 1, 1 / 2]}
-        className="text-content"
-        flexDirection="column"
-        alignItems="flex-end"
-        display="flex"
-        m="0 auto"
-        zIndex={1}
-      >
-        <Flex flexWrap="wrap" mt={[rem(72), rem(72), rem(24)]}>
-          <Text
-            className="your"
-            variant={['headingMobile', 'headingMobile', 'heading']}
-          >
-            brands +
-          </Text>
-          <Text
-            className="space-mobile"
-            variant={['headingMobile', 'headingMobile', 'heading']}
-          >
-            partners
-          </Text>
-        </Flex>
-      </Box>
-      <Box
-        className="content-right"
-        width={[1, 1, 1 / 2]}
-        pt={[rem(48), rem(48), 'initial']}
-        justifyContent={[null, null, 'center']}
-      >
-        <Flex
-          pt={[null, null, rem(32)]}
-          flexDirection={['column', 'column', 'row']}
+    <FullWidthContainer>
+      <Container>
+        <StyledBlackBadge />
+        <SquareWrap>
+          <Square>
+            <img src="/images/triangle-orange.png" />
+          </Square>
+        </SquareWrap>
+        <Box
+          width={[1, 1, 1 / 2]}
+          className="text-content"
+          flexDirection="column"
+          alignItems="flex-end"
+          display="flex"
+          m="0 auto"
+          zIndex={1}
         >
-          <Flex flexDirection="column" mb={[rem(40), rem(40), null]}>
+          <Flex flexWrap="wrap" mt={[rem(72), rem(72), rem(24)]}>
             <Text
-              mb={[rem(18), rem(18)]}
-              className="body-text"
-              variant="highlight"
+              className="your"
+              variant={['headingMobile', 'headingMobile', 'heading']}
             >
-              PRODUCTS
+              brands +
             </Text>
-            <List>
-              <Text as="li" variant="bodySmall">
-                Tower + Tresses
-              </Text>
-              <Text as="li" variant="bodySmall">
-                Modern Goods + Home
-              </Text>
-              <Text as="li" variant="bodySmall">
-                Flower Fabrics
-              </Text>
-            </List>
-          </Flex>
-          <Flex flexDirection="column">
-            <Text mb={[rem(18), rem(18)]} variant="highlight">
-              SERVICES
+            <Text
+              className="space-mobile"
+              variant={['headingMobile', 'headingMobile', 'heading']}
+            >
+              partners
             </Text>
-            <List>
-              <Text as="li" variant="bodySmall">
-                Brown LLC Construction
-              </Text>
-              <Text as="li" variant="bodySmall">
-                Tavinson Hardware
-              </Text>
-              <Text as="li" variant="bodySmall">
-                Radiant Plumbing
-              </Text>
-              <Text as="li" variant="bodySmall">
-                Selman Landscaping
-              </Text>
-            </List>
           </Flex>
-        </Flex>
-      </Box>
-    </Container>
+        </Box>
+        <Box
+          className="content-right"
+          width={[1, 1, 1 / 2]}
+          pt={[rem(48), rem(48), 'initial']}
+          justifyContent={[null, null, 'center']}
+        >
+          <Flex
+            pt={[null, null, rem(32)]}
+            flexDirection={['column', 'column', 'row']}
+          >
+            <Flex flexDirection="column" mb={[rem(40), rem(40), null]}>
+              <Text
+                mb={[rem(18), rem(18)]}
+                className="body-text"
+                variant="highlight"
+              >
+                PRODUCTS
+              </Text>
+              <List>
+                <Text as="li" variant="bodySmall">
+                  Tower + Tresses
+                </Text>
+                <Text as="li" variant="bodySmall">
+                  Modern Goods + Home
+                </Text>
+                <Text as="li" variant="bodySmall">
+                  Flower Fabrics
+                </Text>
+              </List>
+            </Flex>
+            <Flex flexDirection="column">
+              <Text mb={[rem(18), rem(18)]} variant="highlight">
+                SERVICES
+              </Text>
+              <List>
+                <Text as="li" variant="bodySmall">
+                  Brown LLC Construction
+                </Text>
+                <Text as="li" variant="bodySmall">
+                  Tavinson Hardware
+                </Text>
+                <Text as="li" variant="bodySmall">
+                  Radiant Plumbing
+                </Text>
+                <Text as="li" variant="bodySmall">
+                  Selman Landscaping
+                </Text>
+              </List>
+            </Flex>
+          </Flex>
+        </Box>
+      </Container>
+    </FullWidthContainer>
   );
 }

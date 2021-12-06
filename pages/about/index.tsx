@@ -11,6 +11,8 @@ import SimpleHeader from 'components/sections/simple-header';
 import TeamSlider from 'components/sections/team-slider';
 import MeetTheBoss from 'components/sections/meet-the-boss';
 import ImageGrid from 'components/common/image-grid';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const HeaderWrap = styled.section`
   background-color: ${theme.colors.lightTan};
@@ -33,7 +35,7 @@ const OffsetText = styled(Text)`
 
 export default function About() {
   return (
-    <>
+    <motion.div {...framerOptions}>
       <HeaderWrap>
         <Nav />
         <SimpleHeader
@@ -90,6 +92,6 @@ export default function About() {
       </ContentWrap>
       <StartYourSpace hasLogo backgroundColor={theme.colors.lightTan} />
       <Footer />
-    </>
+    </motion.div>
   );
 }

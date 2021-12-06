@@ -50,6 +50,7 @@ const variants = {
     fontSize: rem(10),
     fontWeight: 'bold',
     lineHeight: rem(11),
+    letterSpacing: rem(6.24),
     color: theme.colors.gray,
   },
   heading: {

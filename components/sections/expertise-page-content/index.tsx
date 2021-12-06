@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import SectionItem from 'components/sections/expertise-page-content/section-item';
 import { Flex } from 'rebass/styled-components';
 import Text from 'components/common/text';
@@ -16,6 +15,7 @@ const Container = styled.section`
   background-size: contain;
   padding-left: ${rem(28)};
   padding-right: ${rem(28)};
+  max-width: ${rem(1440)};
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     padding-bottom: ${rem(94)};
@@ -38,53 +38,6 @@ const ExpertiseSubheading = styled(Text)`
     @media only screen and (min-width: ${breakpoints.tablet}) {
       width: 50%;
     }
-  }
-`;
-
-const SectionText = styled(Text)`
-  font-size: ${rem(32.57)};
-  line-height: ${rem(34.74)};
-  font-family: ${theme.typography.fonts.primary};
-  font-weight: bold;
-  color: ${theme.colors.orange};
-  opacity: 0.3;
-  margin-bottom: ${rem(20)};
-  max-width: ${rem(425)};
-
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    font-size: ${rem(75)};
-    line-height: ${rem(80)};
-    margin-bottom: ${rem(23)};
-    max-width: initial;
-    z-index: 1;
-  }
-`;
-
-const SectionContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    flex-direction: row-reverse;
-    position: relative;
-    margin-bottom: ${rem(131)};
-  }
-`;
-
-const ImageWrap = styled.div`
-  display: flex;
-  align-items: end;
-  column-gap: ${rem(8)};
-  margin-bottom: ${rem(30)};
-  justify-content: center;
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    column-gap: ${rem(13)};
-    margin-bottom: 0;
-    width: 40%;
-    position: absolute;
-    bottom: 0;
-    right: 15%;
-    bottom: -125px;
-    z-index: 0;
   }
 `;
 
@@ -113,8 +66,6 @@ export default function ExpertisePageContent() {
   const [activeSection, setActiveSection] = useState('');
   const isTablet = useMediaQuery(queries.minTablet);
 
-  console.log('activeSection ', activeSection);
-
   return (
     <Container>
       <Flex flexDirection="column">
@@ -126,7 +77,6 @@ export default function ExpertisePageContent() {
             <SectionItem
               key={title}
               onClick={() => {
-                console.log('test');
                 setActiveSection(title);
               }}
               active={activeSection === title}

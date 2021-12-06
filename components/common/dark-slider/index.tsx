@@ -36,8 +36,23 @@ const EmblaParent = styled.div`
 
 const StyledDarkCard = styled(DarkCard)`
   margin-right: ${rem(20)};
+
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    margin-right: ${rem(115)};
+    margin-right: -${rem(30)};
+
+    div img {
+      transition: width 0.5s ease !important;
+      transition: height 0.5s ease !important;
+      width: ${rem(890)} !important;
+      height: ${rem(466)} !important;
+    }
+
+    :not(.active) div img {
+      width: ${rem(600)} !important;
+      height: ${rem(315)} !important;
+      min-width: auto !important;
+      min-height: auto !important;
+    }
   }
 `;
 
@@ -45,9 +60,26 @@ const StyledPagerList = styled(PagerList)`
   li {
     color: ${theme.colors.tan};
 
+    a {
+      padding: 0 ${rem(16)} ${rem(14)} ${rem(16)};
+
+      :last-child {
+        padding-right: 0;
+      }
+    }
+
     &.selected {
       text-shadow: ${rem(0)} ${rem(0)} ${rem(1)} ${theme.colors.tan};
     }
+  }
+
+  :after {
+    left: 0;
+    width: 77%;
+  }
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    width: ${rem(375)};
+    justify-content: flex-end;
   }
 `;
 
@@ -118,7 +150,11 @@ const DarkSlider = () => {
         <EmblaParent className="embla" ref={emblaRef}>
           <EmblaContainer className="embla__container">
             {mockDarkSliderData.map((slide, idx) => (
-              <StyledDarkCard key={slide.src} {...slide} />
+              <StyledDarkCard
+                className={idx === currentIndex && 'active'}
+                key={slide.src}
+                {...slide}
+              />
             ))}
           </EmblaContainer>
         </EmblaParent>
@@ -126,7 +162,6 @@ const DarkSlider = () => {
           justifyContent={['flex-end', 'flex-end', 'space-between']}
           alignItems={['initial', 'initial', 'center']}
           flexDirection={['column-reverse', 'column-reverse', 'row']}
-          width={['fit-content', 'auto', 'auto']}
           maxWidth={[rem(242), rem(242), rem(890)]}
           margin="0 auto"
         >

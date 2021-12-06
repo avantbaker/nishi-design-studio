@@ -12,6 +12,8 @@ import SignupSection from 'components/sections/signup-section';
 import StartYourSpace from 'components/sections/start-your-space';
 import MediaSection from 'components/sections/media-section';
 import { mockBlogData } from 'pages/api/mocks';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const PageContent = styled.div`
   position: relative;
@@ -125,7 +127,6 @@ const SelectContainer = styled.div`
     background: url('/images/down-arrow.png') no-repeat;
     background-position-x: 9px;
     background-position-y: 14px;
-    background-size: cover;
     z-index: -1;
   }
 `;
@@ -189,56 +190,58 @@ export default function Blog() {
   }
 
   return (
-    <PageContent>
-      <Nav />
-      <BlogContent>
-        <Flex
-          justifyContent="space-between"
-          alignItems={['flex-start', 'flex-start', 'center']}
-          mb={[rem(46), rem(46)]}
-          flexDirection={['column', 'column', 'row']}
-        >
-          <Text variant="headingSmall" mb={[rem(22), rem(22), 'initial']}>
-            blog
-          </Text>
+    <motion.div {...framerOptions}>
+      <PageContent>
+        <Nav />
+        <BlogContent>
           <Flex
+            justifyContent="space-between"
+            alignItems={['flex-start', 'flex-start', 'center']}
+            mb={[rem(46), rem(46)]}
             flexDirection={['column', 'column', 'row']}
-            width={['100%', '100%', 'initial']}
           >
-            <SearchInput placeholder="search" onChange={handleBlogSearch} />
-            <SelectContainer>
-              <Select onChange={handleFilterChange}>
-                <option value="0">Filter</option>
-                <option value="title">Title</option>
-                <option value="date">Date</option>
-              </Select>
-            </SelectContainer>
+            <Text variant="headingSmall" mb={[rem(22), rem(22), 'initial']}>
+              blog
+            </Text>
+            <Flex
+              flexDirection={['column', 'column', 'row']}
+              width={['100%', '100%', 'initial']}
+            >
+              <SearchInput placeholder="search" onChange={handleBlogSearch} />
+              <SelectContainer>
+                <Select onChange={handleFilterChange}>
+                  <option value="0">Filter</option>
+                  <option value="title">Title</option>
+                  <option value="date">Date</option>
+                </Select>
+              </SelectContainer>
+            </Flex>
           </Flex>
-        </Flex>
-        <CardContainer>
-          {mockBlogData.map((blog) => (
-            <BlogCard key={blog.title} {...blog} />
-          ))}
-        </CardContainer>
-        <PagerContainer>
-          <li className="active">
-            <button>01</button>
-          </li>
-          <li>
-            <button>02</button>
-          </li>
-          <li>
-            <button>03</button>
-          </li>
-        </PagerContainer>
-      </BlogContent>
-      <MediaSection />
-      <BottomLayout>
-        <StartYourSpace hasLogo />
-        <SocialSection />
-      </BottomLayout>
-      <SignupSection />
-      <Footer />
-    </PageContent>
+          <CardContainer>
+            {mockBlogData.map((blog) => (
+              <BlogCard key={blog.title} {...blog} />
+            ))}
+          </CardContainer>
+          <PagerContainer>
+            <li className="active">
+              <button>01</button>
+            </li>
+            <li>
+              <button>02</button>
+            </li>
+            <li>
+              <button>03</button>
+            </li>
+          </PagerContainer>
+        </BlogContent>
+        <MediaSection />
+        <BottomLayout>
+          <StartYourSpace hasLogo />
+          <SocialSection />
+        </BottomLayout>
+        <SignupSection />
+        <Footer />
+      </PageContent>
+    </motion.div>
   );
 }

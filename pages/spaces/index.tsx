@@ -1,16 +1,15 @@
 import theme from 'styles/theme';
-import { Flex } from 'rebass/styled-components';
 import Nav from 'components/common/nav';
+import { Flex } from 'rebass/styled-components';
 import Footer from 'components/common/footer';
 import styled from 'styled-components';
 import { rem } from 'polished';
-import SliderSection from 'components/sections/slider-section';
-import useMediaQuery from 'hooks/use-media-query';
-import { breakpoints, queries } from 'styles/media';
+import { breakpoints } from 'styles/media';
 import StartYourSpace from 'components/sections/start-your-space';
-import SpacesSliderHeader from 'components/sections/spaces-slider-header';
 import ResidentialSection from 'components/sections/residential-section';
 import HeroSlider from 'components/common/hero-slider';
+import { motion } from 'framer-motion';
+import { framerOptions } from 'lib/framer';
 
 const PageContent = styled.div`
   position: relative;
@@ -37,16 +36,17 @@ const StartYourSpaceTan = styled(StartYourSpace)`
 `;
 
 export default function Residential() {
-  const isTablet = useMediaQuery(queries.minTablet);
   return (
-    <>
+    <motion.div {...framerOptions}>
       <PageContent>
         <Nav />
         <HeroSlider />
-        <ResidentialSection />
-        <StartYourSpaceTan />
+        <Flex justifyContent="center">
+          <ResidentialSection />
+        </Flex>
+        <StartYourSpaceTan hasLargeLogo />
         <Footer />
       </PageContent>
-    </>
+    </motion.div>
   );
 }

@@ -9,40 +9,21 @@ import { rem } from 'polished';
 import BlogCard from 'components/common/blog-card';
 import { mockBlogData } from 'pages/api/mocks';
 
-const items = [
-  {
-    name: 'Team Member',
-    src: '/images/team-1.png',
-    title: 'Lead Designer',
-    description: 'self-proclaimed maximalist',
-  },
-  {
-    name: 'Team Member',
-    src: '/images/team-2.png',
-    title: 'Lead Designer',
-    description: 'known for trying to bring the outdoors, in',
-  },
-  {
-    name: 'Team Member',
-    src: '/images/team-3.png',
-    title: 'Lead Designer',
-    description: 'self-proclaimed maximalist',
-  },
-];
-
 const Container = styled.section`
   max-width: ${rem(1000)};
+  width: 100%;
   margin: 0 auto;
-  padding: ${rem(86)} ${rem(22)} ${rem(65)} ${rem(22)};
+  padding-top: ${rem(86)};
 
   .tablet-buttons {
     display: none;
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding: ${rem(105)} 0;
+    padding-top: ${rem(105)};
     .tablet-buttons {
       display: flex;
+      justify-content: flex-end;
     }
   }
 `;
@@ -50,7 +31,6 @@ const Container = styled.section`
 const EmblaContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${rem(15)};
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     margin-bottom: ${rem(90)};

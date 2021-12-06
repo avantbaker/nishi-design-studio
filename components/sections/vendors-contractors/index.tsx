@@ -6,16 +6,25 @@ import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
 import { PrimaryButton } from 'components/common/button';
 
+const FullWidthContainer = styled.div`
+  background-color: ${theme.colors.lightTan};
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+    padding-bottom: ${rem(64)};
+  }
+`;
+
 const Container = styled.section`
+  max-width: ${rem(1440)};
+  margin: 0 auto;
   position: relative;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  padding-left: ${rem(40)};
+  padding-left: ${rem(16)};
   padding-right: ${rem(16)};
   padding-top: ${rem(187)};
   padding-bottom: ${rem(63)};
-  background-color: ${theme.colors.lightTan};
 
   .space-mobile {
     padding-left: ${rem(30)};
@@ -119,72 +128,72 @@ const Square = styled.div`
   }
 `;
 
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    :first-of-type {
-      margin-right: ${rem(24)};
-    }
-  }
-`;
-
 export default function VendorsContractors() {
   return (
-    <Container>
-      <SquareWrap>
-        <Square>
-          <img src="/images/triangle-orange.png" />
-        </Square>
-      </SquareWrap>
-      <Box
-        width={[1, 1, 1 / 2]}
-        className="text-content"
-        flexDirection="column"
-        alignItems="flex-end"
-        display="flex"
-        m="0 auto"
-        zIndex={1}
-      >
-        <Flex flexWrap="wrap" mt={[rem(72), rem(72), 'initial']}>
-          <Text variant="highlight">{`LET'S WORK TOGETHER`}</Text>
-          <Text
-            className="your"
-            variant={['headingMobile', 'headingMobile', 'heading']}
-          >
-            vendors +
-          </Text>
-          <Text
-            className="space-mobile"
-            variant={['headingMobile', 'headingMobile', 'heading']}
-          >
-            contractors
-          </Text>
-        </Flex>
-      </Box>
-      <Box
-        className="content-right"
-        width={[1, 1, 1 / 2]}
-        pt={[rem(48), rem(48), 'initial']}
-        justifyContent={[null, null, 'center']}
-      >
-        <Flex pt={[null, null, rem(32)]} flexDirection={'column'}>
-          <Text
-            variant="body"
-            color={theme.colors.gray}
-            maxWidth={rem(432)}
-            mb={[rem(40)]}
-          >
-            Our work is where you play. We’ll handle the heavy installations and
-            obsess over the hardware. You kick your feet up and relax. From
-            pouring the concrete, to poring over color swatches, to pouring your
-            first drink in the finished space– we’re with you.
-          </Text>
-          <PrimaryButton large>connect with us</PrimaryButton>
-        </Flex>
-      </Box>
-    </Container>
+    <FullWidthContainer>
+      <Container>
+        <SquareWrap>
+          <Square>
+            <img src="/images/triangle-orange.png" />
+          </Square>
+        </SquareWrap>
+        <Box
+          width={[1, 1, 1 / 2]}
+          className="text-content"
+          flexDirection="column"
+          alignItems="flex-end"
+          display="flex"
+          m="0 auto"
+          zIndex={1}
+        >
+          <Flex flexWrap="wrap" mt={[rem(72), rem(72), 'initial']}>
+            <Text variant="highlight">{`LET'S WORK TOGETHER`}</Text>
+            <Text
+              className="your"
+              variant={[
+                'headingMobile',
+                'headingMobile',
+                'headingMobile',
+                'heading',
+              ]}
+            >
+              vendors +
+            </Text>
+            <Text
+              className="space-mobile"
+              variant={[
+                'headingMobile',
+                'headingMobile',
+                'headingMobile',
+                'heading',
+              ]}
+            >
+              contractors
+            </Text>
+          </Flex>
+        </Box>
+        <Box
+          className="content-right"
+          width={[1, 1, 1 / 2]}
+          pt={[rem(48), rem(48), 'initial']}
+          justifyContent={[null, null, 'center']}
+        >
+          <Flex pt={[null, null, rem(32)]} flexDirection={'column'}>
+            <Text
+              variant="body"
+              color={theme.colors.gray}
+              maxWidth={rem(432)}
+              mb={[rem(40)]}
+            >
+              Our work is where you play. We’ll handle the heavy installations
+              and obsess over the hardware. You kick your feet up and relax.
+              From pouring the concrete, to poring over color swatches, to
+              pouring your first drink in the finished space– we’re with you.
+            </Text>
+            <PrimaryButton large>connect with us</PrimaryButton>
+          </Flex>
+        </Box>
+      </Container>
+    </FullWidthContainer>
   );
 }

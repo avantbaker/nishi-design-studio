@@ -80,22 +80,18 @@ const GoldLineLeft = styled.img`
     width: 35%;
     height: ${rem(75.78)};
     left: -${rem(5)};
-    bottom: ${rem(200)};
+    bottom: ${rem(275)};
   }
 `;
 const GoldLineRight = styled.img`
-  height: ${rem(180)};
-  width: ${rem(34.84)};
-  top: ${rem(220)};
-  transform: scaleY(-1) rotate(100deg);
+  width: 33%;
+  top: ${rem(350)};
   position: absolute;
-  right: ${rem(50)};
+  right: -${rem(95)};
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    height: ${rem(388)};
-    width: ${rem(75)};
-    top: ${rem(200)};
-    right: ${rem(155)};
+    right: 0;
+    top: ${rem(300)};
   }
 `;
 
@@ -112,7 +108,7 @@ export default function SignupSection() {
           mb={[null, null, rem(87)]}
         >
           <Text
-            px={[0, rem(40), rem(40)]}
+            px={[rem(40), rem(40), 0]}
             variant="highlight"
             color={theme.colors.tan}
             mb={[rem(36), rem(36), 0]}
@@ -146,7 +142,7 @@ export default function SignupSection() {
             />
           )}
           <GoldLineLeft src="/elements/goldlines/Gold-Line-6.png" />
-          <GoldLineRight src="/elements/goldlines/Gold-Line-4.png" />
+          <GoldLineRight src="/images/gold-line-four.png" />
         </Flex>
       </Flex>
       {isTablet ? (

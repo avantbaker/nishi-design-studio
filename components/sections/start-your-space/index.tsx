@@ -1,12 +1,21 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
+import theme from 'styles/theme';
 import { Flex } from 'rebass/styled-components';
 import styled, { css } from 'styled-components';
 import Text from 'components/common/text';
 import { PrimaryButton } from 'components/common/button';
 
+const FullWidthContainer = styled.section`
+  background-color: ${theme.colors.lightTan};
+`;
+
 const Container = styled(Flex)`
+  max-width: ${rem(1440)};
+  margin: 0 auto;
+  position: relative;
   padding: ${rem(54)} ${rem(20)} ${rem(86)};
   display: flex;
   flex-direction: column;
@@ -36,45 +45,79 @@ const Container = styled(Flex)`
   }
 `;
 
+const ImgWrap = styled.div`
+  width: ${rem(130)};
+  height: ${rem(168)};
+  position: absolute;
+  left: calc(50% - 65px);
+  top: -${rem(82)};
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    width: ${rem(274)};
+    height: ${rem(353)};
+    left: ${rem(85)};
+    padding-top: ${rem(13)};
+    top: -${rem(200)};
+
+    img {
+      width: 100%;
+    }
+  }
+`;
+
 export default function StartYourSpace({
   hasLogo,
+  hasLargeLogo,
   backgroundColor,
   ...rest
 }: {
   hasLogo?: boolean;
+  hasLargeLogo?: boolean;
   backgroundColor?: string;
 }) {
   return (
-    <Container hasLogo backgroundColor={backgroundColor} {...rest}>
-      {hasLogo && (
-        <Link href="/">
-          <a>
-            <img
-              alt="LOGO NISHI design+studio"
-              className="logoImg"
-              src="/images/nishi-slate.png"
+    <FullWidthContainer>
+      <Container hasLogo backgroundColor={backgroundColor} {...rest}>
+        {hasLargeLogo && (
+          <ImgWrap>
+            <Image
+              alt="Nishi Logo"
+              src="/images/signature-ochre.png"
+              width="274px"
+              height="353px"
             />
-          </a>
+          </ImgWrap>
+        )}
+        {hasLogo && (
+          <Link href="/">
+            <a>
+              <img
+                alt="LOGO NISHI design+studio"
+                className="logoImg"
+                src="/images/nishi-slate.png"
+              />
+            </a>
+          </Link>
+        )}
+        <Text
+          mb={[rem(16), rem(29)]}
+          width={[rem(250), rem(250), 'auto']}
+          variant={['headingMobile', 'headingMobile', 'heading']}
+        >
+          start your space.
+        </Text>
+        <Text
+          maxWidth={rem(554)}
+          mb={[rem(25), rem(25)]}
+          variant={['body', 'body', 'bodyLarge']}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+          semper odio eunum dignissim porta.
+        </Text>
+        <Link href="/contact" passHref>
+          <PrimaryButton large>start a project</PrimaryButton>
         </Link>
-      )}
-      <Text
-        mb={[rem(16), rem(29)]}
-        width={[rem(250), rem(250), 'auto']}
-        variant={['headingMobile', 'headingMobile', 'heading']}
-      >
-        start your space.
-      </Text>
-      <Text
-        maxWidth={rem(554)}
-        mb={[rem(25), rem(25)]}
-        variant={['body', 'body', 'bodyLarge']}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper
-        odio eunum dignissim porta.
-      </Text>
-      <Link href="/contact">
-        <PrimaryButton large>start a project</PrimaryButton>
-      </Link>
-    </Container>
+      </Container>
+    </FullWidthContainer>
   );
 }

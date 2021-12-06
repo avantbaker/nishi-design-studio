@@ -45,6 +45,7 @@ const theme = {
 	colors: {
 		gray: '#505050',
 		textGray: '#959595',
+		green: '#2e3c2b',
 		orange: '#D78B32',
 		lightOrange: '#FFB000',
 		black: '#252525',

@@ -22,7 +22,7 @@ const NavContainer = styled.nav`
     }
   }
 
-  a.selected {
+  && a.selected {
     color: ${theme.colors.orange};
   }
 
