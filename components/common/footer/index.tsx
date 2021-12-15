@@ -215,8 +215,8 @@ export default function FooterComponent({
               />
             </a>
           </Link>
-          <div>
-            <Flex justifyContent="flex-end">
+          <Flex flexDirection="column" mt="auto">
+            <Flex justifyContent="flex-end" mb={rem(4)}>
               <Link href="/legal" passHref>
                 <Text
                   as="a"
@@ -245,7 +245,7 @@ export default function FooterComponent({
             >
               Copyright © 2021 - NISHI design+studio
             </Text>
-          </div>
+          </Flex>
         </Flex>
       </Footer>
     </FullWidthContainer>
