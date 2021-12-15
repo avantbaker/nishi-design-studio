@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
-  body {
+  #__next {
     overflow-x: hidden;
     position: relative;
   }
