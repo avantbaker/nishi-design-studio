@@ -33,6 +33,7 @@ const PageContent = styled.div`
 const BottomLayout = styled.div`
   position: relative;
   overflow: hidden;
+  padding-top: ${rem(130)};
   :before {
     content: '';
     background-image: url('/images/tan-bg.png');
@@ -66,8 +67,8 @@ const BlogContent = styled.section`
 `;
 
 const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   column-gap: ${rem(25)};
 
   > a {
@@ -80,9 +81,7 @@ const CardContainer = styled.div`
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
-    > a {
-      width: calc(50% - ${rem(12.5)});
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
@@ -236,7 +235,6 @@ export default function Blog() {
         </BlogContent>
         <MediaSection />
         <BottomLayout>
-          <StartYourSpace hasLogo />
           <SocialSection />
         </BottomLayout>
         <SignupSection />
