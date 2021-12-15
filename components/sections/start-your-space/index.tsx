@@ -9,7 +9,8 @@ import Text from 'components/common/text';
 import { PrimaryButton } from 'components/common/button';
 
 const FullWidthContainer = styled.section`
-  background-color: ${theme.colors.lightTan};
+  background-color: ${(props) =>
+    props?.noBackground ? 'transparent' : `${theme.colors.lightTan}`};
 `;
 
 const Container = styled(Flex)`
@@ -50,7 +51,7 @@ const ImgWrap = styled.div`
   height: ${rem(168)};
   position: absolute;
   left: calc(50% - 65px);
-  top: -${rem(82)};
+  top: -${rem(50)};
 
   @media only screen and (min-width: ${breakpoints.laptop}) {
     width: ${rem(274)};
@@ -68,16 +69,16 @@ const ImgWrap = styled.div`
 export default function StartYourSpace({
   hasLogo,
   hasLargeLogo,
-  backgroundColor,
+  noBackground,
   ...rest
 }: {
   hasLogo?: boolean;
   hasLargeLogo?: boolean;
-  backgroundColor?: string;
+  noBackground?: boolean;
 }) {
   return (
-    <FullWidthContainer>
-      <Container hasLogo backgroundColor={backgroundColor} {...rest}>
+    <FullWidthContainer noBackground={noBackground}>
+      <Container hasLogo {...rest}>
         {hasLargeLogo && (
           <ImgWrap>
             <Image

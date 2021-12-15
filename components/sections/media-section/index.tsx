@@ -11,6 +11,7 @@ import { breakpoints } from 'styles/media';
 
 const FullWidthContainer = styled.section`
   background-color: ${theme.colors.lightOrange};
+  overflow-x: hidden;
 `;
 
 const Container = styled.div`

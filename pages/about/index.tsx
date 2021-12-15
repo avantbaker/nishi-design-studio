@@ -90,7 +90,7 @@ export default function About() {
           <ImageGrid />
         </Flex>
       </ContentWrap>
-      <StartYourSpace hasLogo backgroundColor={theme.colors.lightTan} />
+      <StartYourSpace hasLogo />
       <Footer />
     </motion.div>
   );

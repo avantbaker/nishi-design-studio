@@ -63,6 +63,8 @@ const MobileNav = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+  height: 100vh;
+  box-sizing: border-box;
   background-color: ${theme.colors.lightTan};
   padding-top: ${rem(115)};
   padding-left: ${rem(24)};
@@ -100,14 +102,16 @@ const LogoAnchor = styled.a`
 export default function Nav() {
   const { pathname } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
   function toggleMobileNav() {
     setIsOpen(!isOpen);
+
+    document.body.style.overflowY = !isOpen ? 'hidden' : 'auto';
   }
 
   function isSelected(str) {
     return pathname === str ? 'selected' : '';
   }
-  console.log('pathname', pathname);
   return (
     <>
       <NavContainer>
