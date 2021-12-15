@@ -21,6 +21,10 @@ const Container = styled.section`
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
     padding-bottom: ${rem(94)};
+
+    .insta-link {
+      margin-bottom: ${rem(23)};
+    }
   }
 `;
 

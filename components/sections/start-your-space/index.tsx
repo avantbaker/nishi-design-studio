@@ -51,7 +51,7 @@ const ImgWrap = styled.div`
   height: ${rem(168)};
   position: absolute;
   left: calc(50% - 65px);
-  top: -${rem(50)};
+  top: -${rem(82)};
 
   @media only screen and (min-width: ${breakpoints.laptop}) {
     width: ${rem(274)};
