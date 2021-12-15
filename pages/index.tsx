@@ -74,7 +74,7 @@ export default function Home() {
       <ExpertiseSection />
       <MediaSection />
       <BottomLayout>
-        <StartYourSpace hasLogo />
+        <StartYourSpace hasLogo noBackground />
         <SocialSection />
       </BottomLayout>
       <SignupSection />

@@ -27,7 +27,7 @@ const Container = styled.div`
   .nishi-logo-mobile {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 45%);
+    transform: translate(-50%, 42%);
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {

@@ -36,11 +36,7 @@ export default function Expertise() {
         <ExpertisePageContent />
         <DarkSlider />
         <OurSpacesSlider />
-        <StartYourSpace
-          hasLogo
-          hasLargeLogo
-          backgroundColor={theme.colors.lightTan}
-        />
+        <StartYourSpace hasLogo hasLargeLogo />
         <Footer />
       </PageContent>
     </motion.div>

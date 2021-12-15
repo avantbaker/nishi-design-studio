@@ -1,7 +1,4 @@
-import theme from 'styles/theme';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Flex } from 'rebass/styled-components';
 import { rem } from 'polished';
 import styled, { keyframes } from 'styled-components';
 import { FC } from 'react';
