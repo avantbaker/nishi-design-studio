@@ -1,5 +1,6 @@
-
-
 module.exports = {
-  reactStrictMode: true,
-}
+	reactStrictMode: true,
+	images: {
+		domains: ['dev-nishi-design-studio.pantheonsite.io'],
+	},
+};

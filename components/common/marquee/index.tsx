@@ -13,22 +13,22 @@ const marquee = keyframes`
 `;
 
 const MarqueeContainer = styled.div`
-  display: flex;
-  position: absolute;
-  animation: ${marquee} 20s linear infinite;
+	display: flex;
+	position: absolute;
+	animation: ${marquee} 20s linear infinite;
 `;
 
-export default function Marquee() {
-  return (
-    <MarqueeContainer>
-      <Text
-        className="heading"
-        variant="heading"
-        color={theme.colors.orange}
-        width={rem(2276)}
-      >
-        “Their work is stunning. They’re not bound by trends."
-      </Text>
-    </MarqueeContainer>
-  );
+export default function Marquee({ text }) {
+	return (
+		<MarqueeContainer>
+			<Text
+				className="heading"
+				variant="heading"
+				color={theme.colors.orange}
+				width={rem(2276)}
+			>
+				{text}
+			</Text>
+		</MarqueeContainer>
+	);
 }

@@ -54,39 +54,38 @@ const Container = styled.section`
   }
 `;
 
-const images = [
-  { id: 1, src: '/images/social-item-1.jpg', width: 342, height: 452 },
-  { id: 3, src: '/images/social-item-3.jpg', width: 342, height: 226 },
-  { id: 5, src: '/images/social-item-5.jpg', width: 342, height: 452 },
-  { id: 2, src: '/images/social-item-2.jpg', width: 342, height: 323 },
-  { id: 4, src: '/images/social-item-4.jpg', width: 342, height: 549 },
-  { id: 6, src: '/images/social-item-6.jpg', width: 342, height: 323 },
-];
-
 const breakpointColumnsObj = {
-  default: 3,
-  640: 1,
+	default: 3,
+	640: 1,
 };
 
-export default function ImageGrid({ ...rest }) {
-  const isMobileLarge = useMediaQuery(queries.minMobileLarge);
-  return (
-    <Container {...rest}>
-      <MasonryGrid
-        breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
-        {images.map((image) => (
-          <Image
-            alt="Grid image"
-            width={!isMobileLarge ? '321px' : `${image.width}px`}
-            height={!isMobileLarge ? '205px' : `${image.height}px`}
-            key={image.id}
-            src={image.src}
-          />
-        ))}
-      </MasonryGrid>
-    </Container>
-  );
+export default function ImageGrid({ images, ...rest }) {
+	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
+	return images ? (
+		<Container {...rest}>
+			<MasonryGrid
+				breakpointCols={breakpointColumnsObj}
+				className="my-masonry-grid"
+				columnClassName="my-masonry-grid_column"
+			>
+				{images.map(({ image }, idx) => (
+					<Image
+						alt="Grid image"
+						width={
+							!isMobileLarge || (isMobileLarge && !image.width)
+								? '321px'
+								: `${image.width}px`
+						}
+						height={
+							!isMobileLarge || (isMobileLarge && !image.height)
+								? '205px'
+								: `${image.height}px`
+						}
+						key={`image-${idx}`}
+						src={image.sourceUrl}
+					/>
+				))}
+			</MasonryGrid>
+		</Container>
+	) : null;
 }

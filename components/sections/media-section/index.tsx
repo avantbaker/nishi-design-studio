@@ -10,74 +10,80 @@ import { SecondaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
 
 const FullWidthContainer = styled.section`
-  background-color: ${theme.colors.lightOrange};
-  overflow-x: hidden;
+	background-color: ${theme.colors.lightOrange};
+	overflow-x: hidden;
 `;
 
 const Container = styled.div`
-  max-width: ${rem(1440)};
-  margin: 0 auto;
-  padding: ${rem(61)} ${rem(22)} ${rem(20)} ${rem(24)};
+	max-width: ${rem(1440)};
+	margin: 0 auto;
+	padding: ${rem(61)} ${rem(22)} ${rem(20)} ${rem(24)};
 
-  .heading {
-    white-space: nowrap;
-    font-family: ${theme.typography.fonts.primary};
-    font-weight: bold;
-  }
+	.heading {
+		white-space: nowrap;
+		font-family: ${theme.typography.fonts.primary};
+		font-weight: bold;
+	}
 
-  a {
-    margin-left: auto;
-    margin-right: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+	a {
+		margin-left: auto;
+		margin-right: 0;
+		margin-top: auto;
+		margin-bottom: auto;
+	}
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding: ${rem(83)} ${rem(130)} ${rem(39)} ${rem(184)};
-    .heading {
-      margin-left: -${rem(45)};
-    }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		padding: ${rem(83)} ${rem(130)} ${rem(39)} ${rem(184)};
+		.heading {
+			margin-left: -${rem(45)};
+		}
 
-    button {
-      margin-left: ${rem(30)};
-    }
-  }
+		button {
+			margin-left: ${rem(30)};
+		}
+	}
 
-  @media only screen and (min-width: ${breakpoints.laptopLarge}) {
-    padding-left: 0;
-    padding-right: 0;
-  }
+	@media only screen and (min-width: ${breakpoints.laptopLarge}) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 `;
 
-export default function MediaSection() {
-  return (
-    <FullWidthContainer>
-      <Container>
-        <Text
-          width={[rem(230), rem(230), 'initial']}
-          color="#fff"
-          mb={[rem(32), rem(32), rem(46)]}
-          variant="highlight"
-        >
-          NISHI DESIGN + STUDIO / PRESS
-        </Text>
-        <Flex mb={[rem(135), rem(135), rem(157)]}>
-          <Marquee />
-        </Flex>
-        <Flex flexDirection={['column', 'column', 'row']}>
-          <Image
-            alt="Nishi"
-            width="696px"
-            height="158px"
-            src="/images/press-logos.jpg"
-          />
-          <Link href="/press">
-            <a>
-              <SecondaryButton color="#fff">all press</SecondaryButton>
-            </a>
-          </Link>
-        </Flex>
-      </Container>
-    </FullWidthContainer>
-  );
+export default function MediaSection({
+	testimonialHeadline: headline,
+	scrollingText: testimonial,
+	testimonialLinkTitle: linkText,
+	testimonialLinkUrl: linkUrl,
+	brandsImage: img,
+}) {
+	return (
+		<FullWidthContainer>
+			<Container>
+				<Text
+					width={[rem(230), rem(230), 'initial']}
+					color="#fff"
+					mb={[rem(32), rem(32), rem(46)]}
+					variant="highlight"
+				>
+					{headline}
+				</Text>
+				<Flex mb={[rem(135), rem(135), rem(157)]}>
+					<Marquee text={testimonial} />
+				</Flex>
+				<Flex flexDirection={['column', 'column', 'row']}>
+					<Image
+						alt="Nishi"
+						width="696px"
+						height="158px"
+						src={img?.sourceUrl || '/images/press-image.png'}
+					/>
+					<Link href={linkUrl?.uri || ''}>
+						<a>
+							<SecondaryButton color="#fff">{linkText}</SecondaryButton>
+						</a>
+					</Link>
+				</Flex>
+			</Container>
+		</FullWidthContainer>
+	);
 }

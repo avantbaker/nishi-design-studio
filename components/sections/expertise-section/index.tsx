@@ -11,105 +11,105 @@ import { useEffect, useState } from 'react';
 import GoldBadge from 'components/common/badges/gold-badge';
 
 const FullWidthContainer = styled.section`
-  background-color: ${theme.colors.lightTan};
+	background-color: ${theme.colors.lightTan};
 `;
 
 const Container = styled(Flex)`
-  position: relative;
-  display: flex;
+	position: relative;
+	display: flex;
 
-  padding: ${rem(96)} ${rem(22)} ${rem(50)} ${rem(24)};
+	padding: ${rem(96)} ${rem(22)} ${rem(50)} ${rem(24)};
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    padding: ${rem(129)} ${rem(28)} ${rem(111)} ${rem(24)};
-    margin-left: auto;
-    margin-right: 0;
-    max-width: ${rem(1440)};
-    margin: 0 auto;
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		padding: ${rem(129)} ${rem(28)} ${rem(111)} ${rem(24)};
+		margin-left: auto;
+		margin-right: 0;
+		max-width: ${rem(1440)};
+		margin: 0 auto;
+	}
 
-  @media only screen and (min-width: ${breakpoints.laptopLarge}) {
-    padding-left: 0;
-  }
+	@media only screen and (min-width: ${breakpoints.laptopLarge}) {
+		padding-left: 0;
+	}
 
-  .left-box {
-    position: relative;
-  }
+	.left-box {
+		position: relative;
+	}
 `;
 
 const ServiceList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: ${rem(8)} ${rem(10)};
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: ${rem(8)} ${rem(10)};
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    li {
-      font-size: ${rem(15)};
-    }
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		grid-template-columns: 1fr;
+		li {
+			font-size: ${rem(15)};
+		}
+	}
 `;
 
 const ServiceItem = styled(Text)<{ selected?: boolean }>`
-  padding-bottom: ${rem(16)};
-  color: rgba(215, 139, 50, 0.57);
-  font-size: ${rem(11)};
-  cursor: pointer;
-  white-space: nowrap;
+	padding-bottom: ${rem(16)};
+	color: rgba(215, 139, 50, 0.57);
+	font-size: ${rem(11)};
+	cursor: pointer;
+	white-space: nowrap;
 
-  ${({ selected }) =>
-    selected &&
-    css`
-      color: ${theme.colors.gray};
-      cursor: initial;
+	${({ selected }) =>
+		selected &&
+		css`
+			color: ${theme.colors.gray};
+			cursor: initial;
 
-      @media only screen and (min-width: ${breakpoints.tablet}) {
-        a {
-          position: relative;
-          :before {
-            content: '';
-            display: block;
-            border-radius: 50%;
-            border: ${rem(1)} solid ${theme.colors.orange};
-            width: ${rem(34)};
-            height: ${rem(34)};
-            position: absolute;
-            right: -${rem(12)};
-            bottom: ${rem(4)};
-            top: -${rem(10)};
-          }
-        }
+			@media only screen and (min-width: ${breakpoints.tablet}) {
+				a {
+					position: relative;
+					:before {
+						content: '';
+						display: block;
+						border-radius: 50%;
+						border: ${rem(1)} solid ${theme.colors.orange};
+						width: ${rem(34)};
+						height: ${rem(34)};
+						position: absolute;
+						right: -${rem(12)};
+						bottom: ${rem(4)};
+						top: -${rem(10)};
+					}
+				}
 
-        :after {
-          content: '';
-          width: 100%;
-          height: ${rem(1)};
-          background-color: ${theme.colors.sand};
-          display: block;
-          width: calc(100% - 12px);
-          left: 0;
-          margin-top: ${rem(12)};
-          position: absolute;
-        }
-      }
-    `}
+				:after {
+					content: '';
+					width: 100%;
+					height: ${rem(1)};
+					background-color: ${theme.colors.sand};
+					display: block;
+					width: calc(100% - 12px);
+					left: 0;
+					margin-top: ${rem(12)};
+					position: absolute;
+				}
+			}
+		`}
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    font-size: ${rem(15)};
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		font-size: ${rem(15)};
+	}
 `;
 
 const TextContent = styled(Flex)`
-  z-index: 1;
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    max-width: ${rem(433)};
-    position: absolute;
-    top: 50%;
-    transform: translate(-23%, -50%);
-  }
+	z-index: 1;
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		max-width: ${rem(433)};
+		position: absolute;
+		top: 50%;
+		transform: translate(-23%, -50%);
+	}
 `;
 
 const ImgWrap = styled.div`
@@ -135,166 +135,162 @@ const ImgWrap = styled.div`
 `;
 
 const SelectedHeadline = styled(Text)`
-  text-indent: -${rem(27)};
-  margin-left: ${rem(27)};
+	text-indent: -${rem(27)};
+	margin-left: ${rem(27)};
 `;
 
 const TriangleImg = styled.img`
-  width: ${rem(120.47)};
-  height: ${rem(116.53)};
-  position: absolute;
-  top: -${rem(20)};
-  right: -${rem(18)};
+	width: ${rem(120.47)};
+	height: ${rem(116.53)};
+	position: absolute;
+	top: -${rem(20)};
+	right: -${rem(18)};
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    width: ${rem(212.97)};
-    height: ${rem(206)};
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		width: ${rem(212.97)};
+		height: ${rem(206)};
+	}
 `;
 
 const BadgeWrap = styled.div`
-  position: absolute;
-  top: -${rem(10)};
-  left: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: -${rem(10)};
+	left: 50%;
+	transform: translate(-50%, -50%);
 
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    left: auto;
-    right: 15%;
-  }
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		left: auto;
+		right: 15%;
+	}
 `;
 
 const mockData = [
-  {
-    title: 'Planning',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-  },
-  {
-    title: 'Design Operation',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-  },
-  {
-    title: 'Ordering + Buying',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-  },
-  {
-    title: 'Service Installation',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-  },
-  {
-    title: 'Retail',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-  },
+	{
+		title: 'Planning',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
+	},
+	{
+		title: 'Design Operation',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
+	},
+	{
+		title: 'Ordering + Buying',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
+	},
+	{
+		title: 'Service Installation',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
+	},
+	{
+		title: 'Retail',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
+	},
 ];
 
-export default function ExpertiseSection() {
-  const [selectedService, setSelectedService] = useState(
-    'Service Installation'
-  );
-  const [selectedContent, setSelectedContent] = useState(mockData[3]);
+export default function ExpertiseSection({ expertiseTitle: title, categories = [] }) {
+	const [selectedService, setSelectedService] = useState(categories[1]?.title);
+	const [selectedContent, setSelectedContent] = useState(categories[1]);
+	const isTablet = useMediaQuery(queries.minTablet);
 
-  const isTablet = useMediaQuery(queries.minTablet);
+	function handleServiceSelect(e) {
+		e.preventDefault();
+		const selectedText = e.target.innerText.substring(2);
+		if (selectedText === selectedService) {
+			return;
+		}
+		setSelectedService(selectedText);
+	}
 
-  function handleServiceSelect(e) {
-    e.preventDefault();
-    const selectedText = e.target.innerText.substring(2);
-    if (selectedText === selectedService) {
-      return;
-    }
+	useEffect(() => {
+		const displayContent = categories.find((data) => {
+			return data.title === selectedService;
+		});
+		setSelectedContent(displayContent);
+	}, [selectedService]);
 
-    setSelectedService(selectedText);
-  }
-
-  useEffect(() => {
-    const displayContent = mockData.find(
-      (data) => data.title === selectedService
-    );
-    console.log('displayCOntnet ', displayContent);
-    console.log('selectedService ', selectedService);
-    setSelectedContent(displayContent);
-  }, [selectedService]);
-
-  return (
-    <FullWidthContainer>
-      <Container flexDirection={['column', 'column', 'row']}>
-        <BadgeWrap>
-          <GoldBadge />
-        </BadgeWrap>
-        <Box
-          width={[1, 1, 2 / 5]}
-          mb={[rem(33), rem(33), rem(60)]}
-          display="flex"
-          flexDirection="column"
-          className="left-box"
-          position="relative"
-        >
-          <Flex flexDirection="column" width={['100%', '100%', 'initial']}>
-            <Text variant="highlight" mb={[rem(24), rem(24), rem(52)]}>
-              OUR EXPERTISE
-            </Text>
-            <ServiceList>
-              {mockData.map(({ title }) => (
-                <ServiceItem
-                  key={title}
-                  as="li"
-                  variant={['actionMobile', 'actionMobile', 'action']}
-                  selected={selectedService === title}
-                >
-                  <a onClick={handleServiceSelect}>{`/ ${title}`}</a>
-                </ServiceItem>
-              ))}
-            </ServiceList>
-          </Flex>
-        </Box>
-        <Box width={[1, 1, 3 / 5]} position="relative">
-          <TextContent flexDirection="column">
-            <SelectedHeadline
-              mb={[rem(12), rem(12), rem(4)]}
-              variant={['headingMobile', 'headingMobile', 'heading']}
-            >
-              {selectedContent?.title?.toLowerCase()}
-            </SelectedHeadline>
-            <Text
-              mb={[rem(43), rem(43), rem(43)]}
-              variant={['bodySmall', 'bodySmall', 'bodyLarge']}
-            >
-              {selectedContent?.description}
-            </Text>
-            {isTablet && (
-              <SecondaryButton large>contact for service</SecondaryButton>
-            )}
-          </TextContent>
-          <ImgWrap>
-            {isTablet ? (
-              <Image
-                alt="service installation"
-                className="main-image"
-                layout="intrinsic"
-                width="433px"
-                height="645px"
-                src="/images/rectangle-couch.png"
-              />
-            ) : (
-              <Image
-                alt="service installation"
-                layout="intrinsic"
-                width="512px"
-                height="526px"
-                src="/images/rectangle-couch-small.png"
-              />
-            )}
-            <TriangleImg src="/images/triangle-orange.png" />
-            {!isTablet && (
-              <SecondaryButton>contact for service</SecondaryButton>
-            )}
-          </ImgWrap>
-        </Box>
-      </Container>
-    </FullWidthContainer>
-  );
+	return (
+		<FullWidthContainer>
+			<Container flexDirection={['column', 'column', 'row']}>
+				<BadgeWrap>
+					<GoldBadge />
+				</BadgeWrap>
+				<Box
+					width={[1, 1, 2 / 5]}
+					mb={[rem(33), rem(33), rem(60)]}
+					display="flex"
+					flexDirection="column"
+					className="left-box"
+					position="relative"
+				>
+					<Flex flexDirection="column" width={['100%', '100%', 'initial']}>
+						<Text variant="highlight" mb={[rem(24), rem(24), rem(52)]}>
+							{title}
+						</Text>
+						<ServiceList>
+							{categories &&
+								categories.map(({ title }) => (
+									<ServiceItem
+										key={title}
+										as="li"
+										variant={['actionMobile', 'actionMobile', 'action']}
+										selected={selectedService === title}
+									>
+										<a onClick={handleServiceSelect}>{`/ ${title}`}</a>
+									</ServiceItem>
+								))}
+						</ServiceList>
+					</Flex>
+				</Box>
+				<Box width={[1, 1, 3 / 5]} position="relative">
+					<TextContent flexDirection="column">
+						<SelectedHeadline
+							mb={[rem(12), rem(12), rem(4)]}
+							variant={['headingMobile', 'headingMobile', 'heading']}
+						>
+							{selectedContent?.headline?.toLowerCase()}
+						</SelectedHeadline>
+						<Text
+							mb={[rem(43), rem(43), rem(43)]}
+							variant={['bodySmall', 'bodySmall', 'bodyLarge']}
+						>
+							{selectedContent?.body}
+						</Text>
+						{isTablet && (
+							<SecondaryButton large>{selectedContent?.linkTitle}</SecondaryButton>
+						)}
+					</TextContent>
+					<ImgWrap>
+						{isTablet ? (
+							<Image
+								alt="service installation"
+								className="main-image"
+								layout="intrinsic"
+								width="433px"
+								height="645px"
+								src={selectedContent?.image?.sourceUrl || '/images/rectangle-couch.png'}
+							/>
+						) : (
+							<Image
+								alt="service installation"
+								layout="intrinsic"
+								width="512px"
+								height="526px"
+								src={
+									selectedContent?.mobileImage?.sourceUrl ||
+									'/images/rectangle-couch-small.png'
+								}
+							/>
+						)}
+						<TriangleImg src="/images/triangle-orange.png" />
+						{!isTablet && <SecondaryButton>{selectedContent?.linkText}</SecondaryButton>}
+					</ImgWrap>
+				</Box>
+			</Container>
+		</FullWidthContainer>
+	);
 }
