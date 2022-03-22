@@ -1,9 +1,9 @@
 const SimpleBannerFragment = `
   simpleBanner {
-    simpleBannerTitle
-    simpleBannerSubtitle
-    simpleBannerContentSubtitle
-    simpleBannerContent
+    simplebannertitle
+    simplebannersubtitle
+    simplebannercontentsubtitle
+    simplebannercontent
   }
 `;
 

@@ -1143,6 +1143,13 @@ chokidar@3.5.1:
   optionalDependencies:
     fsevents "~2.3.1"
 
+chop-lines@^1.15.7:
+  version "1.15.7"
+  resolved "https://registry.yarnpkg.com/chop-lines/-/chop-lines-1.15.7.tgz#e7b8132cc340a22e93436f9a99a7603c186adc9f"
+  integrity sha512-//KdWgF7qaNed79sZxgkZBpUno+5LpGVXsRvegionFkwGFbTv682xugemQWbDPCfWMpplbuW2gLh8JNQnJO+3g==
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/cipher-base/-/cipher-base-1.0.4.tgz#8760e4ecc272f4c363532f926d874aae2c1397de"

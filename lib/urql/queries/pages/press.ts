@@ -7,6 +7,7 @@ const PressPageQuery = `
     }
     pressReleases {
       nodes {
+        title
         ${PressReleaseFragment}
       }
     }

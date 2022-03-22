@@ -1,4 +1,5 @@
 import {
+	BlogSectionFragment,
 	NewsletterSectionFragment,
 	SocialSectionFragment,
 	TestimonialSectionFragment,
@@ -10,6 +11,19 @@ const BlogPageQuery = `
       ${TestimonialSectionFragment}
       ${SocialSectionFragment}
       ${NewsletterSectionFragment}
+    }
+    articles(first: 4) {
+      nodes {
+        title
+        date
+        slug
+        tags {
+          nodes {
+            name
+          }
+        }
+        ${BlogSectionFragment}
+      }
     }
   }
 `;

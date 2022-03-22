@@ -15,7 +15,11 @@ export default `
   brandsAndPartners {
     brandsTitleLineOne
     brandsTitleLineTwo
-    brandsProducts
-    brandServices
+    brandsProducts {
+			partner
+		}
+    brandServices {
+			service
+		}
   }
 `;

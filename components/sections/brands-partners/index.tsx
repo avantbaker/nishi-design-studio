@@ -158,6 +158,7 @@ export default function BrandsPartners({
 	brandsProducts: products,
 	brandServices: services,
 }) {
+	console.log('Products: ', products);
 	return (
 		<FullWidthContainer>
 			<Container>
@@ -199,15 +200,15 @@ export default function BrandsPartners({
 				>
 					<Flex pt={[null, null, rem(32)]} flexDirection={['column', 'column', 'row']}>
 						{products && (
-							<Flex flexDirection="column" mb={[rem(40), rem(40), null]}>
+							<Flex flexDirection="column" mb={[rem(40), rem(40), null]} mr={[rem(20)]}>
 								<Text mb={[rem(18), rem(18)]} className="body-text" variant="highlight">
 									PRODUCTS
 								</Text>
 								<List>
-									{products.map((productKey) => {
+									{products.map(({ partner }) => {
 										return (
-											<Text as="li" variant="bodySmall" key={`product-${productKey}`}>
-												{productsMap[productKey]}
+											<Text as="li" variant="bodySmall" key={`product-${partner}`}>
+												{partner}
 											</Text>
 										);
 									})}
@@ -220,10 +221,10 @@ export default function BrandsPartners({
 									SERVICES
 								</Text>
 								<List>
-									{services.map((serviceKey) => {
+									{services.map(({ service }) => {
 										return (
-											<Text as="li" variant="bodySmall" key={`service-${serviceKey}`}>
-												{servicesMap[serviceKey]}
+											<Text as="li" variant="bodySmall" key={`service-${service}`}>
+												{service}
 											</Text>
 										);
 									})}

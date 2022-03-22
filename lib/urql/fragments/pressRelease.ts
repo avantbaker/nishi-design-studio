@@ -6,6 +6,9 @@ const PressReleaseFragment = `
     pressSeason
     pressEdition
     pressContent
+    pressFeaturedImage {
+      sourceUrl
+    }
     pressLink {
       url
       title

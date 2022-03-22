@@ -8,6 +8,7 @@ import { rem } from 'polished';
 import Text from 'components/common/text';
 import { SecondaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
+import { useState } from 'react';
 
 const FullWidthContainer = styled.section`
 	background-color: ${theme.colors.lightOrange};
@@ -33,7 +34,7 @@ const Container = styled.div`
 	}
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		padding: ${rem(83)} ${rem(130)} ${rem(39)} ${rem(184)};
+		padding: ${rem(83)} ${rem(130)} ${rem(83)} ${rem(184)};
 		.heading {
 			margin-left: -${rem(45)};
 		}
@@ -50,12 +51,17 @@ const Container = styled.div`
 `;
 
 export default function MediaSection({
-	testimonialHeadline: headline,
+	headline,
+	pressReleases: releases = [],
 	scrollingText: testimonial,
 	testimonialLinkTitle: linkText,
 	testimonialLinkUrl: linkUrl,
 	brandsImage: img,
 }) {
+	const [currentRelease, setCurrentRelease] = useState(releases[0]);
+	const { pressRelease } = currentRelease?.pressRelease;
+	const { pressContent, pressLink } = pressRelease;
+
 	return (
 		<FullWidthContainer>
 			<Container>
@@ -68,18 +74,26 @@ export default function MediaSection({
 					{headline}
 				</Text>
 				<Flex mb={[rem(135), rem(135), rem(157)]}>
-					<Marquee text={testimonial} />
+					<Marquee text={pressContent} />
 				</Flex>
 				<Flex flexDirection={['column', 'column', 'row']}>
-					<Image
-						alt="Nishi"
-						width="696px"
-						height="158px"
-						src={img?.sourceUrl || '/images/press-image.png'}
-					/>
-					<Link href={linkUrl?.uri || ''}>
+					{releases.map(({ pressRelease }, idx) => {
+						const { pressLogo } = pressRelease?.pressRelease;
+						return (
+							<div style={{ marginRight: rem(24), cursor: 'pointer' }} key={`img-${idx}`}>
+								<Image
+									onClick={() => setCurrentRelease(releases[idx])}
+									alt="Nishi"
+									width="200px"
+									height="50px"
+									src={pressLogo?.sourceUrl || '/images/press-image.png'}
+								/>
+							</div>
+						);
+					})}
+					<Link href={pressLink?.url || ''}>
 						<a>
-							<SecondaryButton color="#fff">{linkText}</SecondaryButton>
+							<SecondaryButton color="#fff">Read Article</SecondaryButton>
 						</a>
 					</Link>
 				</Flex>

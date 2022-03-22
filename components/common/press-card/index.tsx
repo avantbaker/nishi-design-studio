@@ -25,72 +25,64 @@ const ImageWrap = styled.div`
 `;
 
 const StyledFlex = styled(Flex)`
-  :hover ${ImageWrap} img {
-    transform: scale(1.05);
-  }
+	:hover ${ImageWrap} img {
+		transform: scale(1.05);
+	}
 `;
 
 const StyledButton = styled(SecondaryButton)`
-  padding-left: 0;
-  @media only screen and (min-width: ${breakpoints.tablet}) {
-    ${SecondaryButton} {
-      padding-left: auto;
-    }
-  }
+	padding-left: 0;
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		${SecondaryButton} {
+			padding-left: auto;
+		}
+	}
 `;
 
 const LogoImg = styled.img`
-  height: ${rem(51)};
-  margin-bottom: ${rem(24)};
+	height: ${rem(51)};
+	margin-bottom: ${rem(24)};
 `;
 
 export default function PressCard({
-  title,
-  label,
-  description,
-  src,
-  logoSrc,
-  link,
-  ...rest
+	title,
+	label,
+	description,
+	src,
+	logoSrc,
+	link,
+	...rest
 }) {
-  return (
-    <Link href={link} {...rest} passHref>
-      <StyledFlex
-        as="a"
-        flexDirection={['column', 'column', 'row']}
-        mb={[rem(40), rem(40)]}
-      >
-        <Box
-          width={[1, 1, 1 / 2]}
-          mb={[rem(34), rem(34), 0]}
-          pr={[null, null, rem(24)]}
-        >
-          <ImageWrap>
-            <Image alt={title} src={src} layout="fill" />
-          </ImageWrap>
-        </Box>
-        <Box width={[1, 1, 1 / 2]}>
-          <LogoImg src={logoSrc} />
-          <Text variant="headingSmall" mb={[rem(14), rem(14), rem(5)]}>
-            {title}
-          </Text>
-          <Text
-            variant="bodySmall"
-            color={theme.colors.gray}
-            mb={[rem(27), rem(27), rem(16)]}
-          >
-            {label}
-          </Text>
-          <Text
-            variant="body"
-            color={theme.colors.textGray}
-            mb={[rem(6), rem(6)]}
-          >
-            {description}
-          </Text>
-          <StyledButton>read article</StyledButton>
-        </Box>
-      </StyledFlex>
-    </Link>
-  );
+	return (
+		<Link href={link || '/'} {...rest} passHref>
+			<StyledFlex
+				as="a"
+				flexDirection={['column', 'column', 'row']}
+				mb={[rem(40), rem(40)]}
+			>
+				<Box width={[1, 1, 1 / 2]} mb={[rem(34), rem(34), 0]} pr={[null, null, rem(24)]}>
+					<ImageWrap>
+						<Image alt={title} src={src} layout="fill" />
+					</ImageWrap>
+				</Box>
+				<Box width={[1, 1, 1 / 2]}>
+					<LogoImg src={logoSrc} />
+					<Text variant="headingSmall" mb={[rem(14), rem(14), rem(5)]}>
+						{title}
+					</Text>
+					<Text
+						variant="bodySmall"
+						color={theme.colors.gray}
+						mb={[rem(27), rem(27), rem(16)]}
+					>
+						{label}
+					</Text>
+					<Text variant="body" color={theme.colors.textGray} mb={[rem(6), rem(6)]}>
+						{description}
+					</Text>
+					<StyledButton>read article</StyledButton>
+				</Box>
+			</StyledFlex>
+		</Link>
+	);
 }

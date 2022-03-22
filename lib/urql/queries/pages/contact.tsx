@@ -13,8 +13,8 @@ const ContactPageQuery = `
   {
     page(id: 217, idType: DATABASE_ID) {
       ${SimpleBannerFragment}
-      ${TitleTwoColumnFragment}
       ${ContactFormFooterFragment}
+      ${TitleTwoColumnFragment}
       ${VendorSectionFragment}
       ${DesignerSectionFragment}
       ${StartYourSpaceFragment}

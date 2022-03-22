@@ -1,10 +1,13 @@
 const DesignerSectionFragment = `
   designers {
-    designersCaption
-    designersTitleLine1
-    designersTitleLine2
-    designersContent
-    designersLink
+    designerscaption
+    designerstitlelineone
+    designerstitlelinetwo
+    designerscontent
+    designerslink {
+      url
+      title
+    }
   }
 `;
 

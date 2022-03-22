@@ -1,8 +1,8 @@
 const TitleTwoColumnFragment = `
   titleTwoColumn {
-    titleTwoColTitle
-    titleTwoColSubtitle
-    titleTwoColContent
+    titletwocoltitle
+    titletwocolsubtitle
+    titletwocolcontent
   }
 `;
 

@@ -8,8 +8,5 @@ export default `
     imgOverlayImage {
       sourceUrl
     }
-    imgOverlayImageMobile {
-      sourceUrl
-    }
   }
 `;

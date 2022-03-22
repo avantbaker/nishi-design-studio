@@ -1,10 +1,13 @@
 const VendorSectionFragment = `
   vendors {
-    vendorsCaption
-    vendorsTitleLine1
-    vendorsTitleLine2
-    vendorsContent
-    vendorsLink
+    vendorscaption
+    vendorstitlelineone
+    vendorstitlelinetwo
+    vendorscontent
+    vendorslink {
+      url
+      title
+    }
   }
 `;
 

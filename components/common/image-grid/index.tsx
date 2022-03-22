@@ -68,23 +68,17 @@ export default function ImageGrid({ images, ...rest }) {
 				className="my-masonry-grid"
 				columnClassName="my-masonry-grid_column"
 			>
-				{images.map(({ image }, idx) => (
-					<Image
-						alt="Grid image"
-						width={
-							!isMobileLarge || (isMobileLarge && !image.width)
-								? '321px'
-								: `${image.width}px`
-						}
-						height={
-							!isMobileLarge || (isMobileLarge && !image.height)
-								? '205px'
-								: `${image.height}px`
-						}
-						key={`image-${idx}`}
-						src={image.sourceUrl}
-					/>
-				))}
+				{images.map(({ image, width, height }, idx) => {
+					return (
+						<Image
+							alt="Grid image"
+							width={!isMobileLarge ? '321px' : `${width}px`}
+							height={!isMobileLarge ? '205px' : `${height}px`}
+							key={`image-${idx}`}
+							src={image.sourceUrl}
+						/>
+					);
+				})}
 			</MasonryGrid>
 		</Container>
 	) : null;

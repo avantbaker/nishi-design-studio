@@ -15,7 +15,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { SpacesQuery } from 'lib/urql/queries/pages';
 import { buildPostQueryByCategory } from 'lib/utils';
-import { getPageData } from 'pages';
+import { getPageData } from 'lib/utils';
 
 const PageContent = styled.div`
 	position: relative;
@@ -108,7 +108,7 @@ function Residential() {
 			setPostData(getPostsData(resultsCommercial));
 		}
 	}, [category, resultsAll, resultsResidential, resultsCommercial]);
-	console.log('Post Data: ', postData);
+
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>

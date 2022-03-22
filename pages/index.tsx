@@ -16,6 +16,7 @@ import { framerOptions } from 'lib/framer';
 import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 import { HomepageQuery } from 'lib/urql/queries/pages';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
+import { getPageData } from 'lib/utils';
 
 export const TopSection = styled.section`
 	position: relative;
@@ -66,10 +67,6 @@ const BottomLayout = styled.div`
 	}
 `;
 
-export const getPageData = (result) => {
-	if (!result || !result.data) return result;
-	return result.data?.page || {};
-};
 function Home() {
 	const [result] = useQuery({
 		query: HomepageQuery,
@@ -83,10 +80,12 @@ function Home() {
 		socialSection,
 		newsletterSection,
 	} = getPageData(result) || {};
+
 	const categories = expertiseSection?.categories;
 	const slides = heroSlider?.slides;
 	const showExpertiseSection = categories && categories.length > 0;
 	const showSliderSection = slides && slides.length > 0;
+
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>

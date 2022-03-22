@@ -7,3 +7,5 @@ export { default as ContactPageQuery } from './contact';
 export { default as BlogPageQuery } from './blog';
 export { default as PressPageQuery } from './press';
 export { default as LegalPageQuery } from './legal';
+export { default as For0ForPageQuery } from './404';
+export { default as BlogDetailsQuery } from './blogDetails';

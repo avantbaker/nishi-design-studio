@@ -1,11 +1,13 @@
 const BlogSectionFragment = `
   blog {
-    blogImage {
+    blogimage {
       sourceUrl
     }
-    blogIntroText
-    blogContent
-    blogLink
+    blogintrotext
+    blogcontent
+    bloglink {
+      url
+    }
   }
 `;
 

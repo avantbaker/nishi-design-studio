@@ -1,7 +1,7 @@
 const ContactFormFooterFragment = `
   contactFormFooter {
-    contactBannerText
-    contactIntroText
+    contactbannertext
+    contactintrotext
   }
 `;
 

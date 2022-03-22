@@ -13,6 +13,7 @@ import { framerOptions } from 'lib/framer';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { ExpertiseQuery } from 'lib/urql/queries/pages';
+import { getPageData } from 'lib/utils';
 
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -28,24 +29,20 @@ function Expertise() {
 	const [result] = useQuery({
 		query: ExpertiseQuery,
 	});
-
-	console.log('Expertise Result: ', result);
-
+	const { simpleHeader, processSlider, startYourSpace, expertiseDetailsSection } =
+		getPageData(result) || {};
+	const { nodes } = result?.data?.posts || {};
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>
 				<HeaderWrap>
 					<Nav />
-					<SimpleHeader
-						src="/images/poodle-header-image.png"
-						title="every step"
-						subTitle="we're there for"
-					/>
+					<SimpleHeader {...simpleHeader} />
 				</HeaderWrap>
-				<ExpertisePageContent />
-				<DarkSlider />
-				<OurSpacesSlider />
-				<StartYourSpace hasLogo hasLargeLogo />
+				<ExpertisePageContent {...expertiseDetailsSection} />
+				<DarkSlider {...processSlider} />
+				<OurSpacesSlider spaces={nodes} />
+				<StartYourSpace {...startYourSpace} />
 				<Footer />
 			</PageContent>
 		</motion.div>

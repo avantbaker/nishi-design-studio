@@ -1,13 +1,13 @@
 const expertiseDetailsSection = `
   expertiseDetailsSection {
-    expertiseDetailsTitle
+    expertisedetailstitle
     expertises {
-      expertiseName
-      expertiseContent
-      expertiseSmallImg {
+      expertisename
+      expertisecontent
+      expertisesmallimg {
         sourceUrl
       }
-      expertiseLargeImg {
+      expertiselargeimg {
         sourceUrl
       }
     }

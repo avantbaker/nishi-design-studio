@@ -4,6 +4,7 @@ import {
 	SpaceDetailSectionFragment,
 	SpaceInformationFragment,
 	StartYourSpaceFragment,
+	ImageGalleryFragment,
 } from 'lib/urql/fragments';
 
 export default `
@@ -14,6 +15,7 @@ export default `
       ${SpaceDetailSectionFragment}
       ${BrandAndPartnersSectionFragment}
       ${ProcessSliderSectionFragment}
+      ${ImageGalleryFragment}
       ${StartYourSpaceFragment}
     }
   }

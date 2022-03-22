@@ -1,17 +1,29 @@
 const TestimonialSectionFragment = `
-testimonialsSection {
-  testimonialLinkTitle
-  testimonialHeadline
-  scrollingText
-  brandsImage {
-    sourceUrl
+  testimonialsSection {
+    headline
+    pressReleases {
+      pressRelease {
+        ... on PressRelease {
+          slug
+          title
+          pressRelease {
+            pressFeaturedImage {
+              sourceUrl
+            }
+            pressLogo {
+              sourceUrl
+            }
+            pressLink {
+              url
+            }
+            pressSeason
+            pressContent
+            pressEdition
+          }
+        }
+      }
+    }	
   }
-  testimonialLinkUrl {
-    ... on Post {
-      uri
-    }
-  }
-}
 `;
 
 export default TestimonialSectionFragment;

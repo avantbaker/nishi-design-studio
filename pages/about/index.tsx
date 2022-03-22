@@ -16,6 +16,7 @@ import { framerOptions } from 'lib/framer';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { AboutQuery } from 'lib/urql/queries/pages';
+import image from 'next/image';
 
 const HeaderWrap = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -36,66 +37,76 @@ const OffsetText = styled(Text)`
 	margin-left: ${rem(40)};
 `;
 
-function About() {
-	// const [result] = useQuery({
-	// 	query: AboutQuery,
-	// });
+const TwoColumnOffsetSection = ({
+	offsetCaption: caption = 'lorem ipsum dolor',
+	offsetContent:
+		content = '<p>Our work is where you play. We’ll handle the heavy installations and obsess over the hardware. You kick your feet up and relax. From pouring the concrete, to poring over color swatches, to pouring your first drink in the finished space– we’re with you.</p>\n<p>Our work is where you play. We’ll handle the heavy installations and obsess over the hardware. You kick your feet up and relax. From pouring the concrete, to poring over color swatches, to pouring your first drink in the finished space– we’re with you.</p>\n',
+	offsetLine1: line1 = 'about',
+	offsetLine2: line2 = 'the brand',
+}) => {
+	return (
+		<Flex
+			maxWidth={rem(1076)}
+			m="0 auto"
+			flexDirection={['column', 'column', 'row']}
+			p={`${rem(88)} ${rem(24)} ${rem(91)} ${rem(24)}`}
+		>
+			<Box width={[1, 1, 1 / 2]}>
+				<Text variant="highlight" mb={[rem(14), rem(14)]}>
+					{caption}
+				</Text>
+				<Flex flexDirection="column" mb={(rem(32), rem(32))}>
+					<Text variant={['headingMobile', 'headingMobile', 'heading']}>{line1}</Text>
+					<OffsetText variant={['headingMobile', 'headingMobile', 'heading']}>
+						{line2}
+					</OffsetText>
+				</Flex>
+			</Box>
+			<Box width={[1, 1, 1 / 2]}>
+				<Text variant="body" dangerouslySetInnerHTML={{ __html: content }} />
+			</Box>
+		</Flex>
+	);
+};
 
-	// console.log('About Result: ', result);
+function About() {
+	const [result] = useQuery({
+		query: AboutQuery,
+	});
+
+	const {
+		simpleHeader,
+		imageGallery,
+		startYourSpace,
+		teamSection,
+		testimonialsSection,
+		twoColumnImageOverlay,
+		twoColumnOffsetSection,
+	} = result?.data?.page;
+
+	const { nodes } = result?.data?.teamMembers;
+	const { imageSections } = imageGallery;
+
+	const firstSection = imageSections?.[0];
 
 	return (
 		<motion.div {...framerOptions}>
 			<HeaderWrap>
 				<Nav />
-				<SimpleHeader
-					src="/images/about-header-image.png"
-					title="lorem ipsum"
-					subTitle="lorem ipsum dolor"
-				/>
+				<SimpleHeader {...simpleHeader} />
 			</HeaderWrap>
-			{/* <MediaSection/> */}
+			<MediaSection {...testimonialsSection} />
 			<MiddleWrap>
-				<MeetTheBoss />
-				<TeamSlider />
+				<MeetTheBoss {...twoColumnImageOverlay} />
+				<TeamSlider {...teamSection} images={nodes} />
 			</MiddleWrap>
 			<ContentWrap>
-				<Flex
-					maxWidth={rem(1076)}
-					m="0 auto"
-					flexDirection={['column', 'column', 'row']}
-					p={`${rem(88)} ${rem(24)} ${rem(91)} ${rem(24)}`}
-				>
-					<Box width={[1, 1, 1 / 2]}>
-						<Text variant="highlight" mb={[rem(14), rem(14)]}>
-							LOREM IPSUM
-						</Text>
-						<Flex flexDirection="column" mb={(rem(32), rem(32))}>
-							<Text variant={['headingMobile', 'headingMobile', 'heading']}>about</Text>
-							<OffsetText variant={['headingMobile', 'headingMobile', 'heading']}>
-								the brand
-							</OffsetText>
-						</Flex>
-					</Box>
-					<Box width={[1, 1, 1 / 2]}>
-						<Text variant="body" mb={[rem(34), rem(34)]}>
-							Our work is where you play. We’ll handle the heavy installations and obsess
-							over the hardware. You kick your feet up and relax. From pouring the
-							concrete, to poring over color swatches, to pouring your first drink in the
-							finished space– we’re with you.
-						</Text>
-						<Text variant="body">
-							Our work is where you play. We’ll handle the heavy installations and obsess
-							over the hardware. You kick your feet up and relax. From pouring the
-							concrete, to poring over color swatches, to pouring your first drink in the
-							finished space– we’re with you.
-						</Text>
-					</Box>
-				</Flex>
-				<Flex px={['initial', 'initial', rem(28), rem(28)]}>
-					<ImageGrid images={[]} />
+				<TwoColumnOffsetSection {...twoColumnOffsetSection} />
+				<Flex px={['initial', 'initial', rem(28), rem(28)]} pb={rem(86)}>
+					<ImageGrid images={firstSection?.images || []} />
 				</Flex>
 			</ContentWrap>
-			<StartYourSpace hasLogo />
+			<StartYourSpace {...startYourSpace} />
 			<Footer />
 		</motion.div>
 	);
@@ -111,7 +122,7 @@ export async function getServerSideProps() {
 		true
 	);
 
-	// await client.query(AboutQuery).toPromise();
+	await client.query(AboutQuery).toPromise();
 
 	return {
 		props: {

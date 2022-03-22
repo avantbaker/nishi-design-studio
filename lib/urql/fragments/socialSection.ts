@@ -5,6 +5,8 @@ const SocialSectionFragment = `
       image {
         sourceUrl
       }
+      width
+      height
     }
     socialLinkUrl {
       title

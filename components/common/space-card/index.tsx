@@ -107,7 +107,16 @@ const ImgWrap = styled.div`
   }
 `;
 
-export default function SpaceCard({ location, year, title, href, src, slug, ...rest }) {
+export default function SpaceCard({
+	location,
+	year,
+	title,
+	href,
+	src,
+	imgSrc,
+	slug,
+	...rest
+}) {
 	return (
 		<Container {...rest}>
 			<Link href={`/spaces/${slug}`} passHref>
@@ -137,7 +146,7 @@ export default function SpaceCard({ location, year, title, href, src, slug, ...r
 							</YearText>
 						</Flex>
 						<ImgWrap>
-							<Image alt={title} src={src} layout="fill" />
+							<Image alt={title} src={imgSrc || src} layout="fill" />
 						</ImgWrap>
 						<Flex flexDirection="column" flexGrow={1} className="right-box">
 							<Box

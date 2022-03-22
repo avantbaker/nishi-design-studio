@@ -1,7 +1,7 @@
 import {
 	ExpertiseDetailSectionFragment,
 	ProcessSliderSectionFragment,
-	SelectedSpacesSectionFragment,
+	SpacesFragment,
 	SimpleHeaderFragment,
 	StartYourSpaceFragment,
 } from 'lib/urql/fragments';
@@ -12,8 +12,8 @@ export default `
       ${SimpleHeaderFragment}
       ${ExpertiseDetailSectionFragment}
       ${ProcessSliderSectionFragment}
-      ${SelectedSpacesSectionFragment}
       ${StartYourSpaceFragment}
     }
+    ${SpacesFragment}
   }
 `;

@@ -202,7 +202,7 @@ const ResidencePage = ({ slug, error }) => {
 	const { error: clientError, data, fetching } = results;
 
 	if (error || clientError) {
-		return <Error />;
+		return <Error pageProps={{}} />;
 	}
 
 	const {
@@ -211,6 +211,7 @@ const ResidencePage = ({ slug, error }) => {
 		spacesDetailSection,
 		brandsAndPartners,
 		processSlider,
+		imageGallery,
 		startYourSpace,
 	} = data?.post;
 
@@ -220,6 +221,11 @@ const ResidencePage = ({ slug, error }) => {
 		expertiseContent,
 		expertiseBottomBanner,
 	} = spacesDetailSection;
+
+	const { imageSections } = imageGallery;
+
+	const galleryOne = imageSections?.[0]?.images;
+	const galleryTwo = imageSections?.[1]?.images;
 
 	return (
 		<motion.div {...framerOptions}>
@@ -311,7 +317,7 @@ const ResidencePage = ({ slug, error }) => {
 									/>
 								</Box>
 							</Flex>
-							<StyledImageGrid />
+							<StyledImageGrid images={galleryOne} />
 							<BannerWrap>
 								<Image
 									alt="Residential banner"
@@ -330,6 +336,16 @@ const ResidencePage = ({ slug, error }) => {
 						</Flex>
 						<BrandsParters {...brandsAndPartners} />
 						<DarkSlider {...processSlider} />
+						<Flex
+							maxWidth={rem(1044)}
+							flexDirection="column"
+							margin="0 auto"
+							mt={[rem(128), rem(128), rem(134)]}
+							px={[rem(26), rem(26)]}
+							mb={[rem(128), rem(128), rem(134)]}
+						>
+							<StyledImageGrid images={galleryTwo} />
+						</Flex>
 						<Flex
 							maxWidth={rem(400)}
 							justifyContent="space-between"

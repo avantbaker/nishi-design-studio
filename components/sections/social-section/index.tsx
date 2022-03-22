@@ -35,7 +35,7 @@ export default function SocialSection({
 }) {
 	return (
 		<Container>
-			<Flex flexDirection="column" alignItems="center">
+			<Flex flexDirection="column" alignItems="center" mt={rem(128)}>
 				<Text mb={rem(30)} variant="highlight">
 					{title}
 				</Text>
