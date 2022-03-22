@@ -26,8 +26,7 @@ import { createSlideMap } from 'lib/utils';
 const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
-	console.log('Featured Posts: ', featuredPosts);
-	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts, true));
+	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts));
 
 	const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
 	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
@@ -58,7 +57,6 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 						<EmblaParent className="embla" ref={emblaRef}>
 							<EmblaContainer className="embla__container">
 								{currentPosts.map((slide, idx) => {
-									console.log('Current POst: ', slide);
 									return (
 										<ImageWrap key={`${slide.imgSrc}-${idx}`}>
 											<Image src={slide.imgSrc || slide.src} layout="fill" />

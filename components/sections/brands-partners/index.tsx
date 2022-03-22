@@ -158,7 +158,6 @@ export default function BrandsPartners({
 	brandsProducts: products,
 	brandServices: services,
 }) {
-	console.log('Products: ', products);
 	return (
 		<FullWidthContainer>
 			<Container>

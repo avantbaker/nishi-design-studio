@@ -19,8 +19,9 @@ import { framerOptions } from 'lib/framer';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import Error from '../_error';
-import { SpaceDetailsQuery } from 'lib/urql/queries/pages';
+import { SpacesQuery, SpaceDetailsQuery } from 'lib/urql/queries/pages';
 import { expertiseRenderedMap } from 'lib/urql/fragments/spaceDetailSection';
+import { getData } from 'lib/utils';
 
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -378,7 +379,50 @@ const ResidencePage = ({ slug, error }) => {
 	);
 };
 
-export async function getServerSideProps(ctx) {
+export async function getStaticPaths() {
+	// Call an external API endpoint to get posts
+	const client = initUrqlClient(
+		{
+			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			exchanges: [dedupExchange, cacheExchange, fetchExchange],
+		},
+		true
+	);
+	const posts = await client
+		.query(
+			`
+			{
+				posts {
+					nodes {
+						id
+						title
+						slug
+						spaceInformation {
+							spaceLocation
+							spaceYear
+							spaceFeaturedImage {
+								sourceUrl
+							}
+						}
+					}
+				}
+			}
+		`
+		)
+		.toPromise()
+		.then((result) => {
+			const { nodes } = result?.data?.posts;
+			return nodes;
+		});
+	// Get the paths we want to pre-render based on posts
+	const paths = posts?.map((post) => ({
+		params: { slug: post?.slug },
+	}));
+
+	return { paths, fallback: false };
+}
+
+export async function getStaticProps(ctx) {
 	const { slug } = ctx?.params || {};
 
 	const ssrCache = ssrExchange({ isClient: false });
@@ -415,5 +459,5 @@ export default withUrqlClient(
 	(_) => ({
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
 	}),
-	{ ssr: false } // Important so we don't wrap our component in getInitialProps
+	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
 )(ResidencePage);

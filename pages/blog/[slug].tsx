@@ -18,7 +18,11 @@ import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
-import { BlogDetailsQuery, SpaceDetailsQuery } from 'lib/urql/queries/pages';
+import {
+	BlogDetailsQuery,
+	BlogPageQuery,
+	SpaceDetailsQuery,
+} from 'lib/urql/queries/pages';
 import { getData } from 'lib/utils';
 import { normalizeBlogData } from 'pages/api/mocks';
 
@@ -210,7 +214,30 @@ function BlogDetail({ slug }) {
 	);
 }
 
-export async function getServerSideProps(ctx) {
+export async function getStaticPaths() {
+	// Call an external API endpoint to get posts
+	const client = initUrqlClient(
+		{
+			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			exchanges: [dedupExchange, cacheExchange, fetchExchange],
+		},
+		true
+	);
+	const posts = await client
+		.query(BlogPageQuery)
+		.toPromise()
+		.then((result) => {
+			const { nodes } = getData('articles', result);
+			return nodes;
+		});
+	// Get the paths we want to pre-render based on posts
+	const paths = posts?.map((post) => ({
+		params: { slug: post?.slug },
+	}));
+
+	return { paths, fallback: false };
+}
+export async function getStaticProps(ctx) {
 	const { slug } = ctx?.params || {};
 
 	const ssrCache = ssrExchange({ isClient: false });
@@ -247,5 +274,5 @@ export default withUrqlClient(
 	(_) => ({
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
 	}),
-	{ ssr: false } // Important so we don't wrap our component in getInitialProps
+	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
 )(BlogDetail);

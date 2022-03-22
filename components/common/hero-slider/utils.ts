@@ -1,10 +1,7 @@
-export const normalizePosts = (posts = [], isFeatured = false) => {
+export const normalizePosts = (posts = []) => {
 	if (!posts || !(posts.length > 0)) return;
 	return posts.map(({ space, ...rest }) => {
 		const CV = space || rest;
-		if (isFeatured) {
-			console.log('CV', CV?.spaceInformation?.spaceFeaturedImage?.sourceUrl);
-		}
 		return {
 			title: CV?.title || 'New Space',
 			location: CV?.spaceInformation?.spaceLocation || 'Atlanta, GA',
@@ -21,7 +18,6 @@ export const normalizeSpaces = (posts = []) => {
 	if (!posts || !(posts.length > 0)) return;
 	return posts.map(({ space, ...rest }) => {
 		const CV = space || rest;
-		console.log('something: ', CV);
 		return {
 			title: CV?.title || 'New Space',
 			location: CV?.spaceInformation?.spaceLocation || 'Atlanta, GA',
