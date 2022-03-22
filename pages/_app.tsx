@@ -18,12 +18,14 @@ function App({ Component, pageProps }) {
 	);
 }
 
-export default withUrqlClient((ssrExchange, ctx) => ({
-	url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-	exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
-	fetchOptions: () => {
-		return {
-			headers: {},
-		};
-	},
-}))(App);
+// export default withUrqlClient((ssrExchange, ctx) => ({
+// 	url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+// 	exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
+// 	fetchOptions: () => {
+// 		return {
+// 			headers: {},
+// 		};
+// 	},
+// }))(App);
+
+export default App;
