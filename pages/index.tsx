@@ -105,7 +105,7 @@ function Home() {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{

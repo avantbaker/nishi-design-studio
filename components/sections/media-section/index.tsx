@@ -50,6 +50,21 @@ const Container = styled.div`
 	}
 `;
 
+const CustomImageContainer = styled.div`
+	margin-right: ${rem(36)};
+	cursor: 'pointer';
+	width: '100%';
+	max-width: ${rem(170)};
+	> div {
+		position: unset !important;
+	}
+`;
+const CustomImage = styled(Image)`
+	object-fit: cover;
+	width: 100% !important;
+	position: relative !important;
+	height: unset !important;
+`;
 export default function MediaSection({
 	headline,
 	pressReleases: releases = [],
@@ -80,15 +95,14 @@ export default function MediaSection({
 					{releases.map(({ pressRelease }, idx) => {
 						const { pressLogo } = pressRelease?.pressRelease;
 						return (
-							<div style={{ marginRight: rem(24), cursor: 'pointer' }} key={`img-${idx}`}>
-								<Image
+							<CustomImageContainer key={`img-${idx}`}>
+								<CustomImage
 									onClick={() => setCurrentRelease(releases[idx])}
 									alt="Nishi"
-									width="200px"
-									height="50px"
+									layout="fill"
 									src={pressLogo?.sourceUrl || '/images/press-image.png'}
 								/>
-							</div>
+							</CustomImageContainer>
 						);
 					})}
 					<Link href={pressLink?.url || ''}>
