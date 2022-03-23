@@ -64,6 +64,8 @@ const CustomImage = styled(Image)`
 	width: 100% !important;
 	position: relative !important;
 	height: unset !important;
+	max-height: 48px !important;
+	opacity: ${({ active }) => (active ? '1' : '.25')};
 `;
 export default function MediaSection({
 	headline,
@@ -74,6 +76,7 @@ export default function MediaSection({
 	brandsImage: img,
 }) {
 	const [currentRelease, setCurrentRelease] = useState(releases[0]);
+	const [active, setActive] = useState(0);
 	const { pressRelease } = currentRelease?.pressRelease;
 	const { pressContent, pressLink } = pressRelease;
 
@@ -97,17 +100,21 @@ export default function MediaSection({
 						return (
 							<CustomImageContainer key={`img-${idx}`}>
 								<CustomImage
-									onClick={() => setCurrentRelease(releases[idx])}
+									onClick={() => {
+										setCurrentRelease(releases[idx]);
+										setActive(idx);
+									}}
 									alt="Nishi"
 									layout="fill"
+									active={active === idx}
 									src={pressLogo?.sourceUrl || '/images/press-image.png'}
 								/>
 							</CustomImageContainer>
 						);
 					})}
-					<Link href={pressLink?.url || ''}>
+					<Link href={'press'}>
 						<a>
-							<SecondaryButton color="#fff">Read Article</SecondaryButton>
+							<SecondaryButton color="#fff">All Articles</SecondaryButton>
 						</a>
 					</Link>
 				</Flex>

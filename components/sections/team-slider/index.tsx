@@ -123,7 +123,7 @@ const TeamSlider = ({ teamSectionTitle: title, images = [] }) => {
 								className="embla__slide"
 								key={teamMemberInfo.src}
 								{...teamMemberInfo}
-								title={title}
+								name={title}
 							/>
 						))}
 					</EmblaContainer>
