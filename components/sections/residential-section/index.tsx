@@ -62,7 +62,7 @@ export default function ResidentialSection({ posts = [], title }) {
 						return <SpaceCard key={space.title} {...space} />;
 					})}
 				</ContentWrap>
-				<PrimaryButton large>load more</PrimaryButton>
+				{posts.length > 5 && <PrimaryButton large>load more</PrimaryButton>}
 			</Container>
 		)
 	);

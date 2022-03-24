@@ -114,7 +114,7 @@ export default function MediaSection({
 					})}
 					<Link href={'press'}>
 						<a>
-							<SecondaryButton color="#fff">All Articles</SecondaryButton>
+							<SecondaryButton color="#fff">all press</SecondaryButton>
 						</a>
 					</Link>
 				</Flex>

@@ -23,7 +23,7 @@ const SectionText = styled(Text)`
 		font-size: ${rem(75)};
 		line-height: ${rem(80)};
 		margin-bottom: ${rem(23)};
-		max-width: initial;
+		max-width: ${rem(905)};
 		z-index: 1;
 
 		:hover {
@@ -72,19 +72,6 @@ const Container = styled.li`
 
 				@media only screen and (min-width: ${breakpoints.tablet}) {
 					margin-bottom: ${rem(75)};
-				}
-			}
-
-			@media only screen and (min-width: ${breakpoints.tablet}) {
-				${SectionText}:before {
-					content: '';
-					width: ${rem(34)};
-					height: ${rem(34)};
-					border: ${rem(1)} solid ${theme.colors.orange};
-					border-radius: 50%;
-					position: absolute;
-					left: -${rem(11)};
-					top: -${rem(2)};
 				}
 			}
 
@@ -143,7 +130,7 @@ export default function SectionItem({
 					<Text
 						maxWidth={rem(525)}
 						variant="body"
-						color={theme.colors.textGray}
+						color={theme.colors.black || 'black'}
 						m={`0 auto 0 0`}
 						dangerouslySetInnerHTML={{ __html: expertisecontent }}
 					/>

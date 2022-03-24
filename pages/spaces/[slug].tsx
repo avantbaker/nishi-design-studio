@@ -115,16 +115,6 @@ const NextSpace = styled.a`
 	font-size: ${rem(15)};
 	line-height: ${rem(18)};
 	letter-spacing: ${rem(0.15)};
-
-	:before {
-		content: '';
-		width: ${rem(34)};
-		height: ${rem(34)};
-		border: ${rem(1)} solid ${theme.colors.orange};
-		border-radius: 50%;
-		position: absolute;
-		left: 45%;
-	}
 `;
 
 const GoldLineLeft = styled.img`
@@ -159,39 +149,6 @@ const BodyContent = styled(Text)`
 		}
 	}
 `;
-
-const items = [
-	{
-		title: 'Our process',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum.',
-		src: '/images/dark-slider-placeholder.png',
-	},
-	{
-		title: 'Our process',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum.',
-		src: '/images/dark-slider-placeholder.png',
-	},
-	{
-		title: 'Our process',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum.',
-		src: '/images/dark-slider-placeholder.png',
-	},
-	{
-		title: 'Our process',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum.',
-		src: '/images/dark-slider-placeholder.png',
-	},
-	{
-		title: 'Our process',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum.',
-		src: '/images/dark-slider-placeholder.png',
-	},
-];
 
 const ResidencePage = ({ slug, error }) => {
 	const isTablet = useMediaQuery(queries.minTablet);
@@ -247,7 +204,7 @@ const ResidencePage = ({ slug, error }) => {
 									flexDirection={['column', 'column', 'row']}
 									justifyContent="space-between"
 								>
-									<Box width={[1, 1, 1 / 4]} mb={[rem(43), rem(43)]}>
+									<Box width={[1, 1, 1 / 2]} mb={[rem(43), rem(43)]}>
 										<Flex justifyContent="space-between">
 											<Text mb={[rem(12), rem(12)]} variant="bodySmall">
 												{spaceInformation.spaceLocation}
@@ -256,7 +213,7 @@ const ResidencePage = ({ slug, error }) => {
 												{spaceInformation.spaceYear}
 											</Text>
 										</Flex>
-										<Text variant="headingSmall" width={['60%', '60%']}>
+										<Text variant="headingSmall" width={['60%', '100%']}>
 											{title}
 										</Text>
 									</Box>
@@ -336,7 +293,9 @@ const ResidencePage = ({ slug, error }) => {
 							</BannerWrap>
 						</Flex>
 						<BrandsParters {...brandsAndPartners} />
-						<DarkSlider {...processSlider} />
+						{processSlider?.processImages?.length > 0 && (
+							<DarkSlider {...processSlider} />
+						)}
 						<Flex
 							maxWidth={rem(1044)}
 							flexDirection="column"
@@ -364,10 +323,7 @@ const ResidencePage = ({ slug, error }) => {
 								</a>
 							</Link>
 							<Link href="/" passHref>
-								<NextSpace>
-									next space
-									<ArrowRightSolid />
-								</NextSpace>
+								<SecondaryButton large>next space</SecondaryButton>
 							</Link>
 						</Flex>
 						<StartYourSpace {...startYourSpace} />

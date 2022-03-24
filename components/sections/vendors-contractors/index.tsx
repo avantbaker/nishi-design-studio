@@ -52,15 +52,15 @@ const Container = styled.section`
 		justify-content: center;
 		height: ${rem(434)};
 
-		:before {
-			content: '';
-			width: calc(50% - 40px);
-			background-color: ${theme.colors.sand};
-			position: absolute;
-			height: 1px;
-			top: 0;
-			right: 0;
-		}
+		// :before {
+		// 	content: '';
+		// 	width: calc(50% - 40px);
+		// 	background-color: ${theme.colors.sand};
+		// 	position: absolute;
+		// 	height: 1px;
+		// 	top: 0;
+		// 	right: 0;
+		// }
 
 		:after {
 			content: '';
@@ -191,7 +191,7 @@ export default function VendorsContractors({
 						/>
 
 						<PrimaryButton large>
-							<Link href={link?.url} passHref>
+							<Link href={'contact'} passHref>
 								<a style={{ color: '#D78B32' }}>{link?.title}</a>
 							</Link>
 						</PrimaryButton>

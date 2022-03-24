@@ -109,6 +109,7 @@ function Residential() {
 		}
 	}, [category, resultsAll, resultsResidential, resultsCommercial]);
 
+	console.log('postData: ', postData);
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>

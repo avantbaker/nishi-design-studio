@@ -96,7 +96,7 @@ const Square = styled.div`
 	padding-bottom: calc(100% - 10px);
 	position: relative;
 	background-color: ${theme.colors.orange};
-	opacity: 0.55;
+	opacity: 1;
 
 	img {
 		width: 100%;

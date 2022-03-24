@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import theme from 'styles/theme';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Flex, Box } from 'rebass/styled-components';
 import { rem } from 'polished';
 import Text from 'components/common/text';
@@ -69,18 +70,6 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
 			@media only screen and (min-width: ${breakpoints.tablet}) {
 				a {
 					position: relative;
-					:before {
-						content: '';
-						display: block;
-						border-radius: 50%;
-						border: ${rem(1)} solid ${theme.colors.orange};
-						width: ${rem(34)};
-						height: ${rem(34)};
-						position: absolute;
-						right: -${rem(12)};
-						bottom: ${rem(4)};
-						top: -${rem(10)};
-					}
 				}
 
 				:after {
@@ -250,7 +239,7 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 					<TextContent flexDirection="column">
 						<SelectedHeadline
 							mb={[rem(12), rem(12), rem(4)]}
-							variant={['headingMobile', 'headingMobile', 'heading']}
+							variant={['headingMobile', 'headingMobile', 'headingExpertise']}
 						>
 							{selectedContent?.headline?.toLowerCase()}
 						</SelectedHeadline>
@@ -261,7 +250,16 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 							{selectedContent?.body}
 						</Text>
 						{isTablet && (
-							<SecondaryButton large>{selectedContent?.linkTitle}</SecondaryButton>
+							<Link
+								href={`expertise?q=${selectedContent?.headline
+									?.toLowerCase()
+									.split(' ')
+									.join('-')}`}
+							>
+								<a>
+									<SecondaryButton large>{selectedContent?.linkTitle}</SecondaryButton>
+								</a>
+							</Link>
 						)}
 					</TextContent>
 					<ImgWrap>
@@ -287,7 +285,18 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 							/>
 						)}
 						<TriangleImg src="/images/triangle-orange.png" />
-						{!isTablet && <SecondaryButton>{selectedContent?.linkText}</SecondaryButton>}
+						{!isTablet && (
+							<Link
+								href={`expertise?q=${selectedContent?.headline
+									?.toLowerCase()
+									.split(' ')
+									.join('-')}`}
+							>
+								<a>
+									<SecondaryButton large>{selectedContent?.linkTitle}</SecondaryButton>
+								</a>
+							</Link>
+						)}
 					</ImgWrap>
 				</Box>
 			</Container>

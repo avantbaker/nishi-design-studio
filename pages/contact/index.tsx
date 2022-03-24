@@ -104,7 +104,8 @@ function ContactHeaderContainer({
 			</Flex>
 			<Flex
 				flexDirection="column"
-				maxWidth={[rem(240), rem(240), rem(330)]}
+				maxWidth={[rem(240), rem(240), '100%']}
+				width={[1 / 2]}
 				ml="auto"
 				textAlign="right"
 			>
@@ -113,7 +114,7 @@ function ContactHeaderContainer({
 				</Text>
 				<Text
 					variant="bodySmall"
-					color={theme.colors.textGray}
+					color={theme.colors.black}
 					dangerouslySetInnerHTML={{ __html: content }}
 				/>
 			</Flex>
@@ -138,6 +139,7 @@ function FormHeaderContainer({
 				</Text>
 				<Text
 					variant="body"
+					color="black"
 					mb={[rem(24), rem(24)]}
 					dangerouslySetInnerHTML={{ __html: content }}
 				/>
@@ -159,7 +161,12 @@ function ContactFormFooterContainer({
 			<PrimaryButton mb={rem(62)} large>
 				submit form
 			</PrimaryButton>
-			<Text variant="body" mb={[rem(20), rem(20), rem(24)]} maxWidth={rem(764)}>
+			<Text
+				variant="body"
+				color="black"
+				mb={[rem(20), rem(20), rem(24)]}
+				maxWidth={rem(764)}
+			>
 				{introText}
 			</Text>
 			<PrimaryButton mb={rem(77)} large>

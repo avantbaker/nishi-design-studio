@@ -49,16 +49,6 @@ const Container = styled.section`
 		justify-content: center;
 		height: ${rem(434)};
 
-		:before {
-			content: '';
-			width: calc(50% - 40px);
-			background-color: ${theme.colors.sand};
-			position: absolute;
-			height: 1px;
-			top: 0;
-			right: 0;
-		}
-
 		:after {
 			content: '';
 			background-image: url(/images/your-space-bg.png);
@@ -107,7 +97,7 @@ const Square = styled.div`
 	padding-bottom: calc(100% - 10px);
 	position: relative;
 	background-color: ${theme.colors.orange};
-	opacity: 0.5;
+	opacity: 1;
 
 	img {
 		width: 100%;

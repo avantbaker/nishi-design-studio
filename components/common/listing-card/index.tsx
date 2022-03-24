@@ -47,6 +47,7 @@ const Container = styled.div<{ selected?: boolean }>`
 
 const ListingTitle = styled(Text)`
 	line-height: ${rem(40)};
+	font-size: ${rem(40)};
 `;
 export default function ListingCard({
 	location,

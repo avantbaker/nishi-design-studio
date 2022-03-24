@@ -156,7 +156,11 @@ export default function SpaceCard({
 								<Text
 									className="space-heading"
 									width={[null, null, null, rem(285)]}
-									variant={['headingSmallMobile', 'headingSmallMobile', 'headingSmall']}
+									variant={[
+										'headingSmallMobile',
+										'headingSmallMobile',
+										'headingSmallCard',
+									]}
 								>
 									{title}
 								</Text>
