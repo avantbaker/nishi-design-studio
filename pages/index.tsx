@@ -105,7 +105,7 @@ function Home() {
 	);
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
@@ -120,8 +120,8 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			urqlState: ssrCache.extractData(),
-			revalidate: 600,
 		},
+		revalidate: 10,
 	};
 }
 

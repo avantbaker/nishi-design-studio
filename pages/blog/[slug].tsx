@@ -235,7 +235,7 @@ export async function getStaticPaths() {
 		params: { slug: post?.slug },
 	}));
 
-	return { paths, fallback: false };
+	return { paths, fallback: 'blocking' };
 }
 export async function getStaticProps(ctx) {
 	const { slug } = ctx?.params || {};
@@ -263,10 +263,10 @@ export async function getStaticProps(ctx) {
 	return {
 		props: {
 			urqlState: ssrCache.extractData(),
-			revalidate: 600,
 			slug,
 			error: !hasResult,
 		},
+		revalidate: 30,
 	};
 }
 

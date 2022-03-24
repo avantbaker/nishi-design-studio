@@ -96,7 +96,7 @@ export default function PressHeader({
 						>
 							{testimonial}
 						</Text>
-						<Link href={post?.pressRelease?.pressLink?.url}>
+						<Link href={post?.pressRelease?.pressLink?.url || '/'}>
 							<a>
 								<SecondaryButton large color={theme.colors.white}>
 									read the article
