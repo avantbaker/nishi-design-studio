@@ -28,15 +28,16 @@ const SpecialText = styled(Text)`
 	text-transform: uppercase;
 `;
 
-const categoryMap = {
-	0: Categories.all,
-	1: Categories.residential,
-	2: Categories.commercial,
-};
 const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
+	const categoryMap = {
+		0: Categories.all,
+		1: Categories.residential,
+		2: Categories.commercial,
+	};
+
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
-	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts));
+	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts, true));
 
 	const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
 	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
@@ -44,11 +45,9 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 
 	const scrollPrev = useCallback(() => {
 		emblaApi && emblaApi.scrollPrev();
-		// handleCategoryClick(Categories.commercial);
-	}, [emblaApi]);
+	}, [emblaApi, currentIndex]);
 	const scrollNext = useCallback(() => {
 		emblaApi && emblaApi.scrollNext();
-		// handleCategoryClick(Categories.commercial);
 	}, [emblaApi]);
 	const onSelect = useCallback(() => {
 		if (!emblaApi) return;
@@ -116,7 +115,12 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 										key={`${item.imgSrc}-${idx}`}
 										className={idx === currentIndex ? 'selected' : ''}
 									>
-										<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>
+										<a
+											onClick={() => {
+												emblaApi.scrollTo(idx);
+												handleCategoryClick(categoryMap[idx]);
+											}}
+										>{`0${idx + 1}`}</a>
 									</li>
 								))}
 							</StyledPagerList>

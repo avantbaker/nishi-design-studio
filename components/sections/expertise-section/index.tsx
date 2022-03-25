@@ -70,17 +70,25 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
 				a {
 					position: relative;
 				}
-
-				:after {
+				@keyframes animateLine {
+					0% {
+						width: 0;
+					}
+					100% {
+						width: calc(100% - 80px);
+					}
+				}
+				::after {
 					content: '';
-					width: 100%;
 					height: ${rem(1)};
 					background-color: ${theme.colors.sand};
 					display: block;
-					width: calc(100% - 12px);
+					max-width: calc(100% - 80px);
+					width: calc(100% - 80px);
 					left: 0;
 					margin-top: ${rem(12)};
 					position: absolute;
+					animation: animateLine 1s ease-in-out;
 				}
 			}
 		`}
@@ -254,6 +262,9 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 								href={`expertise?q=${selectedContent?.headline
 									?.toLowerCase()
 									.split(' ')
+									.join('-')}#${selectedContent?.headline
+									?.toLowerCase()
+									.split(' ')
 									.join('-')}`}
 							>
 								<a>
@@ -288,6 +299,9 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 						{!isTablet && (
 							<Link
 								href={`expertise?q=${selectedContent?.headline
+									?.toLowerCase()
+									.split(' ')
+									.join('-')}#${selectedContent?.headline
 									?.toLowerCase()
 									.split(' ')
 									.join('-')}`}

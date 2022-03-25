@@ -21,7 +21,7 @@ export const createSlideMap = function (slides, currentIndex) {
 				location={slide.location}
 				year={slide.year}
 				title={slide.title}
-				href={`spaces/${slide?.linkUrl?.uri}` || 'spaces'}
+				href={`spaces/${slide.slug || slide?.linkUrl?.uri}` || 'spaces'}
 				asCard
 				selected={currentIndex === idx}
 			/>

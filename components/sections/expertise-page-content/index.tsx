@@ -7,7 +7,8 @@ import { rem } from 'polished';
 import theme from 'styles/theme';
 import useMediaQuery from 'hooks/use-media-query';
 import { queries } from 'styles/media';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 const Container = styled.section`
 	padding-bottom: ${rem(38)};
@@ -65,9 +66,13 @@ const sections = [
 export default function ExpertisePageContent({
 	expertisedetailstitle: title,
 	expertises,
+	query,
 }) {
-	const [activeSection, setActiveSection] = useState('');
+	const [activeSection, setActiveSection] = useState(query || '');
 	const isTablet = useMediaQuery(queries.minTablet);
+	useEffect(() => {
+		setActiveSection(query);
+	}, [setActiveSection, query]);
 	return (
 		<Container>
 			<Flex flexDirection="column">
@@ -82,19 +87,22 @@ export default function ExpertisePageContent({
 							expertisesmallimg,
 							expertiselargeimg,
 						}) => {
+							const slugifiedName = expertisename?.toLowerCase().split(' ').join('-');
 							return (
 								<SectionItem
 									key={expertisename}
 									onClick={() => {
-										setActiveSection(expertisename);
+										setActiveSection(slugifiedName);
 									}}
-									active={activeSection === expertisename}
+									active={activeSection === slugifiedName}
 									expertisename={expertisename}
 									expertisecontent={expertisecontent}
 									expertisesmallimg={expertisesmallimg}
 									expertiselargeimg={expertiselargeimg}
 								>
-									{expertisename}
+									<ScrollableAnchor id={slugifiedName}>
+										<div>{expertisename}</div>
+									</ScrollableAnchor>
 								</SectionItem>
 							);
 						}

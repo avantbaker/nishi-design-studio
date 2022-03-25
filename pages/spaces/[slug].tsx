@@ -165,6 +165,8 @@ const ResidencePage = ({ slug, error }) => {
 
 	const {
 		title,
+		next,
+		previous,
 		spaceInformation,
 		spacesDetailSection,
 		brandsAndPartners,
@@ -185,6 +187,17 @@ const ResidencePage = ({ slug, error }) => {
 	const galleryOne = imageSections?.[0]?.images;
 	const galleryTwo = imageSections?.[1]?.images;
 
+	console.log('next', next);
+	console.log('previous', previous);
+	const backToGallery = (arrowLeft = false) => (
+		<Link href="/spaces">
+			<a>
+				<SecondaryButton mr={[rem(40), null, null]} large arrowLeft={arrowLeft}>
+					back to gallery
+				</SecondaryButton>
+			</a>
+		</Link>
+	);
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>
@@ -315,16 +328,26 @@ const ResidencePage = ({ slug, error }) => {
 							mr="auto"
 							mt={[rem(40), rem(40), rem(64)]}
 						>
-							<Link href="/spaces">
-								<a>
-									<SecondaryButton mr={[rem(40), null, null]} large arrowLeft>
-										back to gallery
-									</SecondaryButton>
-								</a>
-							</Link>
-							<Link href="/" passHref>
-								<SecondaryButton large>next space</SecondaryButton>
-							</Link>
+							{previous?.slug ? (
+								<Link href={`/spaces/${previous.slug}`} passHref>
+									<a>
+										<SecondaryButton large arrowLeft mr={[rem(40), null, null]}>
+											previous space
+										</SecondaryButton>
+									</a>
+								</Link>
+							) : (
+								backToGallery(true)
+							)}
+							{next?.slug ? (
+								<Link href={`/spaces/${next.slug}`} passHref>
+									<a>
+										<SecondaryButton large>next space</SecondaryButton>
+									</a>
+								</Link>
+							) : (
+								backToGallery()
+							)}
 						</Flex>
 						<StartYourSpace {...startYourSpace} />
 						<Footer />
@@ -353,6 +376,12 @@ export async function getStaticPaths() {
 						id
 						title
 						slug
+						next {
+							slug
+						}
+						previous {
+							slug
+						}
 						spaceInformation {
 							spaceLocation
 							spaceYear

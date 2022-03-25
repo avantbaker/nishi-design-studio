@@ -21,6 +21,7 @@ const HeroSliderFragment = `
 			space {
 				... on Post {
 					title
+					slug
 					categories(first: 1) {
 						nodes {
 							name

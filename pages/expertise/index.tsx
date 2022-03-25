@@ -14,6 +14,7 @@ import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { ExpertiseQuery } from 'lib/urql/queries/pages';
 import { getPageData } from 'lib/utils';
+import { useRouter } from 'next/router';
 
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -29,6 +30,9 @@ function Expertise() {
 	const [result] = useQuery({
 		query: ExpertiseQuery,
 	});
+	const { query, ...rest } = useRouter();
+	const queryString = query?.q;
+	console.log('rest: ', rest);
 	const { simpleHeader, processSlider, startYourSpace, expertiseDetailsSection } =
 		getPageData(result) || {};
 	const { nodes } = result?.data?.posts || {};
@@ -39,7 +43,7 @@ function Expertise() {
 					<Nav />
 					<SimpleHeader {...simpleHeader} />
 				</HeaderWrap>
-				<ExpertisePageContent {...expertiseDetailsSection} />
+				<ExpertisePageContent query={queryString} {...expertiseDetailsSection} />
 				<DarkSlider {...processSlider} />
 				<OurSpacesSlider spaces={nodes} />
 				<StartYourSpace {...startYourSpace} />
@@ -49,7 +53,7 @@ function Expertise() {
 	);
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(ctx) {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{

@@ -11,6 +11,12 @@ export default `
   query getPostBySlug($slug: ID!){
     post(id: $slug, idType: SLUG){
       title
+      next {
+        slug
+      }
+      previous {
+        slug
+      }
       ${SpaceInformationFragment}
       ${SpaceDetailSectionFragment}
       ${BrandAndPartnersSectionFragment}
