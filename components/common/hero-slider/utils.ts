@@ -3,7 +3,7 @@ export const normalizePosts = (posts = [], featured = false) => {
 	return posts.map(({ space, ...rest }) => {
 		const CV = space || rest;
 		if (featured) {
-			console.log('CV:', CV);
+			// console.log('CV:', CV);
 		}
 		return {
 			title: CV?.title || 'New Space',

@@ -111,8 +111,8 @@ function Residential() {
 
 	return (
 		<motion.div {...framerOptions}>
+			<Nav />
 			<PageContent>
-				<Nav />
 				<HeroSlider {...heroSlider} handleCategoryClick={handleCategoryClick} />
 				<Flex justifyContent="center">
 					<ResidentialSection title={category} posts={postData} />

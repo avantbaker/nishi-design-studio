@@ -2,6 +2,18 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
   
+  html.is-locked,
+  html.is-locked body {
+    /* want to fix the height to the window height */
+    height: calc(var(--window-inner-height) - 1px);
+
+    /* want to block all overflowing content */
+    overflow: hidden;
+
+    /* want to exclude padding from the height */
+    box-sizing: border-box;
+  }
+
   #__next {
     overflow-x: hidden;
     position: relative;
