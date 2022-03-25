@@ -54,7 +54,7 @@ function getPostsData(result) {
 
 function Residential() {
 	const [postData, setPostData] = useState([]);
-	const [category, setCategory] = useState(Categories.residential);
+	const [category, setCategory] = useState(Categories.all);
 
 	const [results] = useQuery({
 		query: SpacesQuery,
@@ -96,7 +96,7 @@ function Residential() {
 	);
 
 	useEffect(() => {
-		fetchResidentialPosts();
+		fetchAllPosts();
 	}, []);
 
 	useEffect(() => {
@@ -109,7 +109,6 @@ function Residential() {
 		}
 	}, [category, resultsAll, resultsResidential, resultsCommercial]);
 
-	console.log('postData: ', postData);
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>

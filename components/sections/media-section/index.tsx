@@ -51,12 +51,15 @@ const Container = styled.div`
 `;
 
 const CustomImageContainer = styled.div`
-	margin-right: ${rem(36)};
+	margin-right: ${rem(24)};
 	cursor: 'pointer';
 	width: '100%';
 	max-width: ${rem(170)};
 	> div {
 		position: unset !important;
+	}
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		margin-right: ${rem(36)};
 	}
 `;
 const CustomImage = styled(Image)`
@@ -95,23 +98,25 @@ export default function MediaSection({
 					<Marquee text={pressContent} />
 				</Flex>
 				<Flex flexDirection={['column', 'column', 'row']}>
-					{releases.map(({ pressRelease }, idx) => {
-						const { pressLogo } = pressRelease?.pressRelease;
-						return (
-							<CustomImageContainer key={`img-${idx}`}>
-								<CustomImage
-									onClick={() => {
-										setCurrentRelease(releases[idx]);
-										setActive(idx);
-									}}
-									alt="Nishi"
-									layout="fill"
-									active={active === idx}
-									src={pressLogo?.sourceUrl || '/images/press-image.png'}
-								/>
-							</CustomImageContainer>
-						);
-					})}
+					<Flex flexDirection={['row']} mb={[rem(12), 0, 0]}>
+						{releases.map(({ pressRelease }, idx) => {
+							const { pressLogo } = pressRelease?.pressRelease;
+							return (
+								<CustomImageContainer key={`img-${idx}`}>
+									<CustomImage
+										onClick={() => {
+											setCurrentRelease(releases[idx]);
+											setActive(idx);
+										}}
+										alt="Nishi"
+										layout="fill"
+										active={active === idx}
+										src={pressLogo?.sourceUrl || '/images/press-image.png'}
+									/>
+								</CustomImageContainer>
+							);
+						})}
+					</Flex>
 					<Link href={'press'}>
 						<a>
 							<SecondaryButton color="#fff">all press</SecondaryButton>

@@ -52,6 +52,7 @@ export const StyledPagerList = styled(PagerList)`
 
 		&.selected {
 			text-shadow: ${rem(0)} ${rem(0)} ${rem(1)} ${theme.colors.gray};
+			font-size: ${rem(18)};
 		}
 	}
 
@@ -109,18 +110,6 @@ export const TextPagerList = styled.ul`
 		}
 
 		@media only screen and (min-width: ${breakpoints.tablet}) {
-			a:before {
-				content: '';
-				width: ${rem(34)};
-				height: ${rem(34)};
-				display: block;
-				border: 1px solid ${theme.colors.orange};
-				border-radius: 50%;
-				left: -${rem(20)};
-				top: -${rem(10)};
-				position: absolute;
-			}
-
 			:after {
 				width: 35%;
 			}

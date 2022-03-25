@@ -43,6 +43,21 @@ const TextContent = styled.div`
 	padding-top: ${rem(36)};
 `;
 
+const CustomImageContainer = styled.div`
+	width: '100%';
+	max-width: ${rem(170)};
+	> div {
+		position: unset !important;
+	}
+`;
+const CustomImage = styled(Image)`
+	object-fit: cover;
+	width: 100% !important;
+	position: relative !important;
+	height: unset !important;
+	max-height: 80px !important;
+	filter: invert(100%);
+`;
 export default function PressHeader({
 	pressfeaturedimg: img = {
 		sourceUrl:
@@ -69,14 +84,14 @@ export default function PressHeader({
 					alignItems={['flex-end', 'flex-end', 'center']}
 				>
 					<TextContent>
-						<Image
-							alt="dwell logo"
-							className="dwell-logo"
-							src={post?.pressRelease?.pressLogo?.sourceUrl || '/images/dwell-logo.png'}
-							width="69px"
-							height="26px"
-							layout="fixed"
-						/>
+						<CustomImageContainer>
+							<CustomImage
+								alt="dwell logo"
+								className="dwell-logo"
+								src={post?.pressRelease?.pressLogo?.sourceUrl || '/images/dwell-logo.png'}
+								layout="fill"
+							/>
+						</CustomImageContainer>
 						<Text
 							mt={[rem(35), rem(35)]}
 							mb={[rem(8), rem(8)]}
@@ -86,7 +101,7 @@ export default function PressHeader({
 							{post?.title}
 						</Text>
 						<Text mb={[rem(48), rem(48)]} variant="bodySmall" color={theme.colors.white}>
-							Fall 2021 | Edition 12
+							{`${post?.pressRelease?.pressSeason} | ${post?.pressRelease?.pressEdition}`}
 						</Text>
 						<Text
 							mb={[rem(8), rem(8)]}
@@ -96,13 +111,15 @@ export default function PressHeader({
 						>
 							{testimonial}
 						</Text>
-						<Link href={post?.pressRelease?.pressLink?.url || '/'}>
-							<a>
-								<SecondaryButton large color={theme.colors.white}>
-									read the article
-								</SecondaryButton>
-							</a>
-						</Link>
+						{post?.pressRelease?.pressLink && (
+							<Link href={post?.pressRelease?.pressLink?.url || '/'}>
+								<a>
+									<SecondaryButton large color={theme.colors.white}>
+										read the article
+									</SecondaryButton>
+								</a>
+							</Link>
+						)}
 					</TextContent>
 				</Box>
 			</Flex>

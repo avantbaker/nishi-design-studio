@@ -20,9 +20,19 @@ import {
 	LineWrap,
 	TabletLineImg,
 } from './styles';
-import { normalizePosts } from './utils';
 import { createSlideMap } from 'lib/utils';
+import styled from 'styled-components';
+import { normalizePosts } from './utils';
 
+const SpecialText = styled(Text)`
+	text-transform: uppercase;
+`;
+
+const categoryMap = {
+	0: Categories.all,
+	1: Categories.residential,
+	2: Categories.commercial,
+};
 const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
@@ -32,8 +42,14 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
 	const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
 
-	const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-	const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+	const scrollPrev = useCallback(() => {
+		emblaApi && emblaApi.scrollPrev();
+		// handleCategoryClick(Categories.commercial);
+	}, [emblaApi]);
+	const scrollNext = useCallback(() => {
+		emblaApi && emblaApi.scrollNext();
+		// handleCategoryClick(Categories.commercial);
+	}, [emblaApi]);
 	const onSelect = useCallback(() => {
 		if (!emblaApi) return;
 		setPrevBtnEnabled(emblaApi.canScrollPrev());
@@ -78,19 +94,22 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 						pr={[rem(14), rem(14), 0]}
 					>
 						<Flex
-							// width={[, 'initial']}
 							maxWidth={rem(458)}
 							flexGrow={1}
 							justifyContent="space-between"
 							alignItems="flex-end"
 							mb={[rem(24), rem(24), null]}
 						>
-							<Text
+							<SpecialText
 								maxWidth={rem(189)}
 								variant={['highlightMobile', 'highlightMobile', 'highlight']}
+								textTransform="uppercase"
 							>
-								FEATURED {currentPosts[currentIndex]?.category}
-							</Text>
+								FEATURED{' '}
+								{currentPosts[currentIndex]?.category === 'Uncategorized'
+									? 'Projects'
+									: currentPosts[currentIndex]?.category}
+							</SpecialText>
 							<StyledPagerList>
 								{currentPosts.map((item, idx) => (
 									<li

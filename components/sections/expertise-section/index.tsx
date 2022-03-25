@@ -59,7 +59,6 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
 	color: rgba(215, 139, 50, 0.57);
 	font-size: ${rem(11)};
 	cursor: pointer;
-	white-space: nowrap;
 
 	${({ selected }) =>
 		selected &&
@@ -88,6 +87,7 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		font-size: ${rem(15)};
+		white-space: nowrap;
 	}
 `;
 

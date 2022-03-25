@@ -14,6 +14,13 @@ const StyledForm = styled(Form)`
 	flex-direction: column;
 `;
 
+const projectType = [
+	'New Construction',
+	'Large Scale Renovation',
+	'Small Scale Renovation',
+	'Interior Design Only',
+];
+
 const interiorSpaces = [
 	'Foyer',
 	'Kitchen',
@@ -316,6 +323,14 @@ export default function FormSectionComponent() {
 								<span>Project Type</span>
 								<span>[ please select one ]</span>
 							</FormSubheading>
+							<FormGroupRadio
+								role="group"
+								aria-labelledby="radio-group"
+								mt={rem(12)}
+								mb={rem(48)}
+							>
+								{renderFormGroup(projectType)}
+							</FormGroupRadio>
 							<FormGroup>
 								<StyledField
 									type="text"

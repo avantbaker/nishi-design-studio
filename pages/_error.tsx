@@ -18,15 +18,17 @@ const PageContainer = styled.section`
 `;
 const Container = styled.div`
 	background-color: ${theme.colors.lightOrange};
-	overflow: auto;
+	// overflow: auto;
 	flex-grow: 1;
+	height: 100vh;
 
 	.heading {
 		word-break: break-word;
-		width: 70%;
+		width: 100%;
 	}
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
+		height: auto;
 		.heading {
 			width: 100%;
 		}
@@ -85,7 +87,7 @@ function ErrorPage() {
 	);
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
@@ -100,8 +102,8 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			urqlState: ssrCache.extractData(),
-			revalidate: 600,
 		},
+		revalidate: 30,
 	};
 }
 
