@@ -19,6 +19,7 @@ import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { ContactPageQuery } from 'lib/urql/queries/pages';
 import { start } from 'repl';
+import { useRef } from 'react';
 
 const HeaderWrap = styled.div`
 	background-color: ${theme.colors.lightTan};
@@ -152,13 +153,14 @@ function ContactFormFooterContainer({
 	contactbannertext: bannerText = 'thank you for taking the time to fill this form out.',
 	contactintrotext:
 		introText = 'If you have submitted the above form and feel confident that you’re ready to begin a project with Nishi Design + Studio, you can then book an intro call with Nishi.',
+	onSubmit,
 }) {
 	return (
 		<Flex flexDirection="column" textAlign="center" alignItems="center">
 			<Text variant="heading" className="ty-text">
 				{bannerText}
 			</Text>
-			<PrimaryButton mb={rem(62)} large>
+			<PrimaryButton mb={rem(62)} large onClick={onSubmit}>
 				submit form
 			</PrimaryButton>
 			<Text
@@ -191,7 +193,14 @@ function Contact() {
 		socialSection,
 		newsletterSection,
 	} = result?.data?.page;
+	const formikRef = useRef();
 
+	const handleSubmit = () => {
+		if (formikRef.current) {
+			/* @ts-ignore */
+			formikRef.current?.handleSubmit();
+		}
+	};
 	return (
 		<motion.div {...framerOptions}>
 			<HeaderWrap>
@@ -201,8 +210,8 @@ function Contact() {
 			<PageBackground>
 				<PageContent>
 					<FormHeaderContainer {...titleTwoColumn} />
-					<FormSection />
-					<ContactFormFooterContainer {...contactFormFooter} />
+					<FormSection formikRef={formikRef} />
+					<ContactFormFooterContainer onSubmit={handleSubmit} {...contactFormFooter} />
 				</PageContent>
 			</PageBackground>
 			<VendorsContractors {...vendors} />

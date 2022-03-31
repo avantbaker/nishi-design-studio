@@ -99,6 +99,7 @@ const SquareWrap = styled.div`
 	top: 0;
 	right: 0;
 	width: 100%;
+	transform: rotate(90deg);
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		width: initial;
 	}

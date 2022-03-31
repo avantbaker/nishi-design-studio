@@ -68,6 +68,7 @@ const MobileNav = styled.div`
 	background-color: ${theme.colors.lightTan};
 	padding-top: ${rem(115)};
 	padding-left: ${rem(24)};
+	padding-bottom: ${rem(100)};
 
 	> a {
 		margin-bottom: ${rem(12)};

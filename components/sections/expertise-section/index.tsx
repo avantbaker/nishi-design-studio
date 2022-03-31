@@ -161,33 +161,21 @@ const BadgeWrap = styled.div`
 	}
 `;
 
-const mockData = [
-	{
-		title: 'Planning',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-	},
-	{
-		title: 'Design Operation',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-	},
-	{
-		title: 'Ordering + Buying',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-	},
-	{
-		title: 'Service Installation',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-	},
-	{
-		title: 'Retail',
-		description:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.',
-	},
-];
+const CustomImageContainer = styled.div`
+	cursor: 'pointer';
+	width: 100%;
+	max-width: 512px;
+	max-height: 526px;
+	> div {
+		position: unset !important;
+	}
+`;
+const CustomImage = styled(Image)`
+	object-fit: cover;
+	width: 100% !important;
+	position: relative !important;
+	height: unset !important;
+`;
 
 export default function ExpertiseSection({ expertiseTitle: title, categories = [] }) {
 	const [selectedService, setSelectedService] = useState(categories[1]?.title);
@@ -284,16 +272,13 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 								src={selectedContent?.image?.sourceUrl || '/images/rectangle-couch.png'}
 							/>
 						) : (
-							<Image
-								alt="service installation"
-								layout="intrinsic"
-								width="512px"
-								height="526px"
-								src={
-									selectedContent?.mobileImage?.sourceUrl ||
-									'/images/rectangle-couch-small.png'
-								}
-							/>
+							<CustomImageContainer>
+								<CustomImage
+									alt="service installation"
+									layout="fill"
+									src={selectedContent?.image?.sourceUrl || '/images/rectangle-couch.png'}
+								/>
+							</CustomImageContainer>
 						)}
 						<TriangleImg src="/images/triangle-orange.png" />
 						{!isTablet && (

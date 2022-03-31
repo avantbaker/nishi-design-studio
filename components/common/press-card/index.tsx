@@ -54,7 +54,7 @@ export default function PressCard({
 	...rest
 }) {
 	return (
-		<Link href={link || '/'} {...rest} passHref>
+		<Link href={link || 'press'} {...rest} passHref>
 			<StyledFlex
 				as="a"
 				flexDirection={['column', 'column', 'row']}
@@ -80,7 +80,7 @@ export default function PressCard({
 					<Text variant="body" color={theme.colors.textGray} mb={[rem(6), rem(6)]}>
 						{description}
 					</Text>
-					<StyledButton>read article</StyledButton>
+					{link && <StyledButton>read article</StyledButton>}
 				</Box>
 			</StyledFlex>
 		</Link>
