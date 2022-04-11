@@ -38,7 +38,6 @@ function App({ Component, pageProps }) {
 		const circleStyle = circle.style;
 		document.addEventListener('mousemove', (e) => {
 			window.requestAnimationFrame(() => {
-				console.log('e', e.clientX, e.clientY);
 				circleStyle.top = `${e.clientY - circle.offsetHeight / 2}px`;
 				circleStyle.left = `${e.clientX - circle.offsetHeight / 2}px`;
 			});

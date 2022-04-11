@@ -4,6 +4,7 @@ const SpacesFragment = `
   posts (first: 5) {
     nodes {
       title
+      slug
       ${SpaceInformationFragment}
     }
   }

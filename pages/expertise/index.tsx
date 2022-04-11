@@ -20,11 +20,13 @@ import ExpertiseCards from 'components/common/expertise-cards';
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
 	background-image: url('/images/tan-bg.png');
+	background-size: contain;
+	background-position: center;
 	overflow-x: hidden;
 `;
 
 const HeaderWrap = styled.div`
-	margin-bottom: ${rem(56)};
+	// margin-bottom: ${rem(56)};
 `;
 
 function Expertise() {
@@ -44,7 +46,7 @@ function Expertise() {
 					<SimpleHeader {...simpleHeader} />
 				</HeaderWrap>
 				{/* <ExpertisePageContent query={queryString} {...expertiseDetailsSection} /> */}
-				<ExpertiseCards />
+				<ExpertiseCards hasLogo={false} />
 				<DarkSlider {...processSlider} />
 				<OurSpacesSlider spaces={nodes} />
 				<StartYourSpace {...startYourSpace} />

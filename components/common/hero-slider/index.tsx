@@ -11,9 +11,9 @@ import { Categories } from 'pages/spaces';
 import {
 	FullWidthContainer,
 	Container,
-	EmblaParent,
+	EmblaParentSmall as EmblaParent,
 	EmblaContainer,
-	ImageWrap,
+	ImageWrapSmall as ImageWrap,
 	StyledListingCard,
 	StyledPagerList,
 	TextPagerList,
@@ -27,6 +27,11 @@ import { normalizePosts } from './utils';
 const SpecialText = styled(Text)`
 	text-transform: uppercase;
 `;
+
+// Embla Parent
+// - remove the width on the laptop media query
+// Image Wrapper
+// - Set a smaller explicit width on the laptop media querys
 
 const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 	const categoryMap = {
@@ -67,7 +72,7 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 	return (
 		<FullWidthContainer>
 			<Container>
-				<Box width={[1, 1, 1 / 2]}>
+				<Box width={[1, 1, 1]}>
 					<Flex maxWidth={[null, null, rem(1103)]} margin="0 auto">
 						<EmblaParent className="embla" ref={emblaRef}>
 							<EmblaContainer className="embla__container">

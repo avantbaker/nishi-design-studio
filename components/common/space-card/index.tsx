@@ -51,22 +51,11 @@ const Container = styled.div`
 			.space-heading {
 				z-index: 100;
 				position: relative;
-				:after {
-					content: '';
-					display: block;
-					border-radius: 50%;
-					border: 1px solid ${theme.colors.orange};
-					width: ${rem(34)};
-					height: ${rem(34)};
-					position: absolute;
-					right: -${rem(4)};
-					top: 0;
-					z-index: -1;
-				}
 			}
 
 			${ArrowRight} {
 				display: block;
+				margin-left: ${rem(8)};
 			}
 		}
 	}
@@ -165,8 +154,9 @@ export default function SpaceCard({
 									{title}
 								</Text>
 								<Flex alignItems="center" justifyContent="space-between">
-									<SecondaryButton>explore</SecondaryButton>
-									<ArrowRight />
+									<SecondaryButton>
+										explore <ArrowRight />
+									</SecondaryButton>
 								</Flex>
 							</Box>
 						</Flex>

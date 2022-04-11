@@ -30,7 +30,8 @@ const ContentWrap = styled.div`
 const MiddleWrap = styled.div`
 	background-color: ${theme.colors.lightTan};
 	background-image: url('/images/tan-bg.png');
-	background-size: cover;
+	background-size: contain;
+	background-position: center;
 `;
 
 const OffsetText = styled(Text)`

@@ -45,6 +45,14 @@ const variants = {
 		letterSpacing: rem(8.13),
 		color: theme.colors.gray,
 	},
+	highlightLarger: {
+		fontFamily: theme.typography.fonts.secondary,
+		fontSize: rem(17),
+		fontWeight: 'bold',
+		lineHeight: rem(23),
+		letterSpacing: rem(8.13),
+		color: theme.colors.gray,
+	},
 	highlightMobile: {
 		fontFamily: theme.typography.fonts.secondary,
 		fontSize: rem(10),
@@ -58,6 +66,13 @@ const variants = {
 		fontSize: rem(80),
 		fontWeight: 'normal',
 		lineHeight: rem(80),
+		color: theme.colors.gray,
+	},
+	headingLarger: {
+		fontFamily: theme.typography.fonts.secondary,
+		fontSize: rem(83),
+		fontWeight: 'normal',
+		lineHeight: rem(83),
 		color: theme.colors.gray,
 	},
 	headingExpertise: {

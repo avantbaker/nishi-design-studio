@@ -35,6 +35,10 @@ export const EmblaParent = styled.div`
 		width: ${rem(458)};
 	}
 `;
+export const EmblaParentSmall = styled.div`
+	overflow: hidden;
+	width: 100%;
+`;
 export const StyledPagerList = styled(PagerList)`
 	flex-grow: 1;
 	max-width: ${rem(230)};
@@ -75,6 +79,20 @@ export const ImageWrap = styled.div`
 		height: ${rem(510)};
 	}
 `;
+export const ImageWrapSmall = styled.div`
+	position: relative;
+	min-width: 100vw;
+	height: ${rem(205)};
+
+	img {
+		object-fit: cover;
+	}
+
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		width: ${rem(700)};
+		height: ${rem(510)};
+	}
+`;
 export const TextPagerList = styled.ul`
 	margin: 0;
 	padding: 0;
@@ -111,7 +129,7 @@ export const TextPagerList = styled.ul`
 
 		@media only screen and (min-width: ${breakpoints.tablet}) {
 			:after {
-				width: 35%;
+				width: 26%;
 			}
 		}
 	}

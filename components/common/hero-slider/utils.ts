@@ -5,6 +5,7 @@ export const normalizePosts = (posts = [], featured = false) => {
 		if (featured) {
 			// console.log('CV:', CV);
 		}
+		console.log('CV:', CV);
 		return {
 			title: CV?.title || 'New Space',
 			location: CV?.spaceInformation?.spaceLocation || 'Atlanta, GA',

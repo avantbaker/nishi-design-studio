@@ -8,8 +8,10 @@ import Text from 'components/common/text';
 import { SecondaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
 import GoldBadge from 'components/common/badges/gold-badge';
+import { GoldLineLeft, GoldLineRight } from 'pages/spaces/[slug]';
 
 const FullWidthContainer = styled.section`
+	position: relative;
 	background-color: ${(props) =>
 		props?.noBackground ? 'transparent' : `${theme.colors.lightTan}`};
 `;
@@ -121,9 +123,15 @@ const dummyData = [
 	},
 ];
 
-function ExpertiseCards() {
+function ExpertiseCards({ hasLogo = true }) {
 	return (
 		<FullWidthContainer noBackground>
+			{true && (
+				<>
+					<GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
+					<GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
+				</>
+			)}
 			<Container>
 				<Box
 					width={[1]}
@@ -148,7 +156,7 @@ function ExpertiseCards() {
 						))}
 					</Flex>
 				</Box>
-				<CardGoldBadge />
+				{hasLogo && <CardGoldBadge />}
 			</Container>
 		</FullWidthContainer>
 	);

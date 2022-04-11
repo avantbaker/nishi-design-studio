@@ -17,6 +17,7 @@ const Container = styled.section`
 			object-fit: cover;
 		}
 		@media only screen and (min-width: ${breakpoints.tablet}) {
+			width: 80%;
 			height: ${rem(630)};
 		}
 	}
@@ -104,7 +105,7 @@ export default function SimpleHeader({
 					p={[
 						`${rem(34)} ${rem(40)} ${rem(35)} ${rem(28)}`,
 						`${rem(34)} ${rem(40)} ${rem(35)} ${rem(28)}`,
-						`${rem(34)} ${rem(40)} ${rem(139)} ${rem(28)}`,
+						`${rem(34)} 0 ${rem(139)} ${rem(100)}`,
 					]}
 				>
 					<TextContentRight>

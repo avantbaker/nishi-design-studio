@@ -6,16 +6,17 @@ import { PrimaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
 import { mockSpacesData } from 'pages/api/mocks';
 import { normalizePosts, normalizeSpaces } from 'components/common/hero-slider/utils';
+import theme from 'styles/theme';
 
 const Container = styled.div`
-	padding: 0 ${rem(20)} ${rem(113)} ${rem(20)};
-
+	padding: ${rem(50)} ${rem(20)} ${rem(113)} ${rem(20)};
+	// background: ${theme.colors.tan};
 	${PrimaryButton} {
 		display: none;
 	}
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		padding: 0 0 ${rem(203)} ${rem(20)};
+		padding: ${rem(50)} 0 ${rem(203)} ${rem(20)};
 
 		${PrimaryButton} {
 			display: block;

@@ -8,17 +8,26 @@ import { rem } from 'polished';
 const FullWidthContainer = styled.section`
 	position: relative;
 
-	@media only screen and (min-width: ${breakpoints.tablet}) {
-		:before {
-			content: '';
-			width: calc(50% - 40px);
-			background-color: ${theme.colors.sand};
-			position: absolute;
-			height: 1px;
-			top: 0;
-			right: 0;
-		}
+	.your-space-background {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: white;
+		z-index: 0;
 	}
+	// @media only screen and (min-width: ${breakpoints.tablet}) {
+	// 	:after {
+	// 		content: '';
+	// 		width: calc(50% - 40px);
+	// 		background-color: ${theme.colors.sand};
+	// 		position: absolute;
+	// 		height: 1px;
+	// 		top: 0;
+	// 		right: 0;
+	// 	}
+	// }
 `;
 
 const Container = styled.div`
@@ -33,7 +42,7 @@ const Container = styled.div`
 	background-size: ${rem(315)};
 	max-width: ${rem(1440)};
 	margin: 0 auto;
-
+	z-index: 1;
 	.space-mobile {
 		padding-left: ${rem(30)};
 		text-align: right;
@@ -134,6 +143,7 @@ export default function YourSpace({ title = '', subtitle = '', body }) {
 	const splitTitle = title.split(' ');
 	return (
 		<FullWidthContainer>
+			<div className="your-space-background" />
 			<Container>
 				<SquareWrap>
 					<Square>
@@ -150,14 +160,14 @@ export default function YourSpace({ title = '', subtitle = '', body }) {
 					zIndex={1}
 				>
 					<TextContentWrap>
-						<Text mb={[rem(5), rem(5)]} variant="highlight">
+						<Text mb={[rem(5), rem(5)]} variant="highlightLarger">
 							{subtitle}
 						</Text>
 						<Flex flexWrap="wrap">
-							<Text className="your" variant="heading">
+							<Text className="your" variant="headingLarger">
 								{splitTitle[0]}
 							</Text>
-							<Text className="space-mobile" variant="heading">
+							<Text className="space-mobile" variant="headingLarger">
 								{splitTitle[1]}
 							</Text>
 						</Flex>
@@ -169,7 +179,12 @@ export default function YourSpace({ title = '', subtitle = '', body }) {
 					pt={[rem(48), rem(48), 'initial']}
 					zIndex={1}
 				>
-					<Text className="body-text" width={[null, null, null, rem(490)]} variant="body">
+					<Text
+						className="body-text"
+						width={[null, null, null, rem(490)]}
+						color="black"
+						variant="bodyLarge"
+					>
 						{body}
 					</Text>
 				</Box>

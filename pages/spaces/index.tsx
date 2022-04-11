@@ -16,21 +16,22 @@ import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { SpacesQuery } from 'lib/urql/queries/pages';
 import { buildPostQueryByCategory } from 'lib/utils';
 import { getPageData } from 'lib/utils';
+import { TopSection } from 'pages';
 
 const PageContent = styled.div`
 	position: relative;
 	overflow: hidden;
-	:before {
-		content: '';
-		background-image: url('/images/tan-bg.png');
-		background-size: contain;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: -1;
-	}
+	// :before {
+	// 	content: '';
+	// 	background-image: url('/images/tan-bg.png');
+	// 	background-size: contain;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	right: 0;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	z-index: -1;
+	// }
 `;
 
 const StartYourSpaceTan = styled(StartYourSpace)`
@@ -111,9 +112,11 @@ function Residential() {
 
 	return (
 		<motion.div {...framerOptions}>
-			<Nav />
-			<PageContent>
+			<TopSection>
+				<Nav />
 				<HeroSlider {...heroSlider} handleCategoryClick={handleCategoryClick} />
+			</TopSection>
+			<PageContent>
 				<Flex justifyContent="center">
 					<ResidentialSection title={category} posts={postData} />
 				</Flex>

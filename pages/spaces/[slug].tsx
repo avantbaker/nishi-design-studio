@@ -117,17 +117,17 @@ const NextSpace = styled.a`
 	letter-spacing: ${rem(0.15)};
 `;
 
-const GoldLineLeft = styled.img`
+export const GoldLineLeft = styled.img`
 	width: 53%;
 	height: ${rem(180)};
 	position: absolute;
 	left: -${rem(75)};
 	top: ${rem(375)};
 `;
-const GoldLineRight = styled.img`
+export const GoldLineRight = styled.img`
 	height: ${rem(62.12)};
 	width: 50%;
-	right: 0;
+	right: -${rem(40)};
 	top: ${rem(490)};
 	position: absolute;
 `;
@@ -187,8 +187,6 @@ const ResidencePage = ({ slug, error }) => {
 	const galleryOne = imageSections?.[0]?.images;
 	const galleryTwo = imageSections?.[1]?.images;
 
-	console.log('next', next);
-	console.log('previous', previous);
 	const backToGallery = (arrowLeft = false) => (
 		<Link href="/spaces">
 			<a>
