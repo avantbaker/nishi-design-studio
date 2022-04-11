@@ -64,6 +64,9 @@ const CustomImage = styled(Image)`
 	height: unset !important;
 	max-height: 48px !important;
 	opacity: ${({ active }) => (active ? '1' : '.25')};
+	&:hover {
+		opacity: 1;
+	}
 `;
 export default function MediaSection({
 	headline,
