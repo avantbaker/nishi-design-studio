@@ -115,7 +115,7 @@ const SearchInput = styled.input`
 
 const SelectContainer = styled.div`
 	position: relative;
-	cursor: pointer;
+	cursor: none;
 	width: 100%;
 	:after {
 		content: '';
@@ -147,7 +147,7 @@ const Select = styled.select`
 	font-weight: bold;
 	color: ${theme.colors.orange};
 	appearance: none;
-	cursor: pointer;
+	cursor: none;
 	width: 100%;
 `;
 
@@ -167,7 +167,7 @@ const PagerContainer = styled.ul`
 		letter-spacing: ${rem(6.88)};
 		line-height: ${rem(13)};
 		padding: ${rem(16)};
-		cursor: pointer;
+		cursor: none;
 	}
 
 	li.active button {

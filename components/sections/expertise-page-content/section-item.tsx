@@ -17,7 +17,7 @@ const SectionText = styled(Text)`
 	opacity: 0.3;
 	margin-bottom: ${rem(20)};
 	max-width: ${rem(425)};
-	cursor: pointer;
+	cursor: none;
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		font-size: ${rem(75)};

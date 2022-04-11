@@ -19,6 +19,8 @@ import {
 	TextContent,
 	LineWrap,
 	TabletLineImg,
+	EmblaWrapper,
+	RightBox,
 } from './styles';
 
 const HeroSlider = ({
@@ -54,8 +56,8 @@ const HeroSlider = ({
 	return (
 		<FullWidthContainer>
 			<Container>
-				<Box width={[1, 1, 1 / 2]}>
-					<Flex maxWidth={[null, null, rem(1103)]} margin="0 auto">
+				<Box width={[1, 1, 1]}>
+					<EmblaWrapper maxWidth={[null, null, '100%']} margin="0 auto">
 						<EmblaParent className="embla" ref={emblaRef}>
 							<EmblaContainer className="embla__container">
 								{slides.map((slide, idx) => (
@@ -65,7 +67,7 @@ const HeroSlider = ({
 								))}
 							</EmblaContainer>
 						</EmblaParent>
-					</Flex>
+					</EmblaWrapper>
 					{slideMap[currentIndex]}
 					<Flex
 						justifyContent={['flex-end', 'flex-end', 'space-between']}
@@ -112,11 +114,12 @@ const HeroSlider = ({
 						)}
 					</Flex>
 				</Box>
-				<Box
+				<RightBox
 					className="right-box"
-					width={[1, 1, 1 / 2]}
+					width={[1, 1, 'auto']}
 					flexDirection="column"
 					display="flex"
+					mr={rem(60)}
 				>
 					<Flex flexDirection="column" ml="auto">
 						<TextContent>
@@ -148,7 +151,7 @@ const HeroSlider = ({
 							<ArrowRight active className="embla__next" onClick={scrollNext} />
 						</Flex>
 					)}
-				</Box>
+				</RightBox>
 			</Container>
 			<TabletLineImg src="/elements/goldlines/Gold-Line-4.png" />
 		</FullWidthContainer>

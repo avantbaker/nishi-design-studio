@@ -17,7 +17,7 @@ export const PrimaryButton = styled.button<{ large?: boolean }>`
 	letter-spacing: ${rem(0.12)};
 	line-height: ${rem(14)};
 	color: ${theme.colors.orange};
-	cursor: pointer;
+	cursor: none;
 	white-space: nowrap;
 
 	${({ large }) =>
@@ -54,7 +54,7 @@ const SecondaryBtn = styled.button<{
 	color: ${theme.colors.orange};
 	display: flex;
 	align-items: center;
-	cursor: pointer;
+	cursor: none;
 	white-space: nowrap;
 
 	svg {

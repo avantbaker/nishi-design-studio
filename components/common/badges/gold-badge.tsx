@@ -10,40 +10,40 @@ const spin = keyframes`
 `;
 
 const Container = styled.div`
-  width: ${rem(168)};
-  height: ${rem(168)};
-  position: relative;
+	width: ${rem(168)};
+	height: ${rem(168)};
+	position: relative;
 `;
 
 const OuterImage = styled.div`
-  display: flex;
+	display: flex;
 
-  img {
-    animation: ${spin} 16s linear infinite;
-  }
+	img {
+		animation: ${spin} 16s linear infinite;
+	}
 `;
 
 const InnerImage = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 52%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 52%;
+	transform: translate(-50%, -50%);
 `;
 
 export const GoldBadge: FC<{}> = ({ ...rest }) => (
-  <Container>
-    <OuterImage>
-      <Image alt="" layout="fill" src="/images/nishi-gold-badge.png" />
-    </OuterImage>
-    <InnerImage>
-      <Image
-        alt=""
-        width="82px"
-        height="106px"
-        src="/images/nishi-gold-badge-inner.png"
-      />
-    </InnerImage>
-  </Container>
+	<Container {...rest}>
+		<OuterImage>
+			<Image alt="" layout="fill" src="/images/nishi-gold-badge.png" />
+		</OuterImage>
+		<InnerImage>
+			<Image
+				alt=""
+				width="82px"
+				height="106px"
+				src="/images/nishi-gold-badge-inner.png"
+			/>
+		</InnerImage>
+	</Container>
 );
 
 export default GoldBadge;

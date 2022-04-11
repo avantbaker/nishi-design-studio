@@ -25,7 +25,7 @@ const EmblaContainer = styled.div`
 	margin-bottom: ${rem(15)};
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		margin-bottom: ${rem(31)};
+		margin-bottom: 0;
 		flex-direction: row;
 	}
 `;
@@ -35,23 +35,13 @@ const EmblaParent = styled.div`
 `;
 
 const StyledDarkCard = styled(DarkCard)`
-	margin-right: ${rem(20)};
-
+	margin-right: ${rem(30)};
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		margin-right: -${rem(30)};
-
 		div img {
 			transition: width 0.5s ease !important;
 			transition: height 0.5s ease !important;
-			width: ${rem(890)} !important;
+			width: ${rem(980)} !important;
 			height: ${rem(466)} !important;
-		}
-
-		:not(.active) div img {
-			width: ${rem(600)} !important;
-			height: ${rem(315)} !important;
-			min-width: auto !important;
-			min-height: auto !important;
 		}
 	}
 `;
@@ -138,7 +128,7 @@ const DarkSlider = ({
 					flexDirection={['column', 'column', 'row']}
 					justifyContent="space-between"
 					alignItems="center"
-					mb={[rem(70), rem(70), rem(60)]}
+					mb={[rem(20), rem(20), rem(30)]}
 					maxWidth={[null, null, rem(890)]}
 					px={[rem(20), rem(20), 'initial']}
 					ml="auto"
@@ -153,14 +143,14 @@ const DarkSlider = ({
 					>
 						{title}
 					</Text>
-					<Text
+					{/* <Text
 						textAlign={['center', 'center', 'initial']}
 						maxWidth={rem(709)}
 						variant="body"
 						color={theme.colors.tan}
 					>
 						{description}
-					</Text>
+					</Text> */}
 				</Flex>
 				<EmblaParent className="embla" ref={emblaRef}>
 					<EmblaContainer className="embla__container">
@@ -174,6 +164,32 @@ const DarkSlider = ({
 							))}
 					</EmblaContainer>
 				</EmblaParent>
+				<Flex
+					flexDirection={['column', 'column', 'row']}
+					alignItems="center"
+					mb={[rem(70), rem(70), rem(60)]}
+					maxWidth={[null, null, rem(890)]}
+					px={[rem(20), rem(20), 'initial']}
+					ml="auto"
+					mr="auto"
+				>
+					<Text
+						css={{ whiteSpace: 'nowrap' }}
+						variant="highlight"
+						color={theme.colors.tan}
+						mr={rem(24)}
+					>
+						01
+					</Text>
+					<Text
+						textAlign={['center', 'center', 'initial']}
+						maxWidth={rem(709)}
+						variant={['processTitle']}
+						color={theme.colors.orange}
+					>
+						Trade Partners
+					</Text>
+				</Flex>
 				<Flex
 					justifyContent={['flex-end', 'flex-end', 'space-between']}
 					alignItems={['initial', 'initial', 'center']}

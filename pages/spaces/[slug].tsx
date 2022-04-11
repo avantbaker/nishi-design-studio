@@ -138,7 +138,7 @@ const ArrowRightSolid = styled.div`
 	width: ${rem(34)};
 	height: ${rem(34)};
 	margin-left: ${rem(11)};
-	cursor: pointer;
+	cursor: none;
 	position: relative;
 	border-radius: 50%;
 `;

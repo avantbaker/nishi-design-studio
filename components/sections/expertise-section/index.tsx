@@ -58,7 +58,7 @@ const ServiceItem = styled(Text)<{ selected?: boolean }>`
 	padding-bottom: ${rem(16)};
 	color: rgba(215, 139, 50, 0.57);
 	font-size: ${rem(11)};
-	cursor: pointer;
+	cursor: none;
 
 	${({ selected }) =>
 		selected &&

@@ -89,6 +89,18 @@ const SquareWrap = styled.div`
 	left: 0;
 	width: 100%;
 	z-index: -1;
+	max-width: ${rem(400)};
+
+	@media only screen and (min-width: 406px) and (max-width: ) {
+		width: ${rem(434)};
+		height: ${rem(434)};
+		padding-bottom: initial;
+
+		img {
+			width: ${rem(434)};
+			height: ${rem(434)};
+		}
+	}
 `;
 
 const Square = styled.div`

@@ -10,7 +10,7 @@ export const ArrowRight = styled.div`
 	height: ${rem(35)};
 	transform: rotate(180deg);
 	margin-left: ${rem(11)};
-	cursor: pointer;
+	cursor: none;
 	position: relative;
 
 	:hover {
@@ -36,7 +36,7 @@ export const ArrowLeft = styled.div`
 	height: ${rem(35)};
 	background-image: url('/images/enabled-left-arrow.png');
 	background-size: cover;
-	cursor: pointer;
+	cursor: none;
 
 	:hover {
 		background-image: url('/images/active-right-arrow.png');
@@ -85,7 +85,7 @@ export const PagerList = styled.ul`
 
 		a {
 			padding: 0 ${rem(4)} ${rem(9)} ${rem(4)};
-			cursor: pointer;
+			cursor: none;
 			display: block;
 		}
 

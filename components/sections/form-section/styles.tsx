@@ -37,7 +37,7 @@ export const RadioLabel = styled.label`
 	display: flex;
 	align-items: center;
 	position: relative;
-	cursor: pointer;
+	cursor: none;
 	font-size: ${rem(15)};
 	line-height: ${rem(50)};
 	font-weight: bold;
@@ -58,7 +58,7 @@ export const RadioInput = styled(Field)`
 	padding: ${rem(5)};
 	background-clip: content-box, padding-box;
 	margin-right: ${rem(11)};
-	cursor: pointer;
+	cursor: none;
 
 	:checked {
 		background-color: ${theme.colors.orange};

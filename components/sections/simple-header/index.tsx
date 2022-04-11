@@ -87,7 +87,7 @@ export default function SimpleHeader({
 				<Image alt="" layout="fill" src="/images/gold-line-four.png" />
 			</LineWrap>
 			<Flex flexDirection={['column', 'column', 'row']} pr={[rem(55), rem(55), rem(24)]}>
-				<Box className="left-box" width={[1, 1, 1 / 2, 3 / 5]}>
+				<Box className="left-box" width={[1]}>
 					<Image
 						alt="Nishi About"
 						src={src?.sourceUrl || '/images/about-header-image.png'}
@@ -95,7 +95,7 @@ export default function SimpleHeader({
 					/>
 				</Box>
 				<Box
-					width={[1, 1, 1 / 2, 2 / 5]}
+					width={[1, 1, 'auto']}
 					className="right-box"
 					display="flex"
 					flexDirection="column"

@@ -35,7 +35,7 @@ const Img = styled.img`
 	width: ${rem(72)};
 	z-index: ${(props) => (props.isOpen ? '1' : 'initial')};
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		width: ${rem(110)};
+		width: ${rem(150)};
 	}
 `;
 

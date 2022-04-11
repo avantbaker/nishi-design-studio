@@ -4,6 +4,7 @@ import theme from 'styles/theme';
 import { breakpoints } from 'styles/media';
 import { rem } from 'polished';
 import { PagerList } from 'components/common/slider/styles';
+import { Box, Flex } from 'rebass/styled-components';
 export const FullWidthContainer = styled.section`
 	position: relative;
 `;
@@ -11,12 +12,11 @@ export const Container = styled.section`
 	display: flex;
 	flex-direction: column-reverse;
 	padding: ${rem(4)} 0 ${rem(65)} 0;
-	max-width: ${rem(1440)};
-	margin: 0 auto;
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		flex-direction: row;
-		padding: ${rem(86)} 0 ${rem(65)} 0;
+		padding: 0 0 ${rem(34)} 0;
+		// margin: 0 0 0 0;
 	}
 `;
 export const TextContent = styled.div`
@@ -37,16 +37,12 @@ export const EmblaContainer = styled.div`
 	display: flex;
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		margin-bottom: ${rem(31)};
 		flex-direction: row;
 	}
 `;
 export const EmblaParent = styled.div`
 	overflow: hidden;
 	width: 100%;
-	@media only screen and (min-width: ${breakpoints.tablet}) {
-		width: ${rem(734)};
-	}
 `;
 export const StyledPagerList = styled(PagerList)`
 	justify-content: right;
@@ -85,8 +81,7 @@ export const ImageWrap = styled.div`
 	}
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		min-width: ${rem(734)};
-		height: ${rem(582)};
+		height: ${rem(700)};
 	}
 `;
 export const TabletLineImg = styled.img`
@@ -127,8 +122,19 @@ export const StyledListingCard = styled(ListingCard)`
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		margin-bottom: 0;
 		position: absolute;
-		left: 50%;
+		left: 70%;
 		bottom: ${rem(84)};
 		transform: translate(-50%, -50%);
+	}
+`;
+
+export const EmblaWrapper = styled(Flex)`
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		margin-bottom: ${rem(40)};
+	}
+`;
+export const RightBox = styled(Box)`
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		padding-left: 3rem;
 	}
 `;

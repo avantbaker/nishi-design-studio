@@ -84,7 +84,7 @@ export const TextPagerList = styled.ul`
 	text-align: right;
 
 	a {
-		cursor: pointer;
+		cursor: none;
 		padding-bottom: ${rem(31)};
 		padding-right: ${rem(18)};
 		position: relative;

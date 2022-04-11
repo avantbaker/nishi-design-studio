@@ -34,7 +34,7 @@ const Container = styled.div`
 	}
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
-		padding: ${rem(83)} ${rem(130)} ${rem(83)} ${rem(184)};
+		padding: ${rem(83)} ${rem(34)} ${rem(83)} ${rem(34)};
 		.heading {
 			margin-left: -${rem(45)};
 		}
@@ -42,11 +42,6 @@ const Container = styled.div`
 		button {
 			margin-left: ${rem(30)};
 		}
-	}
-
-	@media only screen and (min-width: ${breakpoints.laptopLarge}) {
-		padding-left: 0;
-		padding-right: 0;
 	}
 `;
 

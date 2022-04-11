@@ -1,5 +1,4 @@
-
-import { rem } from 'polished'
+import { rem } from 'polished';
 
 const theme = {
 	logos: {
@@ -39,7 +38,8 @@ const theme = {
 	typography: {
 		fonts: {
 			primary: "'Syne', sans-serif",
-			secondary: "'Brygada 1918', serif"
+			tertiary: "'Syne Bold', sans-serif",
+			secondary: "'Brygada 1918', serif",
 		},
 	},
 	colors: {
@@ -54,10 +54,9 @@ const theme = {
 		brown: '#322E2E',
 		opaqueOrange: 'rgba(215,139,50,0.57)',
 		lightTan: '#fbf9f2',
-		white: "#FFF",
+		white: '#FFF',
 	},
 	breakpoints: ['26.5625em', '48em', '64em'],
 };
-
 
 export default theme;

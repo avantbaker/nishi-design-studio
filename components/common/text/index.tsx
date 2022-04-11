@@ -95,6 +95,13 @@ const variants = {
 		lineHeight: rem(35),
 		color: theme.colors.gray,
 	},
+	headingSmallMobileCard: {
+		fontFamily: theme.typography.fonts.secondary,
+		fontSize: rem(35),
+		fontWeight: 'normal',
+		lineHeight: rem(35),
+		color: theme.colors.white,
+	},
 	label: {
 		fontFamily: theme.typography.fonts.primary,
 		fontSize: rem(50),
@@ -146,6 +153,49 @@ const variants = {
 		letterSpacing: rem(0.12),
 		lineHeight: rem(14),
 		color: theme.colors.orange,
+	},
+	sectionCaption: {
+		fontFamily: theme.typography.fonts.secondary,
+		fontSize: rem(15.72),
+		fontWeight: 'regular',
+		letterSpacing: rem(8.13),
+		lineHeight: rem(18),
+		color: theme.colors.gray,
+	},
+	cardSubtext: {
+		fontFamily: theme.typography.fonts.primary,
+		fontSize: rem(24),
+		fontWeight: 'bold',
+		lineHeight: rem(26),
+		color: theme.colors.tan,
+	},
+	cardBody: {
+		fontFamily: theme.typography.fonts.primary,
+		fontSize: rem(18),
+		fontWeight: 'normal',
+		lineHeight: rem(25),
+		color: theme.colors.tan,
+	},
+	cardSubtextMobile: {
+		fontFamily: theme.typography.fonts.primary,
+		fontSize: rem(20),
+		fontWeight: 'bold',
+		lineHeight: rem(23),
+		color: theme.colors.tan,
+	},
+	cardBodyMobile: {
+		fontFamily: theme.typography.fonts.primary,
+		fontSize: rem(16),
+		fontWeight: 'normal',
+		lineHeight: rem(22),
+		color: theme.colors.tan,
+	},
+	processTitle: {
+		fontFamily: theme.typography.fonts.primary,
+		fontSize: rem(40),
+		fontWeight: 'bold',
+		lineHeight: rem(80),
+		color: theme.colors.tan,
 	},
 };
 

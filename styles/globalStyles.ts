@@ -1,16 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import theme from 'styles/theme';
 
 export const GlobalStyles = createGlobalStyle`
   
   html.is-locked,
   html.is-locked body {
-    /* want to fix the height to the window height */
     height: calc(var(--window-inner-height) - 1px);
-
-    /* want to block all overflowing content */
     overflow: hidden;
-
-    /* want to exclude padding from the height */
     box-sizing: border-box;
   }
 
@@ -26,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
      font-weight: 400;
      transition: all 0.50s linear; 
      margin: 0;
+     cursor: none !important;
   }
   a {
     text-decoration: none;
@@ -39,9 +36,9 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 10000000;
-    border-color: orange;
     transition: transform .2s;
     pointer-events: none;
+    border: 2px solid ${theme.colors.lightOrange}
   }
   
 `;

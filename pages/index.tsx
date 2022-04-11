@@ -17,6 +17,7 @@ import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } fr
 import { HomepageQuery } from 'lib/urql/queries/pages';
 import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { getPageData } from 'lib/utils';
+import ExpertiseCards from 'components/common/expertise-cards';
 
 export const TopSection = styled.section`
 	position: relative;
@@ -91,10 +92,11 @@ function Home() {
 			<TopSection>
 				<Nav />
 				{showSliderSection && <SliderSection {...heroSlider} />}
-				<YourSpace {...twoColumnTextSection} />
+				<MediaSection {...testimonialsSection} />
 			</TopSection>
-			{showExpertiseSection && <ExpertiseSection {...expertiseSection} />}
-			<MediaSection {...testimonialsSection} />
+			{/* {showExpertiseSection && <ExpertiseSection {...expertiseSection} />} */}
+			<YourSpace {...twoColumnTextSection} />
+			<ExpertiseCards />
 			<BottomLayout>
 				<StartYourSpace {...startYourSpace} />
 				<SocialSection {...socialSection} />
