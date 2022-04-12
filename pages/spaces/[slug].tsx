@@ -1,27 +1,27 @@
-import styled from 'styled-components';
-import theme from 'styles/theme';
-import Link from 'next/link';
-import Image from 'next/image';
 import { SecondaryButton } from 'components/common/button';
-import { Flex, Box } from 'rebass/styled-components';
-import { rem } from 'polished';
-import Text from 'components/common/text';
-import Footer from 'components/common/footer';
-import Nav from 'components/common/nav';
-import StartYourSpace from 'components/sections/start-your-space';
-import BrandsParters from 'components/sections/brands-partners';
-import { breakpoints, queries } from 'styles/media';
-import useMediaQuery from 'hooks/use-media-query';
-import ImageGrid from 'components/common/image-grid';
 import DarkSlider from 'components/common/dark-slider';
+import Footer from 'components/common/footer';
+import ImageGrid from 'components/common/image-grid';
+import Nav from 'components/common/nav';
+import Text from 'components/common/text';
+import BrandsParters from 'components/sections/brands-partners';
+import StartYourSpace from 'components/sections/start-your-space';
 import { motion } from 'framer-motion';
+import useMediaQuery from 'hooks/use-media-query';
 import { framerOptions } from 'lib/framer';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
-import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
-import Error from '../_error';
-import { SpacesQuery, SpaceDetailsQuery } from 'lib/urql/queries/pages';
 import { expertiseRenderedMap } from 'lib/urql/fragments/spaceDetailSection';
-import { getData } from 'lib/utils';
+import { SpaceDetailsQuery } from 'lib/urql/queries/pages';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
+import Image from 'next/image';
+import Link from 'next/link';
+import { rem } from 'polished';
+import { Box, Flex } from 'rebass/styled-components';
+import { SRLWrapper } from 'simple-react-lightbox';
+import styled from 'styled-components';
+import { breakpoints, queries } from 'styles/media';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
+import Error from 'pages/_error';
 
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -287,21 +287,23 @@ const ResidencePage = ({ slug, error }) => {
 								</Box>
 							</Flex>
 							<StyledImageGrid images={galleryOne} />
-							<BannerWrap>
-								<Image
-									alt="Residential banner"
-									src={
-										expertiseBottomBanner
-											? expertiseBottomBanner.sourceUrl
-											: `${
-													isTablet
-														? '/elements/residential/residence-banner.png'
-														: '/elements/residential/residence-banner-mobile.png'
-											  }`
-									}
-									layout="fill"
-								/>
-							</BannerWrap>
+							<SRLWrapper>
+								<BannerWrap>
+									<Image
+										alt="Residential banner"
+										src={
+											expertiseBottomBanner
+												? expertiseBottomBanner.sourceUrl
+												: `${
+														isTablet
+															? '/elements/residential/residence-banner.png'
+															: '/elements/residential/residence-banner-mobile.png'
+												  }`
+										}
+										layout="fill"
+									/>
+								</BannerWrap>
+							</SRLWrapper>
 						</Flex>
 						<BrandsParters {...brandsAndPartners} />
 						{processSlider?.processImages?.length > 0 && (

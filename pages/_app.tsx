@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import SimpleReactLightbox from 'simple-react-lightbox';
 
 function adjustViewportForHugeScreens() {
 	let fw = 0;
@@ -50,12 +51,14 @@ function App({ Component, pageProps }) {
 	}, [setRenderViewport]);
 	return (
 		<ThemeProvider theme={theme}>
-			<Head>{renderViewport && <meta {...renderViewport} />}</Head>
-			<div id="circularcursor"></div>
-			<GlobalStyles />
-			<AnimatePresence exitBeforeEnter initial={false}>
-				<Component {...pageProps} key={route} />
-			</AnimatePresence>
+			<SimpleReactLightbox>
+				<Head>{renderViewport && <meta {...renderViewport} />}</Head>
+				<div id="circularcursor"></div>
+				<GlobalStyles />
+				<AnimatePresence exitBeforeEnter initial={false}>
+					<Component {...pageProps} key={route} />
+				</AnimatePresence>
+			</SimpleReactLightbox>
 		</ThemeProvider>
 	);
 }

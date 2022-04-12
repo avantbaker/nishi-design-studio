@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { SecondaryButton } from 'components/common/button';
 import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
+import { SRLWrapper } from 'simple-react-lightbox';
 
 const Container = styled.section`
   position: relative;
@@ -63,23 +64,25 @@ export default function ImageGrid({ images, ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
 	return images ? (
 		<Container {...rest}>
-			<MasonryGrid
-				breakpointCols={breakpointColumnsObj}
-				className="my-masonry-grid"
-				columnClassName="my-masonry-grid_column"
-			>
-				{images.map(({ image, width, height }, idx) => {
-					return (
-						<Image
-							alt="Grid image"
-							width={!isMobileLarge ? '321px' : `${width}px`}
-							height={!isMobileLarge ? '205px' : `${height}px`}
-							key={`image-${idx}`}
-							src={image.sourceUrl}
-						/>
-					);
-				})}
-			</MasonryGrid>
+			<SRLWrapper>
+				<MasonryGrid
+					breakpointCols={breakpointColumnsObj}
+					className="my-masonry-grid"
+					columnClassName="my-masonry-grid_column"
+				>
+					{images.map(({ image, width, height }, idx) => {
+						return (
+							<Image
+								key={`image-${idx}`}
+								alt="Grid image"
+								width={!isMobileLarge ? '321px' : `${width}px`}
+								height={!isMobileLarge ? '205px' : `${height}px`}
+								src={image.sourceUrl}
+							/>
+						);
+					})}
+				</MasonryGrid>
+			</SRLWrapper>
 		</Container>
 	) : null;
 }

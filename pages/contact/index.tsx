@@ -171,9 +171,11 @@ function ContactFormFooterContainer({
 			>
 				{introText}
 			</Text>
-			<PrimaryButton mb={rem(77)} large>
-				book an intro call
-			</PrimaryButton>
+			<a href="https://calendly.com/interiors">
+				<PrimaryButton mb={rem(77)} large>
+					book an intro call
+				</PrimaryButton>
+			</a>
 		</Flex>
 	);
 }
