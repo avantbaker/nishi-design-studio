@@ -108,7 +108,7 @@ export default function MediaSection({
 										}}
 										alt="Nishi"
 										layout="fill"
-										active={active === idx}
+										active={!!(active === idx)}
 										src={pressLogo?.sourceUrl || '/images/press-image.png'}
 									/>
 								</CustomImageContainer>

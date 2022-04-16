@@ -26,13 +26,16 @@ const NavContainer = styled.nav`
 		color: ${theme.colors.orange};
 	}
 
-	@media only screen and (min-width: ${breakpoints.tablet}) {
-		padding: ${rem(24)} ${rem(91)} ${rem(38)} ${rem(91)};
+	@media only screen and (min-width: ${breakpoints.laptop}) {
+		padding: ${rem(24)} ${rem(45)} ${rem(38)} ${rem(45)};
+	}
+	@media only screen and (min-width: ${breakpoints.laptopLarge}) {
+		padding: ${rem(24)} ${rem(80)} ${rem(38)} ${rem(80)};
 	}
 `;
 
 const Img = styled.img`
-	width: ${rem(72)};
+	width: ${rem(92)};
 	z-index: ${(props) => (props.isOpen ? '1' : 'initial')};
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		width: ${rem(150)};
@@ -49,7 +52,7 @@ const DesktopNav = styled.div`
 		padding-top: ${rem(10)};
 	}
 
-	@media only screen and (min-width: ${breakpoints.tablet}) {
+	@media only screen and (min-width: ${breakpoints.laptop}) {
 		display: flex;
 	}
 `;
@@ -86,7 +89,7 @@ const MobileNav = styled.div`
 		}
 	}
 
-	@media only screen and (min-width: ${breakpoints.tablet}) {
+	@media only screen and (min-width: ${breakpoints.laptop}) {
 		display: none;
 	}
 `;

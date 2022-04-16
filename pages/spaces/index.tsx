@@ -1,22 +1,21 @@
-import theme from 'styles/theme';
-import Nav from 'components/common/nav';
-import { Flex } from 'rebass/styled-components';
 import Footer from 'components/common/footer';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { breakpoints } from 'styles/media';
-import StartYourSpace from 'components/sections/start-your-space';
+import Nav from 'components/common/nav';
 import ResidentialSection from 'components/sections/residential-section';
-import HeroSlider from 'components/common/hero-slider';
+import SliderSection from 'components/sections/slider-section';
+import StartYourSpace from 'components/sections/start-your-space';
 import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
-import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
-import { useCallback, useEffect, useState } from 'react';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { SpacesQuery } from 'lib/urql/queries/pages';
-import { buildPostQueryByCategory } from 'lib/utils';
-import { getPageData } from 'lib/utils';
+import { buildPostQueryByCategory, getPageData } from 'lib/utils';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { TopSection } from 'pages';
+import { rem } from 'polished';
+import { useCallback, useEffect, useState } from 'react';
+import { Flex } from 'rebass/styled-components';
+import styled from 'styled-components';
+import { breakpoints } from 'styles/media';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 
 const PageContent = styled.div`
 	position: relative;
@@ -110,14 +109,17 @@ function Residential() {
 		}
 	}, [category, resultsAll, resultsResidential, resultsCommercial]);
 
+	const slides = heroSlider.featuredPosts;
+	const showSliderSection = slides && slides.length > 0;
+
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>
 				<Nav />
-				<HeroSlider {...heroSlider} handleCategoryClick={handleCategoryClick} />
+				{showSliderSection && <SliderSection {...heroSlider} isFeatured />}
 			</TopSection>
 			<PageContent>
-				<Flex justifyContent="center">
+				<Flex>
 					<ResidentialSection title={category} posts={postData} />
 				</Flex>
 				<StartYourSpaceTan {...startYourSpace} />

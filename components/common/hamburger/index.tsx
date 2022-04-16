@@ -10,7 +10,7 @@ const Container = styled.div`
 	box-sizing: border-box;
 	font-size: 26px;
 
-	@media only screen and (min-width: ${breakpoints.tablet}) {
+	@media only screen and (min-width: ${breakpoints.laptop}) {
 		display: none;
 	}
 `;

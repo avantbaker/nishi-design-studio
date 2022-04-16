@@ -49,6 +49,10 @@ const ListingTitle = styled(Text)`
 	line-height: ${rem(40)};
 	font-size: ${rem(40)};
 `;
+
+const normalizeUrl = (path: string) => {
+	return path ? path.replace('//', '/') : '/';
+};
 export default function ListingCard({
 	location,
 	year,
@@ -59,6 +63,15 @@ export default function ListingCard({
 	selected,
 	...rest
 }) {
+	console.log({
+		location,
+		year,
+		title,
+		href,
+		asCard,
+		className,
+		selected,
+	});
 	return (
 		<Container className={className} asCard={asCard} {...rest}>
 			<InnerContainer selected={selected}>
@@ -74,7 +87,7 @@ export default function ListingCard({
 					{title}
 				</ListingTitle>
 				{asCard && (
-					<Link href={href} passHref>
+					<Link href={normalizeUrl(href)} passHref>
 						<a>
 							<SecondaryButton>explore</SecondaryButton>
 						</a>

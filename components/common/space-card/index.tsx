@@ -96,6 +96,123 @@ const ImgWrap = styled.div`
   }
 `;
 
+const ImgWrapBig = styled.div`
+  position: relative;
+  height: ${rem(250)};
+  margin-bottom: ${rem(24)};
+
+  img {
+    object-fit: cover;
+		transition transform 0.5s ease-in-out;
+  }
+
+  @media only screen and (min-width: ${breakpoints.tablet}) {
+		height: ${rem(500)};
+    
+  }
+
+  @media only screen and (min-width: ${breakpoints.laptop}) {
+    margin-bottom: 0;
+		width: 60%;
+  }
+`;
+
+const InnerContainerBig = styled.div`
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		width: 90%;
+		margin: 0 auto;
+	}
+	@media only screen and (min-width: ${breakpoints.laptop}) {
+		display: flex;
+		width: auto;
+	}
+`;
+
+export const ContainerBig = styled(Container)`
+	padding-left: ${rem(20)};
+	@media only screen and (min-width: ${breakpoints.laptop}) {
+		margin-bottom: ${rem(49)};
+
+		:hover .right-box {
+			background-color: white;
+		}
+	}
+
+	.right-box {
+		> div {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+	}
+`;
+export function SpaceCardBig({
+	location,
+	year,
+	title,
+	href,
+	src,
+	imgSrc,
+	slug,
+	...rest
+}) {
+	return (
+		<ContainerBig {...rest}>
+			<Link href={`/spaces/${slug}`} passHref>
+				<a>
+					<InnerContainerBig>
+						<Flex
+							flexDirection={['row', 'row', 'row', 'column']}
+							alignItems={['center', 'center', 'center', 'flex-start']}
+							justifyContent={[
+								'space-between',
+								'space-between',
+								'space-between',
+								'flex-start',
+							]}
+							width={['100%', '100%', '100%', rem(100)]}
+							mr={rem(10)}
+						>
+							<Text variant="caption" letterSpacing="normal" color={theme.colors.gray}>
+								{location}
+							</Text>
+							<YearText
+								variant="caption"
+								letterSpacing="normal"
+								color={theme.colors.gray}
+							>
+								{year}
+							</YearText>
+						</Flex>
+						<ImgWrapBig>
+							<Image alt={title} src={imgSrc || src} layout="fill" />
+						</ImgWrapBig>
+						<Flex flexDirection="column" flexGrow={1} className="right-box">
+							<Box
+								m={[null, null, null, `${rem(40)} 30% 0 auto`]}
+								pl={[null, null, null, rem(32)]}
+							>
+								<Text
+									className="space-heading"
+									width={[null, null, null, rem(285)]}
+									variant={['headingSmallMobile', 'headingSmallMobile', 'headingSmall']}
+								>
+									{title}
+								</Text>
+								<Flex alignItems="center" justifyContent="space-between">
+									<SecondaryButton>
+										explore <ArrowRight />
+									</SecondaryButton>
+								</Flex>
+							</Box>
+						</Flex>
+					</InnerContainerBig>
+				</a>
+			</Link>
+		</ContainerBig>
+	);
+}
 export default function SpaceCard({
 	location,
 	year,

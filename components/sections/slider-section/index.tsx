@@ -22,16 +22,20 @@ import {
 	EmblaWrapper,
 	RightBox,
 } from './styles';
+import { normalizePosts } from 'components/common/hero-slider/utils';
 
 const HeroSlider = ({
 	heroTitle: title,
 	heroSubtitle: subtitle,
 	caption,
 	slides = [],
+	featuredPosts = [],
+	isFeatured = false,
 }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
 
+	const featuredSlides = isFeatured ? normalizePosts(featuredPosts, true) : slides;
 	const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
 	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
 	const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -51,7 +55,7 @@ const HeroSlider = ({
 		onSelect();
 	}, [emblaApi, onSelect]);
 
-	const slideMap = createSlideMap(slides, currentIndex);
+	const slideMap = createSlideMap(featuredSlides, currentIndex);
 
 	return (
 		<FullWidthContainer>
@@ -60,11 +64,16 @@ const HeroSlider = ({
 					<EmblaWrapper maxWidth={[null, null, '100%']} margin="0 auto">
 						<EmblaParent className="embla" ref={emblaRef}>
 							<EmblaContainer className="embla__container">
-								{slides.map((slide, idx) => (
-									<ImageWrap key={`${slide.image.uri}-${idx}`}>
-										<Image src={`${slide.image.sourceUrl}`} layout="fill" />
-									</ImageWrap>
-								))}
+								{featuredSlides.map((slide, idx) => {
+									return (
+										<ImageWrap key={`${slide?.image?.uri || slide?.imgSrc}-${idx}`}>
+											<Image
+												src={`${slide?.image?.sourceUrl || slide?.imgSrc}`}
+												layout="fill"
+											/>
+										</ImageWrap>
+									);
+								})}
 							</EmblaContainer>
 						</EmblaParent>
 					</EmblaWrapper>
@@ -92,9 +101,9 @@ const HeroSlider = ({
 								{caption}
 							</Text>
 							<StyledPagerList>
-								{slides.map((slide, idx) => (
+								{featuredSlides.map((slide, idx) => (
 									<li
-										key={`${slide.image.uri}-${idx}`}
+										key={`${slide?.image?.uri || slide?.imgSrc}-${idx}`}
 										className={idx === currentIndex ? 'selected' : ''}
 									>
 										<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>
@@ -119,7 +128,6 @@ const HeroSlider = ({
 					width={[1, 1, 'auto']}
 					flexDirection="column"
 					display="flex"
-					mr={rem(60)}
 				>
 					<Flex flexDirection="column" ml="auto">
 						<TextContent>
@@ -129,7 +137,12 @@ const HeroSlider = ({
 							<Text
 								as="h2"
 								textAlign="right"
-								variant={['headingMobile', 'headingMobile', 'headingMobile', 'heading']}
+								variant={[
+									'headingMobile',
+									'headingMobile',
+									'headingMobile',
+									'headingExpertise',
+								]}
 								mb={[0, 0, rem(40)]}
 							>
 								{title}
