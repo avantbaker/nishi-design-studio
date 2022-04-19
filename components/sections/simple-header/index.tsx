@@ -73,7 +73,7 @@ const LineWrap = styled.div`
 		transform: rotate(-10deg);
 		top: -22%;
 		height: ${rem(600)};
-		width: 48%;
+		width: 36%;
 	}
 `;
 

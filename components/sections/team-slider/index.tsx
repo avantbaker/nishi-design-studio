@@ -9,45 +9,6 @@ import TeamCard from 'components/common/team-card';
 import { PagerList } from 'components/common/slider/styles';
 import { rem } from 'polished';
 
-const items = [
-	{
-		name: 'Team Member',
-		src: '/images/team-1.png',
-		title: 'Lead Designer',
-		description: 'self-proclaimed maximalist',
-	},
-	{
-		name: 'Team Member',
-		src: '/images/team-2.png',
-		title: 'Lead Designer',
-		description: 'known for trying to bring the outdoors, in',
-	},
-	{
-		name: 'Team Member',
-		src: '/images/team-3.png',
-		title: 'Lead Designer',
-		description: 'self-proclaimed maximalist',
-	},
-	{
-		name: 'Team Member',
-		src: '/images/team-1.png',
-		title: 'Lead Designer',
-		description: 'self-proclaimed maximalist',
-	},
-	{
-		name: 'Team Member',
-		src: '/images/team-2.png',
-		title: 'Lead Designer',
-		description: 'known for trying to bring the outdoors, in',
-	},
-	{
-		name: 'Team Member',
-		src: '/images/team-3.png',
-		title: 'Lead Designer',
-		description: 'self-proclaimed maximalist',
-	},
-];
-
 const Container = styled.section`
 	max-width: ${rem(1000)};
 	margin: 0 auto;
@@ -87,6 +48,10 @@ const StyledTeamCard = styled(TeamCard)`
 	}
 `;
 
+const convertToPercentages = (_, idx, arr) => {
+	return `${((idx + 1) / arr.length) * 100}%`;
+};
+
 const TeamSlider = ({ teamSectionTitle: title, images = [] }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start' });
@@ -110,6 +75,7 @@ const TeamSlider = ({ teamSectionTitle: title, images = [] }) => {
 		emblaApi.on('select', onSelect);
 	}, [emblaApi, onSelect]);
 
+	const pagerMap = images && images.map(convertToPercentages);
 	return (
 		<>
 			<Container>
@@ -134,7 +100,7 @@ const TeamSlider = ({ teamSectionTitle: title, images = [] }) => {
 					flexDirection={['columm', 'column', 'row']}
 					width={['fit-content', 'auto', 'auto']}
 				>
-					<PagerList>
+					<PagerList lineWidth={pagerMap[currentIndex]}>
 						{images.map(({ teamMemberInfo }, idx) => (
 							<li
 								key={teamMemberInfo.title}

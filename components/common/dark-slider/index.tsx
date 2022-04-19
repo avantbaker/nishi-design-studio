@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight } from 'components/common/slider/styles';
 import { rem } from 'polished';
 import { PagerList } from 'components/common/slider/styles';
 import { mockDarkSliderData } from 'pages/api/mocks';
+import image from 'next/image';
 
 const Container = styled.section`
 	background-color: ${theme.colors.brown};
@@ -65,7 +66,7 @@ const StyledPagerList = styled(PagerList)`
 
 	:after {
 		left: 0;
-		width: 77%;
+		width: ${({ lineWidth }) => lineWidth || `77%`};
 	}
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		width: ${rem(375)};
@@ -113,6 +114,10 @@ const useCustomCarousel = () => {
 	};
 };
 
+const convertToPercentages = (_, idx, arr) => {
+	return `${((idx + 1) / arr.length) * 100}%`;
+};
+
 const DarkSlider = ({
 	processTitle: title,
 	processDescription: description,
@@ -120,7 +125,7 @@ const DarkSlider = ({
 }) => {
 	const { currentIndex, scrollPrev, scrollNext, emblaRef, emblaApi } =
 		useCustomCarousel();
-
+	const pagerMap = images && images.map(convertToPercentages);
 	return (
 		<>
 			<Container>
@@ -179,7 +184,7 @@ const DarkSlider = ({
 						color={theme.colors.tan}
 						mr={rem(24)}
 					>
-						01
+						{`0${currentIndex + 1}`}
 					</Text>
 					<Text
 						textAlign={['center', 'center', 'initial']}
@@ -187,7 +192,7 @@ const DarkSlider = ({
 						variant={['processTitle']}
 						color={theme.colors.orange}
 					>
-						Trade Partners
+						{`${images[currentIndex]?.caption || ''}`}
 					</Text>
 				</Flex>
 				<Flex
@@ -210,7 +215,7 @@ const DarkSlider = ({
 						flexDirection="column"
 						ml="auto"
 					>
-						<StyledPagerList>
+						<StyledPagerList lineWidth={pagerMap[currentIndex]}>
 							{images &&
 								images.map(({ image }, idx) => (
 									<li

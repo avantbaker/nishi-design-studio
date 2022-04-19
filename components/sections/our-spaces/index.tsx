@@ -80,9 +80,13 @@ const StyledPagerList = styled(PagerList)`
 
 	:after {
 		left: 0;
-		width: 77%;
+		width: ${({ lineWidth }) => lineWidth || `77%`};
 	}
 `;
+
+const convertToPercentages = (_, idx, arr) => {
+	return `${((idx + 1) / arr.length) * 100}%`;
+};
 
 const OurSpacesSlider = ({ spaces }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
@@ -107,6 +111,8 @@ const OurSpacesSlider = ({ spaces }) => {
 		emblaApi.on('select', onSelect);
 	}, [emblaApi, onSelect]);
 
+	const pagerMap = spaces && spaces.map(convertToPercentages);
+
 	return (
 		<>
 			<Container>
@@ -130,7 +136,7 @@ const OurSpacesSlider = ({ spaces }) => {
 					width={['fit-content', 'auto', 'auto']}
 				>
 					<Flex flexDirection="column">
-						<StyledPagerList>
+						<StyledPagerList lineWidth={pagerMap[currentIndex]}>
 							{spaces?.map(({ title }, idx) => (
 								<li key={title} className={idx === currentIndex ? 'selected' : ''}>
 									<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>

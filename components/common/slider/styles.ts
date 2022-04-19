@@ -69,8 +69,8 @@ export const PagerList = styled.ul`
 		position: absolute;
 		bottom: 0;
 		display: block;
-		height: ${rem(0.6)};
-		width: ${rem(50.31)};
+		height: ${rem(2)};
+		width: ${({ lineWidth }) => lineWidth || `77%`};
 		background-color: ${theme.colors.orange};
 	}
 

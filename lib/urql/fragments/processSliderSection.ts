@@ -9,6 +9,7 @@ export default `
       mobileImage {
         sourceUrl
       }
+      caption
     }
   }
 `;

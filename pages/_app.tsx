@@ -39,8 +39,8 @@ function App({ Component, pageProps }) {
 		const circleStyle = circle.style;
 		document.addEventListener('mousemove', (e) => {
 			window.requestAnimationFrame(() => {
-				circleStyle.top = `${e.clientY - circle.offsetHeight / 2}px`;
-				circleStyle.left = `${e.clientX - circle.offsetHeight / 2}px`;
+				circleStyle.top = `${e.clientY - circle.offsetHeight / 2 + 22}px`;
+				circleStyle.left = `${e.clientX - circle.offsetHeight / 2 + 22}px`;
 			});
 		});
 	}
