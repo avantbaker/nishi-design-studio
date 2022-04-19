@@ -1,4 +1,65 @@
+import { FormikErrors, useFormikContext } from 'formik';
+import { useState, useEffect } from 'react';
 import { formspreeMap } from './formConfigs';
+
+export function useStatus() {
+	const { status } = useFormikContext();
+	const [showError, setShowError] = useState(false);
+	const [showSuccess, setShowSuccess] = useState(false);
+	useEffect(() => {
+		if (status === FORM_STATUS.FAILED) {
+			setShowError(true);
+			setTimeout(() => setShowError(false), 3000);
+		}
+		if (status === FORM_STATUS.SUCCESS) {
+			setShowSuccess(true);
+			setTimeout(() => setShowSuccess(false), 30000);
+		}
+	}, [status]);
+	return {
+		showError,
+		showSuccess,
+	};
+}
+
+const isEmpty = (obj) => Object.keys(obj).length === 0;
+
+const validProjectTypes = [
+	'new-construction',
+	'large-scale-renovation',
+	'small-scale-renovation',
+	'interior-design-only',
+];
+
+const validateInputFields = (values, errors) => (acc, currentKey) => {
+	const currentValue = values[currentKey];
+	if (currentKey === 'phone') {
+		const validPhone = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+		!currentValue.match(validPhone) && (errors.phone = 'Please enter a valid phone');
+	} else if (currentKey === 'email') {
+		const validEmail =
+			/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		!currentValue.match(validEmail) && (errors.email = 'Please enter a valid email');
+	}
+	return acc;
+};
+
+type ContactFormErrorFields = {
+	phone?: string;
+	email?: string;
+	projectType?: string;
+};
+export const validateFields = (values): FormikErrors<ContactFormErrorFields> => {
+	const errors: FormikErrors<ContactFormErrorFields> = {};
+	let errorFields = Object.keys(values).reduce(
+		validateInputFields(values, errors),
+		errors
+	);
+	if (validProjectTypes.every((key) => values[key] === '')) {
+		errorFields.projectType = 'Please select a project type';
+	}
+	return errorFields;
+};
 
 export function getFormData(values): FormData {
 	const formattedValues = formatForFormspree(values);
@@ -9,21 +70,41 @@ export function getFormData(values): FormData {
 	return data;
 }
 
-export async function handleSubmit(values, { setSubmitting }) {
-	const response = await fetch('https://formspree.io/f/mbjwadpg', {
-		body: getFormData(values),
-		method: 'POST',
-		headers: {
-			Accept: 'application/json',
-		},
-	});
-	if (!response.ok) {
-		throw new Error('Form Submission was Unsuccessful.');
-	}
-	const { ok } = await response.json();
-	if (ok) {
-		// setSubmitting to False
-		// Show Thank you message
+export const FORM_STATUS = {
+	SUCCESS: 'success',
+	FAILED: 'failed',
+	UNSUBMITTED: 'unsubmitted',
+};
+
+export async function handleContactFormSubmit(
+	values,
+	{ setSubmitting, setErrors, setStatus }
+) {
+	let errorFields = validateFields(values);
+	try {
+		if (isEmpty(errorFields)) {
+			setSubmitting(true);
+			const response = await fetch('https://formspree.io/f/mbjwadpg', {
+				body: getFormData(values),
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+				},
+			});
+			if (!response.ok) {
+				throw new Error('Form Submission was Unsuccessful.');
+			}
+			const { ok } = await response.json();
+			if (ok) {
+				setStatus(FORM_STATUS.SUCCESS);
+			}
+		} else {
+			setErrors(errorFields);
+			setStatus(FORM_STATUS.FAILED);
+		}
+	} catch (e) {
+		setErrors(errorFields);
+		setStatus(FORM_STATUS.FAILED);
 	}
 }
 

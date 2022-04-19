@@ -16,7 +16,10 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
   }
 
-   body {
+  * {
+    cursor: none !important;
+  }
+  body {
      font-family: ${({ theme }) => theme.typography.fonts.primary};
      background: ${({ theme }) => theme.colors.tan};
      color: ${({ theme }) => theme.colors.black};

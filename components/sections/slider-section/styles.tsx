@@ -64,10 +64,9 @@ export const StyledPagerList = styled(PagerList)`
 
 	:after {
 		left: 0;
-		width: 77%;
+		width: ${({ lineWidth }) => lineWidth || '77%'};
 	}
-
-	@media only screen and (min-width: ${breakpoints.tablet}) {
+	s @media only screen and (min-width: ${breakpoints.tablet}) {
 		min-width: ${rem(230)};
 	}
 `;

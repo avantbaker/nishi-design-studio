@@ -1,23 +1,22 @@
-import { breakpoints } from 'styles/media';
-import theme from 'styles/theme';
-import Nav from 'components/common/nav';
+import ExpertiseCards from 'components/common/expertise-cards';
 import Footer from 'components/common/footer';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import Nav from 'components/common/nav';
+import MediaSection from 'components/sections/media-section';
+import SignupSection from 'components/sections/signup-section';
 import SliderSection from 'components/sections/slider-section';
 import SocialSection from 'components/sections/social-section';
-import SignupSection from 'components/sections/signup-section';
 import StartYourSpace from 'components/sections/start-your-space';
-import ExpertiseSection from 'components/sections/expertise-section';
-import MediaSection from 'components/sections/media-section';
 import YourSpace from 'components/sections/your-space';
 import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
-import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 import { HomepageQuery } from 'lib/urql/queries/pages';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
 import { getPageData } from 'lib/utils';
-import ExpertiseCards from 'components/common/expertise-cards';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
+import { rem } from 'polished';
+import styled from 'styled-components';
+import { breakpoints } from 'styles/media';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 
 export const TopSection = styled.section`
 	position: relative;

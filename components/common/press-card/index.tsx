@@ -44,6 +44,7 @@ const LogoImg = styled.img`
 	margin-bottom: ${rem(24)};
 `;
 
+const noop = 'javascript:function noop() { return false; }';
 export default function PressCard({
 	title,
 	label,
@@ -54,35 +55,36 @@ export default function PressCard({
 	...rest
 }) {
 	return (
-		<Link href={link || 'press'} {...rest} passHref>
-			<StyledFlex
-				as="a"
-				flexDirection={['column', 'column', 'row']}
-				mb={[rem(40), rem(40)]}
-			>
-				<Box width={[1, 1, 1 / 2]} mb={[rem(34), rem(34), 0]} pr={[null, null, rem(24)]}>
-					<ImageWrap>
-						<Image alt={title} src={src} layout="fill" />
-					</ImageWrap>
-				</Box>
-				<Box width={[1, 1, 1 / 2]}>
-					<LogoImg src={logoSrc} />
-					<Text variant="headingSmall" mb={[rem(14), rem(14), rem(5)]}>
-						{title}
-					</Text>
-					<Text
-						variant="bodySmall"
-						color={theme.colors.gray}
-						mb={[rem(27), rem(27), rem(16)]}
-					>
-						{label}
-					</Text>
-					<Text variant="body" color={theme.colors.textGray} mb={[rem(6), rem(6)]}>
-						{description}
-					</Text>
-					{link && <StyledButton>read article</StyledButton>}
-				</Box>
-			</StyledFlex>
-		</Link>
+		<StyledFlex
+			as="a"
+			href={link || noop}
+			target={link ? '_blank' : ''}
+			rel="noreferrer"
+			flexDirection={['column', 'column', 'row']}
+			mb={[rem(40), rem(40)]}
+		>
+			<Box width={[1, 1, 1 / 2]} mb={[rem(34), rem(34), 0]} pr={[null, null, rem(24)]}>
+				<ImageWrap>
+					<Image alt={title} src={src} layout="fill" />
+				</ImageWrap>
+			</Box>
+			<Box width={[1, 1, 1 / 2]}>
+				<LogoImg src={logoSrc} />
+				<Text variant="headingSmall" mb={[rem(14), rem(14), rem(5)]}>
+					{title}
+				</Text>
+				<Text
+					variant="bodySmall"
+					color={theme.colors.gray}
+					mb={[rem(27), rem(27), rem(16)]}
+				>
+					{label}
+				</Text>
+				<Text variant="body" color={theme.colors.textGray} mb={[rem(6), rem(6)]}>
+					{description}
+				</Text>
+				{link && <StyledButton>read article</StyledButton>}
+			</Box>
+		</StyledFlex>
 	);
 }

@@ -137,7 +137,6 @@ export default function VendorsContractors({
 	vendorslink: link = {
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/contact/',
 		title: 'connect with us',
-		__typename: 'AcfLink',
 	},
 	vendorstitlelineone: lineOne = 'vendors +',
 	vendorstitlelinetwo: lineTwo = 'contractors',
@@ -191,7 +190,7 @@ export default function VendorsContractors({
 						/>
 
 						<PrimaryButton large>
-							<Link href={'contact'} passHref>
+							<Link href={'/contact'} passHref>
 								<a style={{ color: '#D78B32' }}>{link?.title}</a>
 							</Link>
 						</PrimaryButton>

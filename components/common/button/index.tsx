@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { rem } from 'polished';
 import theme from 'styles/theme';
 import ArrowRight from 'components/common/icons/arrow-right';
-
 import { compose, space } from 'styled-system';
 
 export const PrimaryButton = styled.button<{ large?: boolean }>`
@@ -29,7 +28,9 @@ export const PrimaryButton = styled.button<{ large?: boolean }>`
 			font-weight: bold;
 			letter-spacing: ${rem(0.15)};
 		`}
-
+	&:hover {
+		outline: ${rem(2)} solid ${theme.colors.orange};
+	}
 	${compose(space)};
 `;
 
@@ -91,7 +92,6 @@ const SecondaryBtn = styled.button<{
 
 const ArrowLeft = styled(ArrowRight)`
 	transform: rotate(180deg);
-
 	margin-right: ${rem(13)};
 `;
 

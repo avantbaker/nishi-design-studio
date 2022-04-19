@@ -32,7 +32,7 @@ export const interiorSpaces = [
 ];
 export const exteriorSpaces = [
 	'Pool House Exterior',
-	'California Room',
+	'Outdoor Kitchen',
 	'Sun Room',
 	'Pool',
 	'Spa',

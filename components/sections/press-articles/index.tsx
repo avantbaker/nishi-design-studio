@@ -56,8 +56,8 @@ export default function PressArticles({ articles = [] }) {
 	return (
 		<Container>
 			<Flex flexDirection="column" margin="0 auto">
-				{normalizePressArticles(articles)?.map((press) => (
-					<PressCard key={press.title} {...press} />
+				{normalizePressArticles(articles)?.map((press, idx) => (
+					<PressCard key={`${press.title}-${idx}`} {...press} />
 				))}
 			</Flex>
 		</Container>

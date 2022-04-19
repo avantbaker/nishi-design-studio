@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Field } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import theme from 'styles/theme';
 import { Flex } from 'rebass/styled-components';
 import { rem, rgba } from 'polished';
@@ -144,7 +144,7 @@ export const FormSubheading = styled.div`
 	font-size: ${rem(15)};
 	font-weight: bold;
 	line-height: ${rem(22)};
-
+	position: relative;
 	color: ${theme.colors.black};
 
 	@media only screen and (min-width: ${breakpoints.tablet}) {
@@ -154,4 +154,21 @@ export const FormSubheading = styled.div`
 			margin-right: ${rem(6)};
 		}
 	}
+`;
+
+export const FieldWrapper = styled('div')`
+	position: relative;
+	input {
+		width: 100%;
+	}
+`;
+
+export const StyledError = styled('div')`
+	position: absolute;
+	bottom: ${({ special = false }) => (special ? `-${rem(10)}` : `${rem(12)}`)};
+	color: red;
+	font-family: ${theme.typography.fonts.primary};
+	font-size: ${rem(15)};
+	font-weight: bold;
+	line-height: ${rem(22)};
 `;

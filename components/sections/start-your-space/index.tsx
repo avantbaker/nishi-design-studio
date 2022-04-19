@@ -127,7 +127,7 @@ export default function StartYourSpace({
 				>
 					{sysBody}
 				</Text>
-				<Link href={'contact' || ''} passHref>
+				<Link href={'/contact' || ''} passHref>
 					<a>
 						<PrimaryButton large>{sysLinkTitle}</PrimaryButton>
 					</a>

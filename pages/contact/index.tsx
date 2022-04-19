@@ -1,25 +1,30 @@
-import { breakpoints } from 'styles/media';
-import theme from 'styles/theme';
+import { PrimaryButton } from 'components/common/button';
+import Footer from 'components/common/footer';
 import Nav from 'components/common/nav';
 import Text from 'components/common/text';
-import Footer from 'components/common/footer';
-import StartYourSpace from 'components/sections/start-your-space';
-import FormSection from 'components/sections/form-section';
-import { Box, Flex } from 'rebass/styled-components';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import SocialSection from 'components/sections/social-section';
-import SignupSection from 'components/sections/signup-section';
-import VendorsContractors from 'components/sections/vendors-contractors';
 import Designers from 'components/sections/designers';
-import { PrimaryButton } from 'components/common/button';
+import FormSection from 'components/sections/form-section';
+import { initialValues } from 'components/sections/form-section/formConfigs';
+import {
+	handleContactFormSubmit,
+	useStatus,
+} from 'components/sections/form-section/utils';
+import SignupSection from 'components/sections/signup-section';
+import SocialSection from 'components/sections/social-section';
+import StartYourSpace from 'components/sections/start-your-space';
+import VendorsContractors from 'components/sections/vendors-contractors';
+import { Formik, FormikErrors, useFormikContext } from 'formik';
 import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
-import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { ContactPageQuery } from 'lib/urql/queries/pages';
-import { start } from 'repl';
-import { useRef } from 'react';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
+import { rem } from 'polished';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Box, Flex } from 'rebass/styled-components';
+import styled from 'styled-components';
+import { breakpoints } from 'styles/media';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 
 const HeaderWrap = styled.div`
 	background-color: ${theme.colors.lightTan};
@@ -153,15 +158,33 @@ function ContactFormFooterContainer({
 	contactbannertext: bannerText = 'thank you for taking the time to fill this form out.',
 	contactintrotext:
 		introText = 'If you have submitted the above form and feel confident that you’re ready to begin a project with Nishi Design + Studio, you can then book an intro call with Nishi.',
-	onSubmit,
 }) {
+	const { submitForm, isSubmitting } = useFormikContext();
+	const { showError, showSuccess } = useStatus();
+
 	return (
 		<Flex flexDirection="column" textAlign="center" alignItems="center">
 			<Text variant="heading" className="ty-text">
 				{bannerText}
 			</Text>
-			<PrimaryButton mb={rem(62)} large onClick={onSubmit}>
-				submit form
+			{showError && (
+				<Text
+					variant="cardBody"
+					mb={[rem(36)]}
+					color="red"
+					className="form-error form-error__submission"
+				>
+					Sorry. Please correct the errors above and re-submit your inquiry.
+				</Text>
+			)}
+			{showSuccess && (
+				<Text variant="cardBody" mb={[rem(36)]} color={theme.colors.orange}>
+					Thank you for you&amp;re contact submission. We will review your submission, and
+					contact you shortly.
+				</Text>
+			)}
+			<PrimaryButton mb={rem(62)} large onClick={submitForm}>
+				{showSuccess ? 'submitted' : isSubmitting ? 'submitting...' : 'submit form'}
 			</PrimaryButton>
 			<Text
 				variant="body"
@@ -195,14 +218,9 @@ function Contact() {
 		socialSection,
 		newsletterSection,
 	} = result?.data?.page;
-	const formikRef = useRef();
 
-	const handleSubmit = () => {
-		if (formikRef.current) {
-			/* @ts-ignore */
-			formikRef.current?.handleSubmit();
-		}
-	};
+	const handleSubmit = useCallback(handleContactFormSubmit, []);
+
 	return (
 		<motion.div {...framerOptions}>
 			<HeaderWrap>
@@ -211,9 +229,13 @@ function Contact() {
 			</HeaderWrap>
 			<PageBackground>
 				<PageContent>
-					<FormHeaderContainer {...titleTwoColumn} />
-					<FormSection formikRef={formikRef} />
-					<ContactFormFooterContainer onSubmit={handleSubmit} {...contactFormFooter} />
+					<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+						<>
+							<FormHeaderContainer {...titleTwoColumn} />
+							<FormSection />
+							<ContactFormFooterContainer {...contactFormFooter} />
+						</>
+					</Formik>
 				</PageContent>
 			</PageBackground>
 			<VendorsContractors {...vendors} />

@@ -1,28 +1,24 @@
-import styled from 'styled-components';
-import { States } from 'components/sections/form-section/states';
-import { Formik, Form } from 'formik';
-import theme from 'styles/theme';
-import { rem } from 'polished';
 import Text from 'components/common/text';
-import { handleSubmit } from './utils';
+import { States } from 'components/sections/form-section/states';
+import { ErrorMessage, Form, useFormikContext } from 'formik';
+import { rem } from 'polished';
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import theme from 'styles/theme';
+import { designStyles, exteriorSpaces, interiorSpaces, projectType } from './formConfigs';
 import {
-	initialValues,
-	projectType,
-	interiorSpaces,
-	exteriorSpaces,
-	designStyles,
-} from './formConfigs';
-import {
-	RadioLabel,
-	RadioInput,
-	FormSection,
 	FormGroup,
-	StyledField,
-	FormGroupThree,
-	SelectContainer,
-	StyledSelect,
-	FormSubheading,
 	FormGroupRadio,
+	FormGroupThree,
+	FormSection,
+	FormSubheading,
+	RadioInput,
+	RadioLabel,
+	SelectContainer,
+	StyledField,
+	StyledSelect,
+	FieldWrapper,
+	StyledError,
 } from './styles';
 
 const Container = styled.section``;
@@ -55,159 +51,148 @@ function renderFormGroup(formGroup = []) {
 		})
 	);
 }
+export default function FormSectionComponent() {
+	const { errors } = useFormikContext();
+	useEffect(() => {
+		console.log('Errors:', errors);
 
-export default function FormSectionComponent({ formikRef }) {
+		return () => {};
+	}, [errors]);
+
 	return (
 		<Container>
-			<Formik
-				innerRef={formikRef}
-				initialValues={initialValues}
-				validate={(values) => {
-					const errors = {};
-					// if (!values.email) {
-					//   errors.email = 'Required';
-					// } else if (
-					//   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-					// ) {
-					//   errors.email = 'Invalid email address';
-					// }
-					return errors;
-				}}
-				onSubmit={handleSubmit}
-			>
-				{({ isSubmitting, ...rest }) => {
-					return (
-						<StyledForm>
-							<FormSection>
-								<Text
-									mb={[rem(14), rem(14), rem(36)]}
-									variant="highlight"
-									color={theme.colors.black}
-								>
-									BASIC CONTACT
-								</Text>
-								<FormGroup>
-									<StyledField type="text" name="firstName" placeholder="First Name" />
-									<StyledField type="text" name="lastName" placeholder="Last Name" />
-									<StyledField type="phone" name="phone" placeholder="Phone Number" />
-									<StyledField type="email" name="email" placeholder="Email" />
-								</FormGroup>
-								<StyledField type="address" name="address" placeholder="Address" />
-								<FormGroupThree>
-									<StyledField type="text" name="city" placeholder="City" />
-									<SelectContainer>
-										<StyledSelect name="state" as="select">
-											<option value="">State</option>
-											{States.map(({ name, abbreviation }) => (
-												<option key={abbreviation} value={abbreviation}>
-													{name}
-												</option>
-											))}
-										</StyledSelect>
-									</SelectContainer>
-									<StyledField
-										type="text"
-										name="zipcode"
-										placeholder="Zipcode"
-										pattern="[0-9]*"
-									/>
-								</FormGroupThree>
-							</FormSection>
-							<FormSection>
-								<Text
-									mb={[rem(14), rem(14), rem(36)]}
-									variant="highlight"
-									color={theme.colors.black}
-								>
-									PROJECT SPECS
-								</Text>
-								<FormSubheading>
-									<span>Project Type</span>
-									<span>[ please select one ]</span>
-								</FormSubheading>
-								<FormGroupRadio
-									role="group"
-									aria-labelledby="radio-group"
-									mt={rem(12)}
-									mb={rem(48)}
-								>
-									{renderFormGroup(projectType)}
-								</FormGroupRadio>
-								<FormGroup>
-									<StyledField
-										type="text"
-										name="pSquareFootage"
-										placeholder="Property Sq. Footage"
-									/>
-									<StyledField
-										type="text"
-										name="sSquareFootage"
-										placeholder="Space Sq. Footage"
-									/>
-									<StyledField
-										type="date"
-										name="startDate"
-										placeholder="Proposed Start Date"
-									/>
-									<StyledField
-										type="date"
-										name="endDate"
-										placeholder="Ideal Completion Date"
-									/>
-									<StyledField type="text" name="architect" placeholder="Architect" />
-									<StyledField type="text" name="contractor" placeholder="Contractor" />
-								</FormGroup>
-							</FormSection>
-							<FormSection>
-								<FormSubheading>
-									<span>Interior Spaces</span>
-									<span>[ select all that apply ]</span>
-								</FormSubheading>
-								<FormGroupRadio role="group" aria-labelledby="radio-group">
-									{renderFormGroup(interiorSpaces)}
-								</FormGroupRadio>
-							</FormSection>
-							<FormSection>
-								<FormSubheading>
-									<span>Exterior Spaces</span>
-									<span>[ select all that apply ]</span>
-								</FormSubheading>
-								<FormGroupRadio role="group" aria-labelledby="radio-group">
-									{renderFormGroup(exteriorSpaces)}
-								</FormGroupRadio>
-							</FormSection>
-							<FormSection>
-								<FormSubheading>
-									<span>Interior Design Style</span>
-									<span>[ select all that apply ]</span>
-								</FormSubheading>
-								<FormGroupRadio>{renderFormGroup(designStyles)}</FormGroupRadio>
-							</FormSection>
-							<FormSection>
-								<Text
-									mb={[rem(14), rem(14), rem(36)]}
-									variant="highlight"
-									color={theme.colors.black}
-								>
-									BUDGET
-								</Text>
-								<FormGroup>
-									<StyledField
-										type="text"
-										name="cBudget"
-										placeholder="Construction budget"
-									/>
-									<StyledField
-										type="text"
-										name="idBudget"
-										placeholder="Interior Design Budget"
-									/>
-								</FormGroup>
-							</FormSection>
-						</StyledForm>
-					);
-				}}
-			</Formik>
+			<StyledForm>
+				<FormSection>
+					<Text
+						mb={[rem(14), rem(14), rem(36)]}
+						variant="highlight"
+						color={theme.colors.black}
+					>
+						BASIC CONTACT
+					</Text>
+					<FormGroup>
+						<StyledField type="text" name="firstName" placeholder="First Name" />
+						<StyledField type="text" name="lastName" placeholder="Last Name" />
+						<FieldWrapper>
+							<StyledField type="phone" name="phone" placeholder="Phone Number" />
+							<StyledError>
+								<ErrorMessage name="phone" />
+							</StyledError>
+						</FieldWrapper>
+						<FieldWrapper>
+							<StyledField type="email" name="email" placeholder="Email" />
+							<StyledError>
+								<ErrorMessage name="email" />
+							</StyledError>
+						</FieldWrapper>
+					</FormGroup>
+					<StyledField type="address" name="address" placeholder="Address" />
+					<FormGroupThree>
+						<StyledField type="text" name="city" placeholder="City" />
+						<SelectContainer>
+							<StyledSelect name="state" as="select">
+								<option value="">State</option>
+								{States.map(({ name, abbreviation }) => (
+									<option key={abbreviation} value={abbreviation}>
+										{name}
+									</option>
+								))}
+							</StyledSelect>
+						</SelectContainer>
+						<StyledField
+							type="text"
+							name="zipcode"
+							placeholder="Zipcode"
+							pattern="[0-9]*"
+						/>
+					</FormGroupThree>
+				</FormSection>
+				<FormSection>
+					<Text
+						mb={[rem(14), rem(14), rem(36)]}
+						variant="highlight"
+						color={theme.colors.black}
+					>
+						PROJECT SPECS
+					</Text>
+					<FormSubheading>
+						<span>Project Type</span>
+						<span>[ please select one ]</span>
+						<StyledError special>
+							{
+								// @ts-expect-error
+								errors.projectType
+							}
+						</StyledError>
+					</FormSubheading>
+					<FormGroupRadio
+						role="group"
+						aria-labelledby="radio-group"
+						mt={rem(12)}
+						mb={rem(48)}
+					>
+						{renderFormGroup(projectType)}
+					</FormGroupRadio>
+					<FormGroup>
+						<StyledField
+							type="text"
+							name="pSquareFootage"
+							placeholder="Property Sq. Footage"
+						/>
+						<StyledField
+							type="text"
+							name="sSquareFootage"
+							placeholder="Space Sq. Footage"
+						/>
+						<StyledField type="date" name="startDate" placeholder="Proposed Start Date" />
+						<StyledField type="date" name="endDate" placeholder="Ideal Completion Date" />
+						<StyledField type="text" name="architect" placeholder="Architect" />
+						<StyledField type="text" name="contractor" placeholder="Contractor" />
+					</FormGroup>
+				</FormSection>
+				<FormSection>
+					<FormSubheading>
+						<span>Interior Spaces</span>
+						<span>[ select all that apply ]</span>
+					</FormSubheading>
+					<FormGroupRadio role="group" aria-labelledby="radio-group">
+						{renderFormGroup(interiorSpaces)}
+					</FormGroupRadio>
+				</FormSection>
+				<FormSection>
+					<FormSubheading>
+						<span>Exterior Spaces</span>
+						<span>[ select all that apply ]</span>
+					</FormSubheading>
+					<FormGroupRadio role="group" aria-labelledby="radio-group">
+						{renderFormGroup(exteriorSpaces)}
+					</FormGroupRadio>
+				</FormSection>
+				<FormSection>
+					<FormSubheading>
+						<span>Interior Design Style</span>
+						<span>[ select all that apply ]</span>
+					</FormSubheading>
+					<FormGroupRadio>{renderFormGroup(designStyles)}</FormGroupRadio>
+				</FormSection>
+				<FormSection>
+					<Text
+						mb={[rem(14), rem(14), rem(36)]}
+						variant="highlight"
+						color={theme.colors.black}
+					>
+						BUDGET
+					</Text>
+					<FormGroup>
+						<StyledField type="text" name="cBudget" placeholder="Construction budget" />
+						<StyledField
+							type="text"
+							name="idBudget"
+							placeholder="Interior Design Budget"
+						/>
+					</FormGroup>
+				</FormSection>
+			</StyledForm>
 		</Container>
 	);
 }

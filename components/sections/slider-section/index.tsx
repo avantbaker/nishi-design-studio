@@ -56,6 +56,7 @@ const HeroSlider = ({
 	}, [emblaApi, onSelect]);
 
 	const slideMap = createSlideMap(featuredSlides, currentIndex);
+	const pagerMap = ['33.3%', '66.6%', '100%'];
 
 	return (
 		<FullWidthContainer>
@@ -100,7 +101,7 @@ const HeroSlider = ({
 							>
 								{caption}
 							</Text>
-							<StyledPagerList>
+							<StyledPagerList lineWidth={pagerMap[currentIndex]}>
 								{featuredSlides.map((slide, idx) => (
 									<li
 										key={`${slide?.image?.uri || slide?.imgSrc}-${idx}`}
