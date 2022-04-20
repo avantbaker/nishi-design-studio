@@ -12,6 +12,8 @@ import Twitter from 'components/common/icons/twitter';
 import Instagram from 'components/common/icons/instagram';
 import LinkedIn from 'components/common/icons/linkedin';
 import Facebook from 'components/common/icons/facebook';
+import { useForm } from '@formspree/react';
+import { useEffect, useState } from 'react';
 
 const FullWidthContainer = styled.section<{ noPadding?: boolean }>`
 	background-color: ${theme.colors.lightTan};
@@ -119,6 +121,16 @@ const SocialFlex = styled(Flex)`
 `;
 
 export default function FooterComponent({ noPadding }: { noPadding?: boolean }) {
+	const [state, handleSubmit] = useForm('mzbojlrn');
+	const [showSuccess, setShowSuccess] = useState(false);
+	useEffect(() => {
+		if (state.succeeded) {
+			setShowSuccess(true);
+			setTimeout(() => {
+				setShowSuccess(false);
+			}, 3000);
+		}
+	}, [state]);
 	return (
 		<FullWidthContainer noPadding={noPadding}>
 			<Footer>
@@ -132,9 +144,14 @@ export default function FooterComponent({ noPadding }: { noPadding?: boolean }) 
 						<Text color={theme.colors.orange} mb={rem(23)} variant="highlight">
 							NDS IN YOUR INBOX
 						</Text>
-						<Form>
+						<Form onSubmit={handleSubmit}>
 							<Input placeholder="email address" />
-							<PrimaryButton>submit</PrimaryButton>
+							<PrimaryButton type="submit">submit</PrimaryButton>
+							{showSuccess && (
+								<Text color={theme.colors.orange} variant="body">
+									Success!
+								</Text>
+							)}
 						</Form>
 					</Flex>
 					<Flex flexDirection="column">

@@ -84,7 +84,7 @@ export async function handleContactFormSubmit(
 	try {
 		if (isEmpty(errorFields)) {
 			setSubmitting(true);
-			const response = await fetch('https://formspree.io/f/mbjwadpg', {
+			const response = await fetch('https://formspree.io/f/myyonqwq', {
 				body: getFormData(values),
 				method: 'POST',
 				headers: {

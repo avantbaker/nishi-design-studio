@@ -8,6 +8,8 @@ import Input from 'components/common/input';
 import { PrimaryButton } from 'components/common/button';
 import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
+import { useForm } from '@formspree/react';
+import { useState, useEffect } from 'react';
 
 const Container = styled.div`
 	background: ${theme.colors.brown};
@@ -100,7 +102,16 @@ export default function SignupSection({
 	newsletterImage: image,
 }) {
 	const isTablet = useMediaQuery(queries.minTablet);
-
+	const [state, handleSubmit] = useForm('mzbojlrn');
+	const [showSuccess, setShowSuccess] = useState(false);
+	useEffect(() => {
+		if (state.succeeded) {
+			setShowSuccess(true);
+			setTimeout(() => {
+				setShowSuccess(false);
+			}, 3000);
+		}
+	}, [state]);
 	return (
 		<Container>
 			<Flex flexDirection="column" maxWidth="890px" m="0 auto">
@@ -120,9 +131,16 @@ export default function SignupSection({
 					>
 						{title}
 					</Text>
-					<Form>
+					<Form onSubmit={handleSubmit}>
 						<Input large color={theme.colors.tan} placeholder="email address" />
-						<PrimaryButton large>submit</PrimaryButton>
+						<PrimaryButton large type="submit">
+							submit
+						</PrimaryButton>
+						{showSuccess && (
+							<Text color={theme.colors.orange} variant="body">
+								Success!
+							</Text>
+						)}
 					</Form>
 				</Flex>
 				<Flex justifyContent="center" px={[rem(20), rem(20), 0]}>

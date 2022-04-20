@@ -29,7 +29,9 @@ export const PrimaryButton = styled.button<{ large?: boolean }>`
 			letter-spacing: ${rem(0.15)};
 		`}
 	&:hover {
-		outline: ${rem(2)} solid ${theme.colors.orange};
+		outline: ${rem(2)} solid ${theme.colors.tan};
+		background: ${theme.colors.orange};
+		color: ${theme.colors.tan} !important;
 	}
 	${compose(space)};
 `;

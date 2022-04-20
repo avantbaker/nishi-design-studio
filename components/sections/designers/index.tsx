@@ -190,7 +190,7 @@ export default function Designers({
 							mb={[rem(40)]}
 							dangerouslySetInnerHTML={{ __html: content }}
 						/>
-						<PrimaryButton large>
+						<PrimaryButton large hoverColor="transparent">
 							<Link href={link?.url} passHref>
 								<a style={{ color: '#D78B32' }}>{link.title}</a>
 							</Link>

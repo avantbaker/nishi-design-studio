@@ -189,7 +189,7 @@ export default function VendorsContractors({
 							dangerouslySetInnerHTML={{ __html: content }}
 						/>
 
-						<PrimaryButton large>
+						<PrimaryButton large hoverColor="transparent">
 							<Link href={'/contact'} passHref>
 								<a style={{ color: '#D78B32' }}>{link?.title}</a>
 							</Link>
