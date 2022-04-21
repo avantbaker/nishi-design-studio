@@ -91,7 +91,6 @@ function Home() {
 			<TopSection>
 				<Nav />
 				{showSliderSection && <SliderSection {...heroSlider} />}
-				<MediaSection {...testimonialsSection} />
 			</TopSection>
 			{/* {showExpertiseSection && <ExpertiseSection {...expertiseSection} />} */}
 			<YourSpace {...twoColumnTextSection} />
