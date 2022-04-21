@@ -71,19 +71,16 @@ function Home() {
 	const [result] = useQuery({
 		query: HomepageQuery,
 	});
+
 	const {
 		heroSlider,
 		twoColumnTextSection,
-		expertiseSection,
-		testimonialsSection,
 		startYourSpace,
 		socialSection,
 		newsletterSection,
 	} = getPageData(result) || {};
 
-	const categories = expertiseSection?.categories;
 	const slides = heroSlider?.slides;
-	const showExpertiseSection = categories && categories.length > 0;
 	const showSliderSection = slides && slides.length > 0;
 
 	return (
@@ -92,7 +89,6 @@ function Home() {
 				<Nav />
 				{showSliderSection && <SliderSection {...heroSlider} />}
 			</TopSection>
-			{/* {showExpertiseSection && <ExpertiseSection {...expertiseSection} />} */}
 			<YourSpace {...twoColumnTextSection} />
 			<ExpertiseCards />
 			<BottomLayout>
