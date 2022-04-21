@@ -46,13 +46,13 @@ function App({ Component, pageProps }) {
 	}
 	useEffect(() => {
 		activateCursor();
-		// const options = adjustViewportForHugeScreens();
-		// setRenderViewport(options as any);
+		const options = adjustViewportForHugeScreens();
+		setRenderViewport(options as any);
 	}, [setRenderViewport]);
 	return (
 		<ThemeProvider theme={theme}>
 			<SimpleReactLightbox>
-				{/* <Head>{renderViewport && <meta {...renderViewport} />}</Head> */}
+				<Head>{renderViewport && <meta {...renderViewport} />}</Head>
 				<div id="circularcursor"></div>
 				<GlobalStyles />
 				<AnimatePresence exitBeforeEnter initial={false}>
