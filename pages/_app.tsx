@@ -49,6 +49,12 @@ function App({ Component, pageProps }) {
 		const options = adjustViewportForHugeScreens();
 		setRenderViewport(options as any);
 	}, [setRenderViewport]);
+
+	useEffect(() => {
+		const htmlEl = document.documentElement.classList;
+		htmlEl.remove('is-locked');
+	}, []);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<SimpleReactLightbox>

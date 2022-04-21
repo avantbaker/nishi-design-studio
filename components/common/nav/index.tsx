@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Flex } from 'rebass/styled-components';
@@ -114,6 +114,13 @@ export default function Nav() {
 		document.body.style.overflowY = !isOpen ? 'hidden' : 'auto';
 		document.body.style.height = !isOpen ? '100vh' : '0';
 	}
+
+	useEffect(() => {
+		const htmlEl = document.documentElement.classList;
+		return () => {
+			htmlEl.remove('is-locked');
+		};
+	}, [isOpen]);
 
 	function isSelected(str) {
 		return pathname === str ? 'selected' : '';
