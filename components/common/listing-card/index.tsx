@@ -87,7 +87,7 @@ export default function ListingCard({
 					{title}
 				</ListingTitle>
 				{asCard && (
-					<Link href={normalizeUrl(href)} passHref>
+					<Link href={`/${normalizeUrl(href)}`} passHref>
 						<a>
 							<SecondaryButton>explore</SecondaryButton>
 						</a>

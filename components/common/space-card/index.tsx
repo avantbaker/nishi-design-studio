@@ -159,7 +159,7 @@ export function SpaceCardBig({
 }) {
 	return (
 		<ContainerBig {...rest}>
-			<Link href={`/spaces/${slug}`} passHref>
+			<Link href={`spaces/${slug}`} passHref>
 				<a>
 					<InnerContainerBig>
 						<Flex
@@ -225,7 +225,7 @@ export default function SpaceCard({
 }) {
 	return (
 		<Container {...rest}>
-			<Link href={`/spaces/${slug}`} passHref>
+			<Link href={`spaces/${slug}`} passHref>
 				<a>
 					<InnerContainer>
 						<Flex

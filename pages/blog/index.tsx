@@ -205,7 +205,7 @@ function Blog() {
 	const [result] = useQuery({
 		query: BlogPageQuery,
 	});
-	const { newsletterSection, socialSection, testimonialsSection } =
+	const { newsletterSection, socialSection, testimonialsSection, expertiseSection } =
 		getPageData(result) || {};
 	const { nodes } = getData('articles', result);
 	const normalizedBlogData = normalizeBlogData(nodes);

@@ -1,18 +1,15 @@
 const expertiseSection = `
 	expertiseSection {
 		expertiseTitle
-		categories {
+		expertiseCards {
       title
-      headline
+      titleLineOne
+      titleLineTwo
       body
-      image {
-        sourceUrl
-      }
-      linkTitle
-      linkUrl {
-        ... on Post {
-          uri
-        }
+      description
+      link {
+        title
+        url
       }
     }
 	}

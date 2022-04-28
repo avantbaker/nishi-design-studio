@@ -13,6 +13,7 @@ const HomepageData = `
 		page(id: 22, idType: DATABASE_ID) {
 			${HeroSliderFragment}
 			${TwoColumnTextSectionFragment}
+			${ExpertiseSectionFragment}
 			${TestimonialSectionFragment}
 			${StartYourSpaceFragment}
 			${SocialSectionFragment}

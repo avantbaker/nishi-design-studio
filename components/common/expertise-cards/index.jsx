@@ -69,33 +69,35 @@ const TitleContainer = styled(Flex)`
 
 const ExpertiseCard = ({
 	type = 'primary',
-	caption,
-	title1,
-	title2,
-	subtext,
+	title,
+	titleLineOne,
+	titleLineTwo,
+	description,
 	body,
 	link,
 }) => {
 	return (
 		<Card type={type} width={1}>
 			<Caption variant="highlight" mt={[rem(28)]} mb={[rem(28)]}>
-				{caption}
+				{title}
 			</Caption>
 			<Box mb={[rem(74)]}>
-				<Title variant={['headingSmallMobileCard', 'headingMobile']}>{title1}</Title>
+				<Title variant={['headingSmallMobileCard', 'headingMobile']}>
+					{titleLineOne}
+				</Title>
 				<Title variant={['headingSmallMobileCard', 'headingMobile']} ml={[rem(32)]}>
-					{title2}
+					{titleLineTwo}
 				</Title>
 			</Box>
 			<Text variant={['cardSubtextMobile', 'cardSubtext']} mb={[rem(24)]}>
-				{subtext}
+				{body}
 			</Text>
 			<Text variant={['cardBodyMobile', 'cardBody']} mb={[rem(80)]}>
-				{body}
+				{description}
 			</Text>
 			<Link href={link.url || 'contact'}>
 				<a>
-					<SecondaryButton color={theme.colors.tan}>Learn More</SecondaryButton>
+					<SecondaryButton color={theme.colors.tan}>{link.title}</SecondaryButton>
 				</a>
 			</Link>
 		</Card>
@@ -123,15 +125,11 @@ const dummyData = [
 	},
 ];
 
-function ExpertiseCards({ hasLogo = true }) {
+function ExpertiseCards({ expertiseTitle, expertiseCards, hasLogo = true }) {
 	return (
 		<FullWidthContainer noBackground>
-			{true && (
-				<>
-					<GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
-					<GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
-				</>
-			)}
+			<GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
+			<GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
 			<Container>
 				<Box
 					width={[1]}
@@ -142,7 +140,7 @@ function ExpertiseCards({ hasLogo = true }) {
 				>
 					<TitleContainer flexDirection="column" width={['100%']}>
 						<PageTitle variant="sectionCaption" mb={[rem(40)]}>
-							Our Expertise
+							{expertiseTitle}
 						</PageTitle>
 					</TitleContainer>
 					<Flex
@@ -151,8 +149,12 @@ function ExpertiseCards({ hasLogo = true }) {
 						alignItems={['center', 'center', 'unset']}
 						width={['100%', '100%']}
 					>
-						{dummyData.map((card, idx) => (
-							<ExpertiseCard key={`expertise-card-${idx}`} {...card} />
+						{expertiseCards?.map((card, idx) => (
+							<ExpertiseCard
+								key={`expertise-card-${idx}`}
+								type={idx === 0 ? 'primary' : 'secondary'}
+								{...card}
+							/>
 						))}
 					</Flex>
 				</Box>

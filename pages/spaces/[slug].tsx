@@ -331,7 +331,7 @@ const ResidencePage = ({ slug, error }) => {
 							mt={[rem(40), rem(40), rem(64)]}
 						>
 							{previous?.slug ? (
-								<Link href={`/spaces/${previous.slug}`} passHref>
+								<Link href={`spaces/${previous.slug}`} passHref>
 									<a>
 										<SecondaryButton large arrowLeft mr={[rem(40), null, null]}>
 											previous space
@@ -342,7 +342,7 @@ const ResidencePage = ({ slug, error }) => {
 								backToGallery(true)
 							)}
 							{next?.slug ? (
-								<Link href={`/spaces/${next.slug}`} passHref>
+								<Link href={`spaces/${next.slug}`} passHref>
 									<a>
 										<SecondaryButton large>next space</SecondaryButton>
 									</a>

@@ -78,11 +78,11 @@ function Home() {
 		startYourSpace,
 		socialSection,
 		newsletterSection,
+		expertiseSection,
 	} = getPageData(result) || {};
 
 	const slides = heroSlider?.slides;
 	const showSliderSection = slides && slides.length > 0;
-
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>
@@ -90,7 +90,7 @@ function Home() {
 				{showSliderSection && <SliderSection {...heroSlider} />}
 			</TopSection>
 			<YourSpace {...twoColumnTextSection} />
-			<ExpertiseCards />
+			<ExpertiseCards {...expertiseSection} />
 			<BottomLayout>
 				<StartYourSpace {...startYourSpace} />
 				<SocialSection {...socialSection} />

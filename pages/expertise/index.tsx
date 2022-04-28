@@ -1,21 +1,19 @@
-import theme from 'styles/theme';
-import Nav from 'components/common/nav';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import ExpertisePageContent from 'components/sections/expertise-page-content';
-import StartYourSpace from 'components/sections/start-your-space';
-import OurSpacesSlider from 'components/sections/our-spaces';
 import DarkSlider from 'components/common/dark-slider';
+import ExpertiseCards from 'components/common/expertise-cards';
 import Footer from 'components/common/footer';
+import Nav from 'components/common/nav';
+import OurSpacesSlider from 'components/sections/our-spaces';
 import SimpleHeader from 'components/sections/simple-header';
+import StartYourSpace from 'components/sections/start-your-space';
 import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
-import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { ExpertiseQuery } from 'lib/urql/queries/pages';
 import { getPageData } from 'lib/utils';
-import { useRouter } from 'next/router';
-import ExpertiseCards from 'components/common/expertise-cards';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
+import { rem } from 'polished';
+import styled from 'styled-components';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 
 const PageContent = styled.section`
 	background-color: ${theme.colors.lightTan};
@@ -33,9 +31,8 @@ function Expertise() {
 	const [result] = useQuery({
 		query: ExpertiseQuery,
 	});
-	const { query, ...rest } = useRouter();
-	const queryString = query?.q;
-	const { simpleHeader, processSlider, startYourSpace, expertiseDetailsSection } =
+
+	const { simpleHeader, processSlider, startYourSpace, expertiseSection } =
 		getPageData(result) || {};
 	const { nodes } = result?.data?.posts || {};
 	return (
@@ -45,8 +42,7 @@ function Expertise() {
 					<Nav />
 					<SimpleHeader {...simpleHeader} />
 				</HeaderWrap>
-				{/* <ExpertisePageContent query={queryString} {...expertiseDetailsSection} /> */}
-				<ExpertiseCards hasLogo={false} />
+				<ExpertiseCards {...expertiseSection} hasLogo={false} />
 				<DarkSlider {...processSlider} />
 				<OurSpacesSlider spaces={nodes} />
 				<StartYourSpace {...startYourSpace} />
