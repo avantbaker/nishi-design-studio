@@ -79,7 +79,11 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 								{currentPosts.map((slide, idx) => {
 									return (
 										<ImageWrap key={`${slide.imgSrc}-${idx}`}>
-											<Image src={slide.imgSrc || slide.src} layout="fill" />
+											<Image
+												quality="100"
+												src={slide.imgSrc || slide.src}
+												layout="fill"
+											/>
 										</ImageWrap>
 									);
 								})}
@@ -198,7 +202,12 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 							</Text>
 						</TextPagerList>
 						<LineWrap>
-							<Image layout="fill" src="/elements/goldlines/gold-line-six.png" alt="" />
+							<Image
+								quality="100"
+								layout="fill"
+								src="/elements/goldlines/gold-line-six.png"
+								alt=""
+							/>
 						</LineWrap>
 					</Flex>
 					{isTablet && (

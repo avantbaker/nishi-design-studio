@@ -33,10 +33,11 @@ const InnerImage = styled.div`
 export const GoldBadge: FC<{}> = ({ ...rest }) => (
 	<Container {...rest}>
 		<OuterImage>
-			<Image alt="" layout="fill" src="/images/nishi-gold-badge.png" />
+			<Image quality="100" alt="" layout="fill" src="/images/nishi-gold-badge.png" />
 		</OuterImage>
 		<InnerImage>
 			<Image
+				quality="100"
 				alt=""
 				width="82px"
 				height="106px"

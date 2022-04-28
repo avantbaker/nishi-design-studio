@@ -97,6 +97,10 @@ const GoldLineRight = styled.img`
 	}
 `;
 
+const myLoader = ({ src, width, quality }) => {
+	return `${src}?w=${width}&q=100`;
+};
+
 export default function SignupSection({
 	newsletterTitle: title,
 	newsletterImage: image,
@@ -146,15 +150,17 @@ export default function SignupSection({
 				<Flex justifyContent="center" px={[rem(20), rem(20), 0]}>
 					{isTablet ? (
 						<Image
+							quality="100"
 							className="center-image"
 							alt="Join the newsletter"
 							src={image?.sourceUrl || '/images/signup-bg-desktop.jpg'}
-							layout="intrinsic"
+							layout="fixed"
 							width="890px"
 							height="466px"
 						/>
 					) : (
 						<Image
+							quality="100"
 							className="center-image"
 							alt="Join the newsletter"
 							src="/images/signup-bg-mobile.jpg"
@@ -168,11 +174,18 @@ export default function SignupSection({
 			</Flex>
 			{isTablet ? (
 				<div className="nishi-logo">
-					<Image alt="Nishi" width="138px" height="178px" src="/images/nishi-gold.png" />
+					<Image
+						quality="100"
+						alt="Nishi"
+						width="138px"
+						height="178px"
+						src="/images/nishi-gold.png"
+					/>
 				</div>
 			) : (
 				<div className="nishi-logo-mobile">
 					<Image
+						quality="100"
 						alt="Nishi"
 						width="76px"
 						height="98px"

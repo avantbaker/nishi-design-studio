@@ -57,7 +57,7 @@ export default function DarkCard({ title, description, src, active, ...rest }) {
 	return (
 		<Container active={active} {...rest}>
 			<ImgWrap>
-				<Image alt={title} src={src} layout="fill" />
+				<Image quality="100" alt={title} src={src} layout="fill" />
 			</ImgWrap>
 		</Container>
 	);

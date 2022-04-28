@@ -264,6 +264,7 @@ export default function ExpertiseSection({ expertiseTitle: title, categories = [
 					<ImgWrap>
 						{isTablet ? (
 							<Image
+								quality="100"
 								alt="service installation"
 								className="main-image"
 								layout="intrinsic"

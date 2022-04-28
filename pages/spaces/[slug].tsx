@@ -258,6 +258,7 @@ const ResidencePage = ({ slug, error }) => {
 							)}
 							<BannerContainer>
 								<Image
+									quality="100"
 									src={
 										expertiseBanner
 											? expertiseBanner?.sourceUrl
@@ -290,6 +291,7 @@ const ResidencePage = ({ slug, error }) => {
 							<SRLWrapper>
 								<BannerWrap>
 									<Image
+										quality="100"
 										alt="Residential banner"
 										src={
 											expertiseBottomBanner

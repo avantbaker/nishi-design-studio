@@ -111,6 +111,7 @@ export default function SectionItem({
 				<SectionContent>
 					<ImageWrap>
 						<Image
+							quality="100"
 							alt="Image title"
 							width={!isTablet ? '81.28px' : '132px'}
 							height={!isTablet ? '107.14px' : '174px'}
@@ -119,6 +120,7 @@ export default function SectionItem({
 						/>
 						<Flex mb={rem(26)}>
 							<Image
+								quality="100"
 								alt="Image title"
 								width={!isTablet ? '176.72px' : '287px'}
 								height={!isTablet ? '215.51px' : '350px'}

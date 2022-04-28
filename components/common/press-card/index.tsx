@@ -65,7 +65,7 @@ export default function PressCard({
 		>
 			<Box width={[1, 1, 1 / 2]} mb={[rem(34), rem(34), 0]} pr={[null, null, rem(24)]}>
 				<ImageWrap>
-					<Image alt={title} src={src} layout="fill" />
+					<Image quality="100" alt={title} src={src} layout="fill" />
 				</ImageWrap>
 			</Box>
 			<Box width={[1, 1, 1 / 2]}>

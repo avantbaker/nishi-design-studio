@@ -55,7 +55,7 @@ export default function BlogCard({ title, date, description, slug, tags, src, ..
 			<AnchorContainer {...rest}>
 				<Flex backgroundColor="#fff" flexDirection="column">
 					<ImageWrap>
-						<Image alt={title} src={src} layout="fill" />
+						<Image quality="100" alt={title} src={src} layout="fill" />
 					</ImageWrap>
 					<TextContent>
 						<Text variant="headingSmallMobile" mb={[rem(5), rem(5), rem(5)]}>

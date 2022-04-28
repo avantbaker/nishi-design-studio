@@ -163,8 +163,8 @@ const DarkSlider = ({
 							images.map(({ image }, idx) => (
 								<StyledDarkCard
 									className={idx === currentIndex && 'active'}
-									key={image.sourceUrl}
-									src={image.sourceUrl}
+									key={image?.sourceUrl}
+									src={image?.sourceUrl || '/images/your-space-ng.png'}
 								/>
 							))}
 					</EmblaContainer>
@@ -219,7 +219,7 @@ const DarkSlider = ({
 							{images &&
 								images.map(({ image }, idx) => (
 									<li
-										key={image.sourceUrl}
+										key={image?.sourceUrl}
 										className={idx === currentIndex ? 'selected' : ''}
 									>
 										<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>

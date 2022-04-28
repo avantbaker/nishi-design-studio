@@ -11,48 +11,50 @@ const spin = keyframes`
 `;
 
 const Container = styled.div`
-  width: ${rem(154)};
-  height: ${rem(154)};
-  position: relative;
-  background-color: ${theme.colors.gray};
-  border-radius: 50%;
+	width: ${rem(154)};
+	height: ${rem(154)};
+	position: relative;
+	background-color: ${theme.colors.gray};
+	border-radius: 50%;
 `;
 
 const OuterImage = styled.div`
-  display: flex;
-  padding: ${rem(8)};
+	display: flex;
+	padding: ${rem(8)};
 
-  img {
-    animation: ${spin} 16s linear infinite;
-  }
+	img {
+		animation: ${spin} 16s linear infinite;
+	}
 `;
 
 const InnerImage = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 52%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 52%;
+	transform: translate(-50%, -50%);
 `;
 
 export const BlackBadge: FC<{}> = ({ ...rest }) => (
-  <Container {...rest}>
-    <OuterImage>
-      <Image
-        alt=""
-        width="154px"
-        height="154px"
-        src="/images/white-badge-outer.png"
-      />
-    </OuterImage>
-    <InnerImage>
-      <Image
-        alt=""
-        width="82px"
-        height="106px"
-        src="/images/white-badge-inner.png"
-      />
-    </InnerImage>
-  </Container>
+	<Container {...rest}>
+		<OuterImage>
+			<Image
+				quality="100"
+				alt=""
+				width="154px"
+				height="154px"
+				src="/images/white-badge-outer.png"
+			/>
+		</OuterImage>
+		<InnerImage>
+			<Image
+				quality="100"
+				alt=""
+				width="82px"
+				height="106px"
+				src="/images/white-badge-inner.png"
+			/>
+		</InnerImage>
+	</Container>
 );
 
 export default BlackBadge;

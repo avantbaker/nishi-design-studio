@@ -95,6 +95,7 @@ export default function StartYourSpace({
 				{hasLargeLogo && (
 					<ImgWrap>
 						<Image
+							quality="100"
 							alt="Nishi Logo"
 							src="/images/signature-ochre.png"
 							width="274px"

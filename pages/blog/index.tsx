@@ -1,23 +1,22 @@
-import { breakpoints } from 'styles/media';
-import theme from 'styles/theme';
+import BlogCard from 'components/common/blog-card';
+import Footer from 'components/common/footer';
 import Nav from 'components/common/nav';
 import Text from 'components/common/text';
-import Footer from 'components/common/footer';
-import BlogCard from 'components/common/blog-card';
-import { Flex } from 'rebass/styled-components';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import SocialSection from 'components/sections/social-section';
-import SignupSection from 'components/sections/signup-section';
-import StartYourSpace from 'components/sections/start-your-space';
 import MediaSection from 'components/sections/media-section';
-import { mockBlogData, normalizeBlogData } from 'pages/api/mocks';
+import SignupSection from 'components/sections/signup-section';
+import SocialSection from 'components/sections/social-section';
 import { motion } from 'framer-motion';
 import { framerOptions } from 'lib/framer';
-import { initUrqlClient, withUrqlClient } from 'next-urql';
-import { ssrExchange, dedupExchange, cacheExchange, fetchExchange, useQuery } from 'urql';
 import { BlogPageQuery } from 'lib/urql/queries/pages';
 import { getData, getPageData } from 'lib/utils';
+import { initUrqlClient, withUrqlClient } from 'next-urql';
+import { normalizeBlogData } from 'pages/api/mocks';
+import { rem } from 'polished';
+import { Flex } from 'rebass/styled-components';
+import styled from 'styled-components';
+import { breakpoints } from 'styles/media';
+import theme from 'styles/theme';
+import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
 
 const PageContent = styled.div`
 	position: relative;

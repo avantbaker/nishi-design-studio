@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { SecondaryButton } from 'components/common/button';
 import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
-import { SRLWrapper } from 'simple-react-lightbox';
+import { SRLWrapper, useLightbox } from 'simple-react-lightbox';
 
 const Container = styled.section`
   position: relative;
@@ -60,8 +60,12 @@ const breakpointColumnsObj = {
 	640: 1,
 };
 
+const HiddenGallery = styled(SRLWrapper)`
+	height: 0;
+`;
 export default function ImageGrid({ images, ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
+	const { openLightbox } = useLightbox();
 	return images ? (
 		<Container {...rest}>
 			<SRLWrapper>
@@ -73,6 +77,7 @@ export default function ImageGrid({ images, ...rest }) {
 					{images.map(({ image, width, height }, idx) => {
 						return (
 							<Image
+								quality="100"
 								key={`image-${idx}`}
 								alt="Grid image"
 								width={!isMobileLarge ? '321px' : `${width}px`}

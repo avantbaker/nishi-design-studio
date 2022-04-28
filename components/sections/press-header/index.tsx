@@ -72,6 +72,7 @@ export default function PressHeader({
 			<Flex flexDirection={['column', 'column', 'row']} pr={[rem(55), rem(55), rem(24)]}>
 				<Box className="left-box" width={[1, 1, 3 / 5]}>
 					<Image
+						quality="100"
 						alt="Nishi Press"
 						src={img?.sourceUrl || '/images/press-header.png'}
 						layout="fill"

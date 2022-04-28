@@ -60,7 +60,7 @@ export default function TeamCard({
 	return (
 		<Container {...rest}>
 			<ImageWrap>
-				<Image alt={name} src={src?.sourceUrl} layout="fill" />
+				<Image quality="100" alt={name} src={src?.sourceUrl} layout="fill" />
 			</ImageWrap>
 			<Text variant="highlight" mb={rem(16)} color={theme.colors.gray}>
 				{name.toUpperCase()}

@@ -144,6 +144,7 @@ function BlogDetail({ slug }) {
 					)}
 					<BannerContainer>
 						<Image
+							quality="100"
 							alt="Nishi blog"
 							src={blog?.blogimage?.sourceUrl || `/images/blog-detail.png`}
 							layout="fill"

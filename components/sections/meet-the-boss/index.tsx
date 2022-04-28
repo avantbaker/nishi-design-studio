@@ -111,6 +111,7 @@ export default function MeetTheBoss({
 			</Box>
 			<ImageWrap>
 				<Image
+					quality="100"
 					alt="Nishi Donovan"
 					src={img.sourceUrl || '/images/nishi-profile.png'}
 					layout="responsive"

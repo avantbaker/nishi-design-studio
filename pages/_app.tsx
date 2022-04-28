@@ -58,7 +58,10 @@ function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<SimpleReactLightbox>
-				<Head>{renderViewport && <meta {...renderViewport} />}</Head>
+				<Head>
+					{renderViewport && <meta {...renderViewport} />}
+					<title>Nishi Design Studio</title>
+				</Head>
 				<div id="circularcursor"></div>
 				<GlobalStyles />
 				<AnimatePresence exitBeforeEnter initial={false}>

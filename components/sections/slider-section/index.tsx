@@ -69,6 +69,7 @@ const HeroSlider = ({
 									return (
 										<ImageWrap key={`${slide?.image?.uri || slide?.imgSrc}-${idx}`}>
 											<Image
+												quality="100"
 												src={`${slide?.image?.sourceUrl || slide?.imgSrc}`}
 												layout="fill"
 											/>
@@ -150,7 +151,12 @@ const HeroSlider = ({
 							</Text>
 						</TextContent>
 						<LineWrap>
-							<Image layout="fill" src="/elements/goldlines/gold-line-six.png" alt="" />
+							<Image
+								quality="100"
+								layout="fill"
+								src="/elements/goldlines/gold-line-six.png"
+								alt=""
+							/>
 						</LineWrap>
 					</Flex>
 					{isTablet && (

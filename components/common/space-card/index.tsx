@@ -186,7 +186,7 @@ export function SpaceCardBig({
 							</YearText>
 						</Flex>
 						<ImgWrapBig>
-							<Image alt={title} src={imgSrc || src} layout="fill" />
+							<Image quality="100" alt={title} src={imgSrc || src} layout="fill" />
 						</ImgWrapBig>
 						<Flex flexDirection="column" flexGrow={1} className="right-box">
 							<Box
@@ -252,7 +252,7 @@ export default function SpaceCard({
 							</YearText>
 						</Flex>
 						<ImgWrap>
-							<Image alt={title} src={imgSrc || src} layout="fill" />
+							<Image quality="100" alt={title} src={imgSrc || src} layout="fill" />
 						</ImgWrap>
 						<Flex flexDirection="column" flexGrow={1} className="right-box">
 							<Box
