@@ -118,7 +118,7 @@ const dummyData = [
 		title1: 'furniture',
 		title2: '+ styling',
 		subtext: 'We put forth a transparent approach to interior design.',
-		body: 'Our comprehensive budget brekdown spares no detail, just like the spaces we design. We include all facets of the project scope– down to materials, labor, shipping, and installation.',
+		body: 'Our comprehensive budget breakdown spares no detail, just like the spaces we design. We include all facets of the project scope– down to materials, labor, shipping, and installation.',
 		link: 'contact',
 	},
 ];
