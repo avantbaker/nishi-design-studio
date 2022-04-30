@@ -163,7 +163,7 @@ const DarkSlider = ({
 							images.map(({ image }, idx) => (
 								<StyledDarkCard
 									className={idx === currentIndex && 'active'}
-									key={image?.sourceUrl}
+									key={`idx-${idx}`}
 									src={image?.sourceUrl || '/images/your-space-ng.png'}
 								/>
 							))}
@@ -217,14 +217,16 @@ const DarkSlider = ({
 					>
 						<StyledPagerList lineWidth={pagerMap[currentIndex]}>
 							{images &&
-								images.map(({ image }, idx) => (
-									<li
-										key={image?.sourceUrl}
-										className={idx === currentIndex ? 'selected' : ''}
-									>
-										<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>
-									</li>
-								))}
+								images.map(({ image }, idx) => {
+									return (
+										<li
+											key={`idx-${idx}`}
+											className={idx === currentIndex ? 'selected' : ''}
+										>
+											<a onClick={() => emblaApi.scrollTo(idx)}>{`0${idx + 1}`}</a>
+										</li>
+									);
+								})}
 						</StyledPagerList>
 					</Flex>
 				</Flex>

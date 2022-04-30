@@ -1,11 +1,10 @@
-import MasonryGrid from 'react-masonry-css';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import Image from 'next/image';
-import { SecondaryButton } from 'components/common/button';
-import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
-import { SRLWrapper, useLightbox } from 'simple-react-lightbox';
+import Image from 'next/image';
+import { rem } from 'polished';
+import MasonryGrid from 'react-masonry-css';
+import { SRLWrapper } from 'simple-react-lightbox';
+import styled from 'styled-components';
+import { breakpoints, queries } from 'styles/media';
 
 const Container = styled.section`
   position: relative;
@@ -55,20 +54,28 @@ const Container = styled.section`
   }
 `;
 
+const ImgWrapper = styled('div')`
+	position: relative;
+	width: 100%;
+	min-height: ${({ isMobileLarge, height }) =>
+		!isMobileLarge ? '205px' : `${height}px`};
+`;
+
 const breakpointColumnsObj = {
 	default: 3,
 	640: 1,
 };
 
-const HiddenGallery = styled(SRLWrapper)`
-	height: 0;
-`;
-export default function ImageGrid({ images, ...rest }) {
+const ConditionalSRLWrapper = ({ shouldWrap, children }) => {
+	if (!shouldWrap) return <>{children}</>;
+	console.log('Wrapping Children');
+	return <SRLWrapper style={{ width: '100%' }}>{children}</SRLWrapper>;
+};
+export default function ImageGrid({ images, wrap = true, ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
-	const { openLightbox } = useLightbox();
 	return images ? (
-		<Container {...rest}>
-			<SRLWrapper>
+		<ConditionalSRLWrapper shouldWrap={wrap}>
+			<Container {...rest}>
 				<MasonryGrid
 					breakpointCols={breakpointColumnsObj}
 					className="my-masonry-grid"
@@ -76,18 +83,18 @@ export default function ImageGrid({ images, ...rest }) {
 				>
 					{images.map(({ image, width, height }, idx) => {
 						return (
-							<Image
-								quality="100"
+							<ImgWrapper
 								key={`image-${idx}`}
-								alt="Grid image"
-								width={!isMobileLarge ? '321px' : `${width}px`}
-								height={!isMobileLarge ? '205px' : `${height}px`}
-								src={image.sourceUrl}
-							/>
+								isMobileLarge={isMobileLarge}
+								width={width}
+								height={height}
+							>
+								<Image quality="100" layout="fill" src={image.sourceUrl} />
+							</ImgWrapper>
 						);
 					})}
 				</MasonryGrid>
-			</SRLWrapper>
-		</Container>
+			</Container>
+		</ConditionalSRLWrapper>
 	) : null;
 }

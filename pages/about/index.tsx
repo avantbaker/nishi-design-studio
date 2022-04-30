@@ -70,6 +70,12 @@ const TwoColumnOffsetSection = ({
 	);
 };
 
+const FullWidthFlex = styled(Flex)`
+	width: 100%;
+	> div {
+		width: 100%;
+	}
+`;
 function About() {
 	const [result] = useQuery({
 		query: AboutQuery,
@@ -103,9 +109,9 @@ function About() {
 			</MiddleWrap>
 			<ContentWrap>
 				<TwoColumnOffsetSection {...twoColumnOffsetSection} />
-				<Flex px={['initial', 'initial', rem(28), rem(28)]} pb={rem(86)}>
+				<FullWidthFlex px={['initial', 'initial', rem(28), rem(28)]} pb={rem(86)}>
 					<ImageGrid images={firstSection?.images || []} />
-				</Flex>
+				</FullWidthFlex>
 			</ContentWrap>
 			<StartYourSpace {...startYourSpace} />
 			<Footer />

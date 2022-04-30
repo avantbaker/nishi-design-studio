@@ -85,6 +85,7 @@ const BannerWrap = styled.div`
   width: 100vw;
   margin: 0 auto;
   margin-left: -${rem(26)};
+	margin-bottom: ${rem(26)};
 
   img {
     transition transform 0.5s ease-in-out;
@@ -150,6 +151,13 @@ const BodyContent = styled(Text)`
 	}
 `;
 
+const normalizeSpaceUrl = (url) => {
+	if (url.includes('/spaces/')) {
+		return url;
+	}
+	return `/spaces/${url}`;
+};
+
 const ResidencePage = ({ slug, error }) => {
 	const isTablet = useMediaQuery(queries.minTablet);
 	const [results] = useQuery({
@@ -210,85 +218,85 @@ const ResidencePage = ({ slug, error }) => {
 							px={[rem(26), rem(26)]}
 							mb={[rem(128), rem(128), rem(134)]}
 						>
-							{spaceInformation && (
-								<Flex
-									flexDirection={['column', 'column', 'row']}
-									justifyContent="space-between"
-								>
-									<Box width={[1, 1, 1 / 2]} mb={[rem(43), rem(43)]}>
-										<Flex justifyContent="space-between">
-											<Text mb={[rem(12), rem(12)]} variant="bodySmall">
-												{spaceInformation.spaceLocation}
-											</Text>
-											<Text variant="bodySmall" fontSize={rem(15)}>
-												{spaceInformation.spaceYear}
-											</Text>
-										</Flex>
-										<Text variant="headingSmall" width={['60%', '100%']}>
-											{title}
-										</Text>
-									</Box>
-									<Box width={[1, 1, 1 / 3]} pb={[rem(30), rem(30)]}>
-										<Text
-											variant="highlight"
-											width={['60%', '60%']}
-											ml={['auto', 'auto']}
-											textAlign={['right', 'right']}
-										>
-											EXPERTISE RENDERED
-										</Text>
-										<List>
-											{spacesDetailSection?.expertiseRendered &&
-												spacesDetailSection?.expertiseRendered.map((expertise, idx) => {
-													return (
-														<li key={`expertise-${expertise}-${idx}`}>
-															{expertiseRenderedMap[expertise]}
-														</li>
-													);
-												})}
-										</List>
-									</Box>
-								</Flex>
-							)}
 							{isTablet && (
 								<>
 									<GoldLineLeft alt="Gold line" src="/images/blog-lines-left.png" />
 									<GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
 								</>
 							)}
-							<BannerContainer>
-								<Image
-									quality="100"
-									src={
-										expertiseBanner
-											? expertiseBanner?.sourceUrl
-											: `/elements/residential/residence-detail.png`
-									}
-									layout="fill"
-								/>
-							</BannerContainer>
-							<Flex flexDirection={['column', 'column', 'row']}>
-								<Box width={[1, 1, 2 / 6]}>
-									<Text
-										mb={[rem(12), rem(12)]}
-										variant="highlight"
-										width={['60%', '60%']}
-									>
-										{expertiseContentTitle}
-									</Text>
-								</Box>
-								<Box width={[1, 1, 4 / 6]}>
-									<BodyContent
-										variant="body"
-										mb={[rem(47), rem(47)]}
-										color={theme.colors.textGray}
-										className="text-content"
-										dangerouslySetInnerHTML={{ __html: expertiseContent }}
-									/>
-								</Box>
-							</Flex>
-							<StyledImageGrid images={galleryOne} />
 							<SRLWrapper>
+								{spaceInformation && (
+									<Flex
+										flexDirection={['column', 'column', 'row']}
+										justifyContent="space-between"
+									>
+										<Box width={[1, 1, 1 / 2]} mb={[rem(43), rem(43)]}>
+											<Flex justifyContent="space-between">
+												<Text mb={[rem(12), rem(12)]} variant="bodySmall">
+													{spaceInformation.spaceLocation}
+												</Text>
+												<Text variant="bodySmall" fontSize={rem(15)}>
+													{spaceInformation.spaceYear}
+												</Text>
+											</Flex>
+											<Text variant="headingSmall" width={['60%', '100%']}>
+												{title}
+											</Text>
+										</Box>
+										<Box width={[1, 1, 1 / 3]} pb={[rem(30), rem(30)]}>
+											<Text
+												variant="highlight"
+												width={['60%', '60%']}
+												ml={['auto', 'auto']}
+												textAlign={['right', 'right']}
+											>
+												EXPERTISE RENDERED
+											</Text>
+											<List>
+												{spacesDetailSection?.expertiseRendered &&
+													spacesDetailSection?.expertiseRendered.map((expertise, idx) => {
+														return (
+															<li key={`expertise-${expertise}-${idx}`}>
+																{expertiseRenderedMap[expertise]}
+															</li>
+														);
+													})}
+											</List>
+										</Box>
+									</Flex>
+								)}
+								<BannerContainer>
+									<Image
+										quality="100"
+										src={
+											expertiseBanner
+												? expertiseBanner?.sourceUrl
+												: `/elements/residential/residence-detail.png`
+										}
+										layout="fill"
+									/>
+								</BannerContainer>
+								<Flex flexDirection={['column', 'column', 'row']}>
+									<Box width={[1, 1, 2 / 6]}>
+										<Text
+											mb={[rem(12), rem(12)]}
+											variant="highlight"
+											width={['60%', '60%']}
+										>
+											{expertiseContentTitle}
+										</Text>
+									</Box>
+									<Box width={[1, 1, 4 / 6]}>
+										<BodyContent
+											variant="body"
+											mb={[rem(47), rem(47)]}
+											color={theme.colors.textGray}
+											className="text-content"
+											dangerouslySetInnerHTML={{ __html: expertiseContent }}
+										/>
+									</Box>
+								</Flex>
+								<StyledImageGrid wrap={false} images={galleryOne} />
 								<BannerWrap>
 									<Image
 										quality="100"
@@ -305,22 +313,14 @@ const ResidencePage = ({ slug, error }) => {
 										layout="fill"
 									/>
 								</BannerWrap>
+								<StyledImageGrid wrap={false} images={galleryTwo} />
 							</SRLWrapper>
 						</Flex>
+
 						<BrandsParters {...brandsAndPartners} />
 						{processSlider?.processImages?.length > 0 && (
 							<DarkSlider {...processSlider} />
 						)}
-						<Flex
-							maxWidth={rem(1044)}
-							flexDirection="column"
-							margin="0 auto"
-							mt={[rem(128), rem(128), rem(134)]}
-							px={[rem(26), rem(26)]}
-							mb={[rem(128), rem(128), rem(134)]}
-						>
-							<StyledImageGrid images={galleryTwo} />
-						</Flex>
 						<Flex
 							maxWidth={rem(400)}
 							justifyContent="space-between"
@@ -331,7 +331,7 @@ const ResidencePage = ({ slug, error }) => {
 							mt={[rem(40), rem(40), rem(64)]}
 						>
 							{previous?.slug ? (
-								<Link href={`spaces/${previous.slug}`} passHref>
+								<Link href={`${normalizeSpaceUrl(previous.slug)}`} passHref>
 									<a>
 										<SecondaryButton large arrowLeft mr={[rem(40), null, null]}>
 											previous space
