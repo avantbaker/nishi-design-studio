@@ -158,6 +158,8 @@ const normalizeSpaceUrl = (url) => {
 	return `/spaces/${url}`;
 };
 
+const Placeholder = () => <div></div>;
+
 const ResidencePage = ({ slug, error }) => {
 	const isTablet = useMediaQuery(queries.minTablet);
 	const [results] = useQuery({
@@ -360,83 +362,84 @@ const ResidencePage = ({ slug, error }) => {
 	);
 };
 
-export async function getStaticPaths() {
-	// Call an external API endpoint to get posts
-	const client = initUrqlClient(
-		{
-			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-			exchanges: [dedupExchange, cacheExchange, fetchExchange],
-		},
-		true
-	);
-	const posts = await client
-		.query(
-			`
-			{
-				posts {
-					nodes {
-						id
-						title
-						slug
-						next {
-							slug
-						}
-						previous {
-							slug
-						}
-						spaceInformation {
-							spaceLocation
-							spaceYear
-							spaceFeaturedImage {
-								sourceUrl
-							}
-						}
-					}
-				}
-			}
-		`
-		)
-		.toPromise()
-		.then((result) => {
-			const { nodes } = result?.data?.posts;
-			return nodes;
-		});
-	// Get the paths we want to pre-render based on posts
-	const paths = posts?.map((post) => ({
-		params: { slug: post?.slug },
-	}));
+// export async function getStaticPaths() {
+// 	// Call an external API endpoint to get posts
+// 	const client = initUrqlClient(
+// 		{
+// 			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+// 			exchanges: [dedupExchange, cacheExchange, fetchExchange],
+// 		},
+// 		true
+// 	);
+// 	const posts = await client
+// 		.query(
+// 			`
+// 			{
+// 				posts {
+// 					nodes {
+// 						id
+// 						title
+// 						slug
+// 						next {
+// 							slug
+// 						}
+// 						previous {
+// 							slug
+// 						}
+// 						spaceInformation {
+// 							spaceLocation
+// 							spaceYear
+// 							spaceFeaturedImage {
+// 								sourceUrl
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		`
+// 		)
+// 		.toPromise()
+// 		.then((result) => {
+// 			const { nodes } = result?.data?.posts;
+// 			return nodes;
+// 		});
+// 	// Get the paths we want to pre-render based on posts
+// 	const paths = posts?.map((post) => ({
+// 		params: { slug: post?.slug },
+// 	}));
 
-	return { paths, fallback: 'blocking' };
-}
+// 	return { paths, fallback: 'blocking' };
+// }
 
-export async function getStaticProps(ctx) {
-	const { slug } = ctx?.params || {};
+export async function getInitialProps(ctx) {
+	// const { slug } = ctx?.params || {};
 
-	const ssrCache = ssrExchange({ isClient: false });
-	const client = initUrqlClient(
-		{
-			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-		},
-		true
-	);
-	let hasResult = false;
-	if (slug) {
-		await client
-			.query(SpaceDetailsQuery, { slug })
-			.toPromise()
-			.then((result) => {
-				if (result?.data?.post) {
-					hasResult = true;
-				}
-			});
-	}
+	// const ssrCache = ssrExchange({ isClient: false });
+	// const client = initUrqlClient(
+	// 	{
+	// 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+	// 		exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+	// 	},
+	// 	true
+	// );
+	// let hasResult = false;
+	// if (slug) {
+	// 	await client
+	// 		.query(SpaceDetailsQuery, { slug })
+	// 		.toPromise()
+	// 		.then((result) => {
+	// 			if (result?.data?.post) {
+	// 				hasResult = true;
+	// 			}
+	// 		});
+	// }
 
 	return {
 		props: {
-			urqlState: ssrCache.extractData(),
-			slug,
-			error: !hasResult,
+			// urqlState: ssrCache.extractData(),
+			// slug,
+			// error: !hasResult,
+			hide: true,
 		},
 		revalidate: 30,
 	};
@@ -447,4 +450,4 @@ export default withUrqlClient(
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
 	}),
 	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
-)(ResidencePage);
+)(Placeholder);
