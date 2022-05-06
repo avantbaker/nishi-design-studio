@@ -17,6 +17,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'styles/media';
 import theme from 'styles/theme';
 import { cacheExchange, dedupExchange, fetchExchange, ssrExchange, useQuery } from 'urql';
+import ComingSoon from './comingsoon';
 
 export const TopSection = styled.section`
 	position: relative;
@@ -68,9 +69,14 @@ const BottomLayout = styled.div`
 `;
 
 function Home() {
+	const showComingSoon = true;
 	const [result] = useQuery({
 		query: HomepageQuery,
 	});
+
+	if (showComingSoon) {
+		return <ComingSoon />;
+	}
 
 	const {
 		heroSlider,
@@ -85,7 +91,7 @@ function Home() {
 	const showSliderSection = slides && slides.length > 0;
 	return (
 		<motion.div {...framerOptions}>
-			<TopSection>
+			{/* <TopSection>
 				<Nav />
 				{showSliderSection && <SliderSection {...heroSlider} />}
 			</TopSection>
@@ -96,7 +102,7 @@ function Home() {
 				<SocialSection {...socialSection} />
 			</BottomLayout>
 			{newsletterSection && <SignupSection {...newsletterSection} />}
-			<Footer />
+			<Footer /> */}
 		</motion.div>
 	);
 }
