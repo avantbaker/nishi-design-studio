@@ -3,20 +3,6 @@ const HeroSliderFragment = `
 		heroTitle
 		heroSubtitle
 		caption
-		slides {
-			location
-			year
-			title
-			linkText
-			linkUrl {
-				... on Post {
-					uri
-				}
-			}
-			image {
-				sourceUrl
-			}
-		}
 		featuredPosts {
 			space {
 				... on Post {
@@ -32,6 +18,9 @@ const HeroSliderFragment = `
 						spaceYear
 						spaceFeaturedImage {
 							sourceUrl
+						}
+						spaceFeaturedImageNew {
+							url
 						}
 					}
 				}

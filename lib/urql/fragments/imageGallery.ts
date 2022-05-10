@@ -7,6 +7,9 @@ export default `
         }
         width
         height
+        imgixUrl {
+          url
+        }
       }
     }
   }

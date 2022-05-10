@@ -1,41 +1,38 @@
-export const normalizePosts = (posts = [], featured = false) => {
+const root = 'https://dev-nishi-design-studio.pantheonsite.io/';
+const path = 'wp-content/uploads/2022/03/';
+const image = 'spaces-slide-image.png';
+const DEFAULT_IMG = `${root}${path}${image}`;
+const DIMENSION_DEFAULTS = {
+	w: 1700,
+	h: 1700,
+	q: 80,
+};
+export const normalizePosts = (posts = [], { w, h, q } = DIMENSION_DEFAULTS) => {
 	if (!posts || !(posts.length > 0)) return;
 	return posts.map(({ space, ...rest }) => {
 		const CV = space || rest;
-
+		const spaceInfo = CV?.spaceInformation;
+		// console.log('Space Info: ', spaceInfo);
+		let imgUrl = getImageUrl(spaceInfo, w, h, q);
 		const result = {
 			title: CV?.title || 'New Space',
-			location: CV?.spaceInformation?.spaceLocation || 'Atlanta, GA',
-			year: CV?.spaceInformation?.year || '2022',
+			location: spaceInfo?.spaceLocation || 'Atlanta, GA',
+			year: spaceInfo?.year || '2022',
 			category: CV?.categories?.nodes?.[0]?.name || 'Uncategorized',
 			slug: CV?.slug || 'spaces',
-			imgSrc: CV?.spaceInformation?.spaceFeaturedImage?.sourceUrl,
-			src:
-				CV?.spaceInformation?.spaceFeaturedImage?.sourceUrl ||
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/spaces-slide-image.png',
-			href:
-				CV?.slug ||
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/spaces-slide-image.png',
+			imgSrc: imgUrl,
+			src: imgUrl,
+			href: CV?.slug || DEFAULT_IMG,
 		};
-
-		if (featured) {
-			console.log('Slide Info:', result);
-		}
-
 		return result;
 	});
 };
-export const normalizeSpaces = (posts = []) => {
-	if (!posts || !(posts.length > 0)) return;
-	return posts.map(({ space, ...rest }) => {
-		const CV = space || rest;
-		return {
-			title: CV?.title || 'New Space',
-			location: CV?.spaceInformation?.spaceLocation || 'Atlanta, GA',
-			year: CV?.spaceInformation?.year || '2022',
-			category: CV?.categories?.nodes?.[0]?.name || 'Uncategorized',
-			slug: CV?.slug || 'spaces',
-			imgSrc: CV?.spaceFeaturedImage?.sourceUrl,
-		};
-	});
-};
+
+function getImageUrl(spaceInfo, w = 1700, h = 1700, q = 80) {
+	const BACKUP_IMG = spaceInfo?.spaceFeaturedImage?.sourceUrl;
+	let IMGIX_URL = spaceInfo?.spaceFeaturedImageNew?.url;
+	if (IMGIX_URL) {
+		IMGIX_URL = `${IMGIX_URL}?w=${w}&h=${h}&fit=clip&q=${q}&auto=format&wm=webp`;
+	}
+	return IMGIX_URL || BACKUP_IMG;
+}

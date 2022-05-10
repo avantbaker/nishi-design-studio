@@ -43,6 +43,9 @@ export const buildPostQueryByCategory = (category?: Categories) => {
 					title
 					slug
 					spaceInformation {
+						spaceFeaturedImageNew {
+							url
+						}
 						spaceLocation
 						spaceYear
 						spaceFeaturedImage {

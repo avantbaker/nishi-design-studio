@@ -66,32 +66,57 @@ const breakpointColumnsObj = {
 	640: 1,
 };
 
-const ConditionalSRLWrapper = ({ shouldWrap, children }) => {
+const clickSide = () => {
+	setTimeout(() => {
+		const wrapper = document.querySelectorAll(`.SRLElementWrapper > img`);
+		if (wrapper && wrapper.length > 0) {
+			const image = wrapper[0] as HTMLElement;
+			image.click();
+		}
+	}, 100);
+};
+
+const callbacks = {
+	onLightboxOpened: clickSide,
+	onSlideChange: clickSide,
+};
+
+const ConditionalSRLWrapper = ({ shouldWrap, children, ...rest }) => {
 	if (!shouldWrap) return <>{children}</>;
-	console.log('Wrapping Children');
-	return <SRLWrapper style={{ width: '100%' }}>{children}</SRLWrapper>;
+	return (
+		<SRLWrapper {...rest} style={{ width: '100%' }}>
+			{children}
+		</SRLWrapper>
+	);
 };
 export default function ImageGrid({ images, wrap = true, ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
 	return images ? (
-		<ConditionalSRLWrapper shouldWrap={wrap}>
+		<ConditionalSRLWrapper callbacks={callbacks} shouldWrap={wrap}>
 			<Container {...rest}>
 				<MasonryGrid
 					breakpointCols={breakpointColumnsObj}
 					className="my-masonry-grid"
 					columnClassName="my-masonry-grid_column"
 				>
-					{images.map(({ image, width, height }, idx) => {
-						return (
+					{images.map(({ image, imgixUrl, width, height }, idx) => {
+						const ixUrl =
+							imgixUrl?.url &&
+							`${imgixUrl?.url}?w=1700&h=1700&fit=clip&q=80s&auto=format&wm=webp`;
+						return ixUrl || image?.sourceUrl ? (
 							<ImgWrapper
 								key={`image-${idx}`}
 								isMobileLarge={isMobileLarge}
 								width={width}
 								height={height}
 							>
-								<Image quality="100" layout="fill" src={image.sourceUrl} />
+								<Image
+									quality="100"
+									layout="fill"
+									src={ixUrl || image?.sourceUrl || '/logos/black/NDS-Logo-Black.svg'}
+								/>
 							</ImgWrapper>
-						);
+						) : null;
 					})}
 				</MasonryGrid>
 			</Container>

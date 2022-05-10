@@ -1,7 +1,7 @@
 export default `
   simpleHeader {
     simpleImage {
-      sourceUrl
+      url
     }
     simpleSubtitle 
     simpleTitle 

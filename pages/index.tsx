@@ -69,14 +69,9 @@ const BottomLayout = styled.div`
 `;
 
 function Home() {
-	const showComingSoon = true;
 	const [result] = useQuery({
 		query: HomepageQuery,
 	});
-
-	if (showComingSoon) {
-		return <ComingSoon />;
-	}
 
 	const {
 		heroSlider,
@@ -87,13 +82,13 @@ function Home() {
 		expertiseSection,
 	} = getPageData(result) || {};
 
-	const slides = heroSlider?.slides;
+	const slides = heroSlider?.featuredPosts;
 	const showSliderSection = slides && slides.length > 0;
 	return (
 		<motion.div {...framerOptions}>
-			{/* <TopSection>
+			<TopSection>
 				<Nav />
-				{showSliderSection && <SliderSection {...heroSlider} />}
+				{showSliderSection && <SliderSection {...heroSlider} isFeatured />}
 			</TopSection>
 			<YourSpace {...twoColumnTextSection} />
 			<ExpertiseCards {...expertiseSection} />
@@ -102,7 +97,7 @@ function Home() {
 				<SocialSection {...socialSection} />
 			</BottomLayout>
 			{newsletterSection && <SignupSection {...newsletterSection} />}
-			<Footer /> */}
+			<Footer />
 		</motion.div>
 	);
 }

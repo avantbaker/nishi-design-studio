@@ -42,7 +42,7 @@ const HeroSlider = ({ handleCategoryClick, featuredPosts }) => {
 
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
-	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts, true));
+	const [currentPosts, setCurrentPosts] = useState(normalizePosts(featuredPosts));
 
 	const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
 	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);

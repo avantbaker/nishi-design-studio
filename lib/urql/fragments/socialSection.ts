@@ -7,6 +7,9 @@ const SocialSectionFragment = `
       }
       width
       height
+      imgixUrl {
+        url
+      }
     }
     socialLinkUrl {
       title

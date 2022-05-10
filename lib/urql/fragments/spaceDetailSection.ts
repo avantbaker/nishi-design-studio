@@ -18,13 +18,13 @@ export const expertiseRenderedMap = {
 export default `
   spacesDetailSection {
     expertiseRendered
-    expertiseBanner {
-      sourceUrl
-    }
+		expertiseBannerImgix {
+			url
+		}
     expertiseContentTitle
     expertiseContent
-    expertiseBottomBanner {
-      sourceUrl
-    }
+		expertiseBottomBannerImgix {
+			url
+		}
   }
 `;

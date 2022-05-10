@@ -92,7 +92,10 @@ export default function SimpleHeader({
 					<Image
 						quality="100"
 						alt="Nishi About"
-						src={src?.sourceUrl || '/images/about-header-image.png'}
+						src={
+							`${src?.url}?w=1700&h=1700&fit=clip&q=80s&auto=format&wm=webp` ||
+							'/images/about-header-image.png'
+						}
 						layout="fill"
 					/>
 				</Box>

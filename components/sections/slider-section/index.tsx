@@ -34,11 +34,12 @@ const HeroSlider = ({
 }) => {
 	const [currentIndex, setSelectedIndex] = useState(0);
 	const isTablet = useMediaQuery(queries.minTablet);
-
-	const featuredSlides = isFeatured ? normalizePosts(featuredPosts, true) : slides;
+	const featuredSlides = isFeatured
+		? normalizePosts(featuredPosts, { w: 2560, h: 2560, q: 90 })
+		: slides;
 	const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: 1 });
-	const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-	const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+	const [, setPrevBtnEnabled] = useState(false);
+	const [, setNextBtnEnabled] = useState(false);
 
 	const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
 	const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);

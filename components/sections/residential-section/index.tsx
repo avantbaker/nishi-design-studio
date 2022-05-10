@@ -5,7 +5,7 @@ import SpaceCard, { SpaceCardBig } from 'components/common/space-card';
 import { PrimaryButton } from 'components/common/button';
 import { breakpoints } from 'styles/media';
 import { mockSpacesData } from 'pages/api/mocks';
-import { normalizePosts, normalizeSpaces } from 'components/common/hero-slider/utils';
+import { normalizePosts } from 'components/common/hero-slider/utils';
 import theme from 'styles/theme';
 
 const Container = styled.div`
@@ -61,11 +61,11 @@ export default function ResidentialSection({ posts = [], title }) {
 					>
 						{title} spaces
 					</Text>
-					{normalizePosts(posts).map((space) => {
+					{normalizePosts(posts, { w: 1200, h: 1200, q: 80 }).map((space) => {
 						return <SpaceCardBig key={space.title} {...space} />;
 					})}
 				</ContentWrap>
-				{posts.length > 5 && <PrimaryButton large>load more</PrimaryButton>}
+				{/* {posts.length > 5 && <PrimaryButton large>load more</PrimaryButton>} */}
 			</Container>
 		)
 	);

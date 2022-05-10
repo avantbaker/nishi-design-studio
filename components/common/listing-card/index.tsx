@@ -63,15 +63,6 @@ export default function ListingCard({
 	selected,
 	...rest
 }) {
-	console.log({
-		location,
-		year,
-		title,
-		href,
-		asCard,
-		className,
-		selected,
-	});
 	return (
 		<Container className={className} asCard={asCard} {...rest}>
 			<InnerContainer selected={selected}>

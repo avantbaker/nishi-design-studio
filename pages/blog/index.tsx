@@ -191,17 +191,6 @@ const EmptyBlog = styled('div')`
 `;
 
 function Blog() {
-	function handleBlogSearch() {
-		// pass query string to api
-	}
-
-	function handleChangePage() {
-		// pass query param to api
-	}
-
-	function handleFilterChange() {
-		// pass query param to api
-	}
 	const [result] = useQuery({
 		query: BlogPageQuery,
 	});
@@ -270,32 +259,30 @@ function Blog() {
 	);
 }
 
-export async function getInitialProps() {
-	// const ssrCache = ssrExchange({ isClient: false });
-	// const client = initUrqlClient(
-	// 	{
-	// 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-	// 		exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-	// 	},
-	// 	true
-	// );
+export async function getStaticProps() {
+	const ssrCache = ssrExchange({ isClient: false });
+	const client = initUrqlClient(
+		{
+			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+		},
+		true
+	);
 
-	// await client.query(BlogPageQuery).toPromise();
+	await client.query(BlogPageQuery).toPromise();
 
 	return {
 		props: {
-			// urqlState: ssrCache.extractData(),
+			urqlState: ssrCache.extractData(),
 			hide: true,
 		},
 		revalidate: 30,
 	};
 }
 
-const Placeholder = () => <div></div>;
-
 export default withUrqlClient(
 	(_) => ({
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
 	}),
 	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
-)(Placeholder);
+)(Blog);

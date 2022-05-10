@@ -158,8 +158,21 @@ const normalizeSpaceUrl = (url) => {
 	return `/spaces/${url}`;
 };
 
-const Placeholder = () => <div></div>;
+const clickSide = () => {
+	setTimeout(() => {
+		const wrapper = document.querySelectorAll(`.SRLElementWrapper > img`);
+		console.log('Slide', wrapper);
+		if (wrapper && wrapper.length > 0) {
+			const image = wrapper[0] as HTMLElement;
+			image.click();
+		}
+	}, 100);
+};
 
+const callbacks = {
+	onLightboxOpened: clickSide,
+	onSlideChange: clickSide,
+};
 const ResidencePage = ({ slug, error }) => {
 	const isTablet = useMediaQuery(queries.minTablet);
 	const [results] = useQuery({
@@ -190,6 +203,8 @@ const ResidencePage = ({ slug, error }) => {
 		expertiseContentTitle,
 		expertiseContent,
 		expertiseBottomBanner,
+		expertiseBannerImgix = {},
+		expertiseBottomBannerImgix = {},
 	} = spacesDetailSection;
 
 	const { imageSections } = imageGallery;
@@ -206,6 +221,7 @@ const ResidencePage = ({ slug, error }) => {
 			</a>
 		</Link>
 	);
+
 	return (
 		<motion.div {...framerOptions}>
 			<PageContent>
@@ -226,7 +242,7 @@ const ResidencePage = ({ slug, error }) => {
 									<GoldLineRight alt="Gold line" src="/images/blog-lines-right.png" />
 								</>
 							)}
-							<SRLWrapper>
+							<SRLWrapper callbacks={callbacks}>
 								{spaceInformation && (
 									<Flex
 										flexDirection={['column', 'column', 'row']}
@@ -271,8 +287,8 @@ const ResidencePage = ({ slug, error }) => {
 									<Image
 										quality="100"
 										src={
-											expertiseBanner
-												? expertiseBanner?.sourceUrl
+											expertiseBannerImgix
+												? expertiseBannerImgix?.url
 												: `/elements/residential/residence-detail.png`
 										}
 										layout="fill"
@@ -299,13 +315,12 @@ const ResidencePage = ({ slug, error }) => {
 									</Box>
 								</Flex>
 								<StyledImageGrid wrap={false} images={galleryOne} />
-								<BannerWrap>
+								<BannerContainer>
 									<Image
 										quality="100"
-										alt="Residential banner"
 										src={
-											expertiseBottomBanner
-												? expertiseBottomBanner.sourceUrl
+											expertiseBottomBannerImgix
+												? expertiseBottomBannerImgix?.url
 												: `${
 														isTablet
 															? '/elements/residential/residence-banner.png'
@@ -314,7 +329,7 @@ const ResidencePage = ({ slug, error }) => {
 										}
 										layout="fill"
 									/>
-								</BannerWrap>
+								</BannerContainer>
 								<StyledImageGrid wrap={false} images={galleryTwo} />
 							</SRLWrapper>
 						</Flex>
@@ -411,37 +426,37 @@ const ResidencePage = ({ slug, error }) => {
 // 	return { paths, fallback: 'blocking' };
 // }
 
-export async function getInitialProps(ctx) {
-	// const { slug } = ctx?.params || {};
+export async function getServerSideProps(ctx) {
+	const { slug } = ctx?.params || {};
 
-	// const ssrCache = ssrExchange({ isClient: false });
-	// const client = initUrqlClient(
-	// 	{
-	// 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-	// 		exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
-	// 	},
-	// 	true
-	// );
-	// let hasResult = false;
-	// if (slug) {
-	// 	await client
-	// 		.query(SpaceDetailsQuery, { slug })
-	// 		.toPromise()
-	// 		.then((result) => {
-	// 			if (result?.data?.post) {
-	// 				hasResult = true;
-	// 			}
-	// 		});
-	// }
+	const ssrCache = ssrExchange({ isClient: false });
+	const client = initUrqlClient(
+		{
+			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
+		},
+		true
+	);
+	let hasResult = false;
+	console.log('slug', slug);
+	if (slug) {
+		await client
+			.query(SpaceDetailsQuery, { slug })
+			.toPromise()
+			.then((result) => {
+				if (result?.data?.post) {
+					hasResult = true;
+				}
+			});
+	}
 
 	return {
 		props: {
-			// urqlState: ssrCache.extractData(),
-			// slug,
-			// error: !hasResult,
-			hide: true,
+			urqlState: ssrCache.extractData(),
+			slug,
+			error: !hasResult,
 		},
-		revalidate: 30,
+		// revalidate: 30,
 	};
 }
 
@@ -450,4 +465,4 @@ export default withUrqlClient(
 		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
 	}),
 	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
-)(Placeholder);
+)(ResidencePage);

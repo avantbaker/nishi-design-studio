@@ -111,7 +111,6 @@ function Residential() {
 
 	const slides = heroSlider.featuredPosts;
 	const showSliderSection = slides && slides.length > 0;
-
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>
