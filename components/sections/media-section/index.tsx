@@ -18,7 +18,11 @@ const FullWidthContainer = styled.section`
 const Container = styled.div`
 	max-width: ${rem(1440)};
 	margin: 0 auto;
-	padding: ${rem(61)} ${rem(22)} ${rem(20)} ${rem(24)};
+	padding: ${rem(61)} ${rem(22)} ${rem(40)} ${rem(24)};
+	min-height: ${rem(350)};
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
 
 	.heading {
 		white-space: nowrap;
@@ -46,26 +50,31 @@ const Container = styled.div`
 `;
 
 const CustomImageContainer = styled.div`
-	margin-right: ${rem(24)};
+	margin-right: ${rem(20)};
 	cursor: 'pointer';
-	width: '100%';
+	background-image: url(${({ src }) => src});
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 70px;
+	width: 33.333%;
 	max-width: ${rem(170)};
+	opacity: ${({ active }) => (active ? '1' : '.25')};
+
 	> div {
 		position: unset !important;
 	}
+
+	&:hover {
+		opacity: 1;
+	}
+
 	@media only screen and (min-width: ${breakpoints.tablet}) {
 		margin-right: ${rem(36)};
 	}
-`;
-const CustomImage = styled(Image)`
-	object-fit: cover;
-	width: 100% !important;
-	position: relative !important;
-	height: unset !important;
-	max-height: 48px !important;
-	opacity: ${({ active }) => (active ? '1' : '.25')};
-	&:hover {
-		opacity: 1;
+
+	&:last-child {
+		margin-right: 0;
 	}
 `;
 export default function MediaSection({
@@ -87,7 +96,7 @@ export default function MediaSection({
 				<Text
 					width={[rem(230), rem(230), 'initial']}
 					color="#fff"
-					mb={[rem(32), rem(32), rem(46)]}
+					mb={[rem(100)]}
 					variant="highlight"
 				>
 					{headline}
@@ -96,22 +105,25 @@ export default function MediaSection({
 					<Marquee text={pressContent} />
 				</Flex>
 				<Flex flexDirection={['column', 'column', 'row']}>
-					<Flex flexDirection={['row']} mb={[rem(12), 0, 0]}>
+					<Flex
+						width="100%"
+						mw={[rem(600)]}
+						flexDirection={['row']}
+						mb={[rem(12), 0, 0]}
+						mt={rem(24)}
+					>
 						{releases.map(({ pressRelease }, idx) => {
 							const { pressLogo } = pressRelease?.pressRelease;
 							return (
-								<CustomImageContainer key={`img-${idx}`}>
-									<CustomImage
-										onClick={() => {
-											setCurrentRelease(releases[idx]);
-											setActive(idx);
-										}}
-										alt="Nishi"
-										layout="fill"
-										active={!!(active === idx)}
-										src={pressLogo?.sourceUrl || '/images/press-image.png'}
-									/>
-								</CustomImageContainer>
+								<CustomImageContainer
+									onClick={() => {
+										setCurrentRelease(releases[idx]);
+										setActive(idx);
+									}}
+									src={pressLogo?.sourceUrl || '/images/press-image.png'}
+									active={!!(active === idx)}
+									key={`img-${idx}`}
+								/>
 							);
 						})}
 					</Flex>

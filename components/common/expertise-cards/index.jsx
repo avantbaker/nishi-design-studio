@@ -27,7 +27,11 @@ const Container = styled(Flex)`
 const CardGoldBadge = styled(GoldBadge)`
 	position: absolute;
 	top: -80px;
-	right: ${rem(140)};
+	right: ${rem(20)};
+
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		right: ${rem(120)};
+	}
 `;
 const Card = styled(Box)`
 	background-color: ${({ type }) =>

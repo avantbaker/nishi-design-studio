@@ -98,9 +98,9 @@ const SquareWrap = styled.div`
 	left: 0;
 	width: 100%;
 	z-index: -1;
-	max-width: ${rem(400)};
+	max-width: ${rem(346)};
 
-	@media only screen and (min-width: 406px) and (max-width: ) {
+	@media only screen and (min-width: 406px) {
 		width: ${rem(434)};
 		height: ${rem(434)};
 		padding-bottom: initial;
@@ -153,21 +153,27 @@ export default function YourSpace({ title = '', subtitle = '', body }) {
 				<Box
 					width={[1, 1, 1 / 2]}
 					flexDirection="column"
-					alignItems={['center', 'center', 'flex-end']}
+					alignItems={['flex-start', 'flex-start', 'flex-end']}
 					display="flex"
 					m="0 auto"
 					pr={[null, null, rem(32)]}
 					zIndex={1}
 				>
 					<TextContentWrap>
-						<Text mb={[rem(5), rem(5)]} variant="highlightLarger">
+						<Text mb={[rem(5), rem(5)]} fontWeight="bold" variant="sectionCaption">
 							{subtitle}
 						</Text>
 						<Flex flexWrap="wrap">
-							<Text className="your" variant="headingLarger">
+							<Text
+								className="your"
+								variant={['headingMobile', 'headingMobile', 'heading']}
+							>
 								{splitTitle[0]}
 							</Text>
-							<Text className="space-mobile" variant="headingLarger">
+							<Text
+								className="space-mobile"
+								variant={['headingMobile', 'headingMobile', 'heading']}
+							>
 								{splitTitle[1]}
 							</Text>
 						</Flex>
@@ -176,14 +182,14 @@ export default function YourSpace({ title = '', subtitle = '', body }) {
 				<Box
 					className="content-right"
 					width={[1, 1, 1 / 2]}
-					pt={[rem(48), rem(48), 'initial']}
+					pt={[rem(66), rem(66), 'initial']}
 					zIndex={1}
 				>
 					<Text
 						className="body-text"
 						width={[null, null, null, rem(490)]}
 						color="black"
-						variant="bodyLarge"
+						variant="body"
 					>
 						{body}
 					</Text>

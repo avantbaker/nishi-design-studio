@@ -9,7 +9,7 @@ import { PrimaryButton } from 'components/common/button';
 import { breakpoints, queries } from 'styles/media';
 import useMediaQuery from 'hooks/use-media-query';
 import { useForm } from '@formspree/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const Container = styled.div`
 	background: ${theme.colors.brown};
@@ -116,6 +116,15 @@ export default function SignupSection({
 			}, 3000);
 		}
 	}, [state]);
+
+	const newsletterImage = useMemo(() => {
+		const hasImage = image && image?.url;
+		const qs = '?w=1770&h=1770&q=90&fit=clip';
+		const currentImage = hasImage && `${hasImage}${qs}`;
+		const DETAULT_IMG = `https://nishidesignstudio.imgix.net/something-socal/12.jpg${qs}`;
+		return currentImage || DETAULT_IMG;
+	}, [image]);
+
 	return (
 		<Container>
 			<Flex flexDirection="column" maxWidth="890px" m="0 auto">
@@ -153,7 +162,7 @@ export default function SignupSection({
 							quality="100"
 							className="center-image"
 							alt="Join the newsletter"
-							src={image?.sourceUrl || '/images/signup-bg-desktop.jpg'}
+							src={newsletterImage}
 							layout="fixed"
 							width="890px"
 							height="466px"
@@ -163,7 +172,7 @@ export default function SignupSection({
 							quality="100"
 							className="center-image"
 							alt="Join the newsletter"
-							src="/images/signup-bg-mobile.jpg"
+							src={newsletterImage}
 							width="446px"
 							height="424px"
 						/>

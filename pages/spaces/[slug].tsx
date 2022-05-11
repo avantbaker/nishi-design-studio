@@ -336,7 +336,7 @@ const ResidencePage = ({ slug, error }) => {
 
 						<BrandsParters {...brandsAndPartners} />
 						{processSlider?.processImages?.length > 0 && (
-							<DarkSlider {...processSlider} />
+							<DarkSlider {...processSlider} useDefaults={true} />
 						)}
 						<Flex
 							maxWidth={rem(400)}

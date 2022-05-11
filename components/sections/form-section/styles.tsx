@@ -15,6 +15,7 @@ export const StyledField = styled(Field)`
 	line-height: ${rem(50)};
 	color: ${theme.colors.black};
 	margin-bottom: ${rem(3)};
+	min-height: ${rem(50)};
 
 	::placeholder {
 		color: ${rgba(215, 139, 50, 0.57)};

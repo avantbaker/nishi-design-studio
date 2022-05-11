@@ -118,14 +118,61 @@ const convertToPercentages = (_, idx, arr) => {
 	return `${((idx + 1) / arr.length) * 100}%`;
 };
 
+const DEFAULT_SLIDES = [
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/renderings.jpeg',
+		},
+		caption: 'Renderings',
+	},
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/project-management-scaled.jpeg',
+		},
+		caption: 'Project Management',
+	},
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/room-boards-approval-scaled.jpeg',
+		},
+		caption: 'Room Boards Approval',
+	},
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/design-book-scaled.jpeg',
+		},
+		caption: 'Design Book',
+	},
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/space-planning-scaled.jpeg',
+		},
+		caption: 'Space Planning',
+	},
+	{
+		image: {
+			sourceUrl:
+				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/trade-partners-100s-more-scaled.jpeg',
+		},
+		caption: 'Trading Partners + 100s More',
+	},
+];
+
 const DarkSlider = ({
 	processTitle: title,
 	processDescription: description,
 	processImages: images,
+	useDefaults = false,
 }) => {
 	const { currentIndex, scrollPrev, scrollNext, emblaRef, emblaApi } =
 		useCustomCarousel();
 	const pagerMap = images && images.map(convertToPercentages);
+	const processImages = useDefaults ? DEFAULT_SLIDES : images;
 	return (
 		<>
 			<Container>
@@ -159,8 +206,8 @@ const DarkSlider = ({
 				</Flex>
 				<EmblaParent className="embla" ref={emblaRef}>
 					<EmblaContainer className="embla__container">
-						{images &&
-							images.map(({ image }, idx) => (
+						{processImages &&
+							processImages.map(({ image }, idx) => (
 								<StyledDarkCard
 									className={idx === currentIndex && 'active'}
 									key={`idx-${idx}`}
@@ -192,7 +239,7 @@ const DarkSlider = ({
 						variant={['processTitle']}
 						color={theme.colors.orange}
 					>
-						{`${images[currentIndex]?.caption || ''}`}
+						{`${processImages[currentIndex]?.caption || ''}`}
 					</Text>
 				</Flex>
 				<Flex
@@ -216,8 +263,8 @@ const DarkSlider = ({
 						ml="auto"
 					>
 						<StyledPagerList lineWidth={pagerMap[currentIndex]}>
-							{images &&
-								images.map(({ image }, idx) => {
+							{processImages &&
+								processImages.map(({ image }, idx) => {
 									return (
 										<li
 											key={`idx-${idx}`}

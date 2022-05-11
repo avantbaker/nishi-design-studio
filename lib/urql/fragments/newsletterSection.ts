@@ -2,7 +2,7 @@ const NewsletterSectionFragment = `
   newsletterSection {
     newsletterTitle
     newsletterImage {
-      sourceUrl
+      url
     }
   }
 `;

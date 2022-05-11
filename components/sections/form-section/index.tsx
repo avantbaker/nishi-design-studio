@@ -2,8 +2,9 @@ import Text from 'components/common/text';
 import { States } from 'components/sections/form-section/states';
 import { ErrorMessage, Form, useFormikContext } from 'formik';
 import { rem } from 'polished';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
+import { breakpoints } from 'styles/media';
 import theme from 'styles/theme';
 import { designStyles, exteriorSpaces, interiorSpaces, projectType } from './formConfigs';
 import {
@@ -51,14 +52,22 @@ function renderFormGroup(formGroup = []) {
 		})
 	);
 }
+
+const SecondaryFormGroup = styled(FormGroup)`
+	flex-direction: column;
+
+	@media only screen and (min-width: ${breakpoints.tablet}) {
+		flex-direction: row;
+	}
+`;
 export default function FormSectionComponent() {
 	const { errors } = useFormikContext();
 	useEffect(() => {
 		console.log('Errors:', errors);
-
 		return () => {};
 	}, [errors]);
-
+	const date1ref = useRef<HTMLInputElement>();
+	const date2ref = useRef<HTMLInputElement>();
 	return (
 		<Container>
 			<StyledForm>
@@ -133,7 +142,7 @@ export default function FormSectionComponent() {
 					>
 						{renderFormGroup(projectType)}
 					</FormGroupRadio>
-					<FormGroup>
+					<SecondaryFormGroup>
 						<StyledField
 							type="text"
 							name="pSquareFootage"
@@ -144,11 +153,23 @@ export default function FormSectionComponent() {
 							name="sSquareFootage"
 							placeholder="Space Sq. Footage"
 						/>
-						<StyledField type="date" name="startDate" placeholder="Proposed Start Date" />
-						<StyledField type="date" name="endDate" placeholder="Ideal Completion Date" />
+						<StyledField
+							type="text"
+							name="startDate"
+							onFocus={(e) => (e.target.type = 'date')}
+							onBlur={(e) => (e.target.type = 'text')}
+							placeholder="Proposed Start Date"
+						/>
+						<StyledField
+							type="text"
+							name="endDate"
+							onFocus={(e) => (e.target.type = 'date')}
+							onBlur={(e) => (e.target.type = 'text')}
+							placeholder="Ideal Completion Date"
+						/>
 						<StyledField type="text" name="architect" placeholder="Architect" />
 						<StyledField type="text" name="contractor" placeholder="Contractor" />
-					</FormGroup>
+					</SecondaryFormGroup>
 				</FormSection>
 				<FormSection>
 					<FormSubheading>

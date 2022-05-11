@@ -80,6 +80,7 @@ function Home() {
 		socialSection,
 		newsletterSection,
 		expertiseSection,
+		testimonialsSection,
 	} = getPageData(result) || {};
 
 	const slides = heroSlider?.featuredPosts;
@@ -92,6 +93,7 @@ function Home() {
 			</TopSection>
 			<YourSpace {...twoColumnTextSection} />
 			<ExpertiseCards {...expertiseSection} />
+			<MediaSection {...testimonialsSection} />
 			<BottomLayout>
 				<StartYourSpace {...startYourSpace} />
 				<SocialSection {...socialSection} />
