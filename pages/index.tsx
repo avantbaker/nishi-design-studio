@@ -85,6 +85,7 @@ function Home() {
 
 	const slides = heroSlider?.featuredPosts;
 	const showSliderSection = slides && slides.length > 0;
+	console.log('Social Section: ', socialSection);
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>

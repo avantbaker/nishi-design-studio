@@ -89,8 +89,10 @@ const ConditionalSRLWrapper = ({ shouldWrap, children, ...rest }) => {
 		</SRLWrapper>
 	);
 };
-export default function ImageGrid({ images, wrap = true, ...rest }) {
+export default function ImageGrid({ images, wrap = true, defaults, ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
+	const finalImages = defaults?.length > 0 ? defaults : images;
+	console.log('defaults: ', defaults);
 	return images ? (
 		<ConditionalSRLWrapper callbacks={callbacks} shouldWrap={wrap}>
 			<Container {...rest}>
@@ -99,7 +101,8 @@ export default function ImageGrid({ images, wrap = true, ...rest }) {
 					className="my-masonry-grid"
 					columnClassName="my-masonry-grid_column"
 				>
-					{images.map(({ image, imgixUrl, width, height }, idx) => {
+					{finalImages.map(({ image, imgixUrl, width, height }, idx) => {
+						console.log('imgixUrl: ', imgixUrl.url, width, height);
 						const ixUrl =
 							imgixUrl?.url &&
 							`${imgixUrl?.url}?w=1700&h=1700&fit=clip&q=80s&auto=format&wm=webp`;
@@ -113,6 +116,8 @@ export default function ImageGrid({ images, wrap = true, ...rest }) {
 								<Image
 									quality="100"
 									layout="fill"
+									placeholder="blur"
+									blurDataURL={ixUrl}
 									src={ixUrl || image?.sourceUrl || '/logos/black/NDS-Logo-Black.svg'}
 								/>
 							</ImgWrapper>

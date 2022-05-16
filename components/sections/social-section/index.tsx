@@ -28,7 +28,53 @@ const Container = styled.section`
 	}
 `;
 
+const DEFAULT_IMAGES = [
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-masculine/2.jpg',
+		},
+		width: 342,
+		height: 452,
+	},
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-grand/11.jpg',
+		},
+		width: 342,
+		height: 226,
+	},
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-grand/2.jpg',
+		},
+		width: 342,
+		height: 452,
+	},
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-socal/27.jpg',
+		},
+		width: 342,
+		height: 323,
+	},
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-socal/9.jpg',
+		},
+		width: 342,
+		height: 549,
+	},
+	{
+		imgixUrl: {
+			url: 'https://nishidesignstudio.imgix.net/something-hollywood/3.jpg',
+		},
+		width: 342,
+		height: 323,
+	},
+];
+
 export default function SocialSection({
+	useDefaults = false,
 	socialTitle: title,
 	socialLinkUrl: link,
 	socialImages: images,
@@ -45,7 +91,7 @@ export default function SocialSection({
 					</a>
 				</Link>
 			</Flex>
-			<ImageGrid images={images} />
+			<ImageGrid images={images} defaults={useDefaults && DEFAULT_IMAGES} />
 			<a className="insta-link" target="_blank">
 				<SecondaryButton mt={[rem(16), rem(16), rem(10)]} ml="auto" mr="auto" large>
 					{link?.title}
