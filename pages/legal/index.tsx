@@ -27,6 +27,14 @@ const Container = styled.section`
 	}
 `;
 
+const LegalText = styled(Text)`
+	[data-custom-class='body'] {
+		div {
+			margin-bottom: ${rem(24)};
+		}
+	}
+`;
+
 function Legal() {
 	const [results] = useQuery({
 		query: LegalPageQuery,
@@ -77,7 +85,10 @@ function Legal() {
 							</Text>
 						</Box>
 						<Box width={[1, 1, 3 / 4]}>
-							<Text variant="body" dangerouslySetInnerHTML={{ __html: tncContent }} />
+							<LegalText
+								variant="body"
+								dangerouslySetInnerHTML={{ __html: tncContent }}
+							/>
 						</Box>
 					</Flex>
 					<Flex flexDirection={['column', 'column', 'row']}>
@@ -87,7 +98,10 @@ function Legal() {
 							</Text>
 						</Box>
 						<Box width={[1, 1, 3 / 4]}>
-							<Text variant="body" dangerouslySetInnerHTML={{ __html: privacyContent }} />
+							<LegalText
+								variant="body"
+								dangerouslySetInnerHTML={{ __html: privacyContent }}
+							/>
 						</Box>
 					</Flex>
 				</Container>

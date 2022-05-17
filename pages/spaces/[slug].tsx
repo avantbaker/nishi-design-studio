@@ -273,11 +273,7 @@ const ResidencePage = ({ slug, error }) => {
 											<List>
 												{spacesDetailSection?.expertiseRendered &&
 													spacesDetailSection?.expertiseRendered.map((expertise, idx) => {
-														return (
-															<li key={`expertise-${expertise}-${idx}`}>
-																{expertiseRenderedMap[expertise]}
-															</li>
-														);
+														return <li key={`expertise-rendered-${idx}`}>{expertise}</li>;
 													})}
 											</List>
 										</Box>
