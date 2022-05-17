@@ -373,56 +373,56 @@ const ResidencePage = ({ slug, error }) => {
 	);
 };
 
-// export async function getStaticPaths() {
-// 	// Call an external API endpoint to get posts
-// 	const client = initUrqlClient(
-// 		{
-// 			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-// 			exchanges: [dedupExchange, cacheExchange, fetchExchange],
-// 		},
-// 		true
-// 	);
-// 	const posts = await client
-// 		.query(
-// 			`
-// 			{
-// 				posts {
-// 					nodes {
-// 						id
-// 						title
-// 						slug
-// 						next {
-// 							slug
-// 						}
-// 						previous {
-// 							slug
-// 						}
-// 						spaceInformation {
-// 							spaceLocation
-// 							spaceYear
-// 							spaceFeaturedImage {
-// 								sourceUrl
-// 							}
-// 						}
-// 					}
-// 				}
-// 			}
-// 		`
-// 		)
-// 		.toPromise()
-// 		.then((result) => {
-// 			const { nodes } = result?.data?.posts;
-// 			return nodes;
-// 		});
-// 	// Get the paths we want to pre-render based on posts
-// 	const paths = posts?.map((post) => ({
-// 		params: { slug: post?.slug },
-// 	}));
+export async function getStaticPaths() {
+	// Call an external API endpoint to get posts
+	const client = initUrqlClient(
+		{
+			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			exchanges: [dedupExchange, cacheExchange, fetchExchange],
+		},
+		true
+	);
+	const posts = await client
+		.query(
+			`
+			{
+				posts {
+					nodes {
+						id
+						title
+						slug
+						next {
+							slug
+						}
+						previous {
+							slug
+						}
+						spaceInformation {
+							spaceLocation
+							spaceYear
+							spaceFeaturedImage {
+								sourceUrl
+							}
+						}
+					}
+				}
+			}
+		`
+		)
+		.toPromise()
+		.then((result) => {
+			const { nodes } = result?.data?.posts;
+			return nodes;
+		});
+	// Get the paths we want to pre-render based on posts
+	const paths = posts?.map((post) => ({
+		params: { slug: post?.slug },
+	}));
 
-// 	return { paths, fallback: 'blocking' };
-// }
+	return { paths, fallback: 'blocking' };
+}
 
-export async function getServerSideProps(ctx) {
+export async function getStaticProps(ctx) {
 	const { slug } = ctx?.params || {};
 
 	const ssrCache = ssrExchange({ isClient: false });
