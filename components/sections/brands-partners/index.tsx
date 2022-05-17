@@ -149,80 +149,82 @@ export default function BrandsPartners({
 	brandServices: services,
 }) {
 	return (
-		<FullWidthContainer>
-			<Container>
-				<StyledBlackBadge />
-				<SquareWrap>
-					<Square>
-						<img src="/images/triangle-orange.png" />
-					</Square>
-				</SquareWrap>
-				<Box
-					width={[1, 1, 1 / 2]}
-					className="text-content"
-					flexDirection="column"
-					alignItems="flex-end"
-					display="flex"
-					m="0 auto"
-					zIndex={1}
-				>
-					<Flex flexWrap="wrap" mt={[rem(72), rem(72), rem(24)]}>
-						<Text
-							className="your"
-							variant={['headingMobile', 'headingMobile', 'heading']}
-						>
-							{titleOne}
-						</Text>
-						<Text
-							className="space-mobile"
-							variant={['headingMobile', 'headingMobile', 'heading']}
-						>
-							{titleTwo}
-						</Text>
-					</Flex>
-				</Box>
-				<Box
-					className="content-right"
-					width={[1, 1, 1 / 2]}
-					pt={[rem(48), rem(48), 'initial']}
-					justifyContent={[null, null, 'center']}
-				>
-					<Flex pt={[null, null, rem(32)]} flexDirection={['column', 'column', 'row']}>
-						{products && (
-							<Flex flexDirection="column" mb={[rem(40), rem(40), null]} mr={[rem(20)]}>
-								<Text mb={[rem(18), rem(18)]} className="body-text" variant="highlight">
-									PRODUCTS
-								</Text>
-								<List>
-									{products.map(({ partner }) => {
-										return (
-											<Text as="li" variant="bodySmall" key={`product-${partner}`}>
-												{partner}
-											</Text>
-										);
-									})}
-								</List>
-							</Flex>
-						)}
-						{services && (
-							<Flex flexDirection="column">
-								<Text mb={[rem(18), rem(18)]} variant="highlight">
-									SERVICES
-								</Text>
-								<List>
-									{services.map(({ service }) => {
-										return (
-											<Text as="li" variant="bodySmall" key={`service-${service}`}>
-												{service}
-											</Text>
-										);
-									})}
-								</List>
-							</Flex>
-						)}
-					</Flex>
-				</Box>
-			</Container>
-		</FullWidthContainer>
+		(products || services) && (
+			<FullWidthContainer>
+				<Container>
+					<StyledBlackBadge />
+					<SquareWrap>
+						<Square>
+							<img src="/images/triangle-orange.png" />
+						</Square>
+					</SquareWrap>
+					<Box
+						width={[1, 1, 1 / 2]}
+						className="text-content"
+						flexDirection="column"
+						alignItems="flex-end"
+						display="flex"
+						m="0 auto"
+						zIndex={1}
+					>
+						<Flex flexWrap="wrap" mt={[rem(72), rem(72), rem(24)]}>
+							<Text
+								className="your"
+								variant={['headingMobile', 'headingMobile', 'heading']}
+							>
+								{titleOne}
+							</Text>
+							<Text
+								className="space-mobile"
+								variant={['headingMobile', 'headingMobile', 'heading']}
+							>
+								{titleTwo}
+							</Text>
+						</Flex>
+					</Box>
+					<Box
+						className="content-right"
+						width={[1, 1, 1 / 2]}
+						pt={[rem(48), rem(48), 'initial']}
+						justifyContent={[null, null, 'center']}
+					>
+						<Flex pt={[null, null, rem(32)]} flexDirection={['column', 'column', 'row']}>
+							{products && (
+								<Flex flexDirection="column" mb={[rem(40), rem(40), null]} mr={[rem(20)]}>
+									<Text mb={[rem(18), rem(18)]} className="body-text" variant="highlight">
+										PRODUCTS
+									</Text>
+									<List>
+										{products.map(({ partner }) => {
+											return (
+												<Text as="li" variant="bodySmall" key={`product-${partner}`}>
+													{partner}
+												</Text>
+											);
+										})}
+									</List>
+								</Flex>
+							)}
+							{services && (
+								<Flex flexDirection="column">
+									<Text mb={[rem(18), rem(18)]} variant="highlight">
+										SERVICES
+									</Text>
+									<List>
+										{services.map(({ service }) => {
+											return (
+												<Text as="li" variant="bodySmall" key={`service-${service}`}>
+													{service}
+												</Text>
+											);
+										})}
+									</List>
+								</Flex>
+							)}
+						</Flex>
+					</Box>
+				</Container>
+			</FullWidthContainer>
+		)
 	);
 }
