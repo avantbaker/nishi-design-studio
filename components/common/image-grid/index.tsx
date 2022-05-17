@@ -89,7 +89,7 @@ const ConditionalSRLWrapper = ({ shouldWrap, children, ...rest }) => {
 		</SRLWrapper>
 	);
 };
-export default function ImageGrid({ images, wrap = true, defaults, ...rest }) {
+export default function ImageGrid({ images, wrap = true, defaults = [], ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
 	const finalImages = defaults?.length > 0 ? defaults : images;
 	console.log('defaults: ', defaults);
