@@ -12,7 +12,6 @@ export const normalizePosts = (posts = [], { w, h, q } = DIMENSION_DEFAULTS) => 
 	return posts.map(({ space, ...rest }) => {
 		const CV = space || rest;
 		const spaceInfo = CV?.spaceInformation;
-		// console.log('Space Info: ', spaceInfo);
 		let imgUrl = getImageUrl(spaceInfo, w, h, q);
 		const result = {
 			title: CV?.title || 'New Space',

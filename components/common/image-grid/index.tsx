@@ -92,7 +92,6 @@ const ConditionalSRLWrapper = ({ shouldWrap, children, ...rest }) => {
 export default function ImageGrid({ images, wrap = true, defaults = [], ...rest }) {
 	const isMobileLarge = useMediaQuery(queries.minMobileLarge);
 	const finalImages = defaults?.length > 0 ? defaults : images;
-	console.log('defaults: ', defaults);
 	return images ? (
 		<ConditionalSRLWrapper callbacks={callbacks} shouldWrap={wrap}>
 			<Container {...rest}>
@@ -102,11 +101,10 @@ export default function ImageGrid({ images, wrap = true, defaults = [], ...rest 
 					columnClassName="my-masonry-grid_column"
 				>
 					{finalImages.map(({ image, imgixUrl, width, height }, idx) => {
-						console.log('imgixUrl: ', imgixUrl.url, width, height);
 						const ixUrl =
 							imgixUrl?.url &&
 							`${imgixUrl?.url}?w=1700&h=1700&fit=clip&q=80s&auto=format&wm=webp`;
-						return ixUrl || image?.sourceUrl ? (
+						return ixUrl ? (
 							<ImgWrapper
 								key={`image-${idx}`}
 								isMobileLarge={isMobileLarge}
@@ -118,7 +116,7 @@ export default function ImageGrid({ images, wrap = true, defaults = [], ...rest 
 									layout="fill"
 									placeholder="blur"
 									blurDataURL={ixUrl}
-									src={ixUrl || image?.sourceUrl || '/logos/black/NDS-Logo-Black.svg'}
+									src={ixUrl}
 								/>
 							</ImgWrapper>
 						) : null;

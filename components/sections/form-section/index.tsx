@@ -63,7 +63,6 @@ const SecondaryFormGroup = styled(FormGroup)`
 export default function FormSectionComponent() {
 	const { errors } = useFormikContext();
 	useEffect(() => {
-		console.log('Errors:', errors);
 		return () => {};
 	}, [errors]);
 	const date1ref = useRef<HTMLInputElement>();

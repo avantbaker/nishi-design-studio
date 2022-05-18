@@ -161,7 +161,6 @@ const normalizeSpaceUrl = (url) => {
 const clickSide = () => {
 	setTimeout(() => {
 		const wrapper = document.querySelectorAll(`.SRLElementWrapper > img`);
-		console.log('Slide', wrapper);
 		if (wrapper && wrapper.length > 0) {
 			const image = wrapper[0] as HTMLElement;
 			image.click();
@@ -373,56 +372,56 @@ const ResidencePage = ({ slug, error }) => {
 	);
 };
 
-export async function getStaticPaths() {
-	// Call an external API endpoint to get posts
-	const client = initUrqlClient(
-		{
-			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
-			exchanges: [dedupExchange, cacheExchange, fetchExchange],
-		},
-		true
-	);
-	const posts = await client
-		.query(
-			`
-			{
-				posts {
-					nodes {
-						id
-						title
-						slug
-						next {
-							slug
-						}
-						previous {
-							slug
-						}
-						spaceInformation {
-							spaceLocation
-							spaceYear
-							spaceFeaturedImage {
-								sourceUrl
-							}
-						}
-					}
-				}
-			}
-		`
-		)
-		.toPromise()
-		.then((result) => {
-			const { nodes } = result?.data?.posts;
-			return nodes;
-		});
-	// Get the paths we want to pre-render based on posts
-	const paths = posts?.map((post) => ({
-		params: { slug: post?.slug },
-	}));
+// export async function getStaticPaths() {
+// 	// Call an external API endpoint to get posts
+// 	const client = initUrqlClient(
+// 		{
+// 			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+// 			exchanges: [dedupExchange, cacheExchange, fetchExchange],
+// 		},
+// 		true
+// 	);
+// 	const posts = await client
+// 		.query(
+// 			`
+// 			{
+// 				posts {
+// 					nodes {
+// 						id
+// 						title
+// 						slug
+// 						next {
+// 							slug
+// 						}
+// 						previous {
+// 							slug
+// 						}
+// 						spaceInformation {
+// 							spaceLocation
+// 							spaceYear
+// 							spaceFeaturedImage {
+// 								sourceUrl
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		`
+// 		)
+// 		.toPromise()
+// 		.then((result) => {
+// 			const { nodes } = result?.data?.posts;
+// 			return nodes;
+// 		});
+// 	// Get the paths we want to pre-render based on posts
+// 	const paths = posts?.map((post) => ({
+// 		params: { slug: post?.slug },
+// 	}));
 
-	return { paths, fallback: 'blocking' };
-}
+// 	return { paths, fallback: 'blocking' };
+// }
 
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
 	const { slug } = ctx?.params || {};
 
 	const ssrCache = ssrExchange({ isClient: false });
@@ -434,7 +433,6 @@ export async function getStaticProps(ctx) {
 		true
 	);
 	let hasResult = false;
-	console.log('slug', slug);
 	if (slug) {
 		await client
 			.query(SpaceDetailsQuery, { slug })
@@ -452,7 +450,7 @@ export async function getStaticProps(ctx) {
 			slug,
 			error: !hasResult,
 		},
-		// revalidate: 30,
+		revalidate: 30,
 	};
 }
 
