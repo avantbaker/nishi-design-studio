@@ -450,7 +450,7 @@ export async function getServerSideProps(ctx) {
 			slug,
 			error: !hasResult,
 		},
-		revalidate: 30,
+		// revalidate: 30,
 	};
 }
 
