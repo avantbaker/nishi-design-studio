@@ -73,32 +73,33 @@ function Home() {
 		query: HomepageQuery,
 	});
 
-	// const {
-	// 	heroSlider,
-	// 	twoColumnTextSection,
-	// 	startYourSpace,
-	// 	socialSection,
-	// 	newsletterSection,
-	// 	expertiseSection,
-	// 	testimonialsSection,
-	// } = getPageData(result) || {};
+	const {
+		heroSlider,
+		twoColumnTextSection,
+		startYourSpace,
+		socialSection,
+		newsletterSection,
+		expertiseSection,
+		testimonialsSection,
+	} = getPageData(result) || {};
 
-	// const slides = heroSlider?.featuredPosts;
-	// const showSliderSection = slides && slides.length > 0;
+	const slides = heroSlider?.featuredPosts;
+	const showSliderSection = slides && slides.length > 0;
+
 	return (
 		<motion.div {...framerOptions}>
 			<TopSection>
 				<Nav />
-				{/* {showSliderSection && <SliderSection {...heroSlider} isFeatured />} */}
+				{showSliderSection && <SliderSection {...heroSlider} isFeatured />}
 			</TopSection>
-			{/* <YourSpace {...twoColumnTextSection} />
-			<ExpertiseCards {...expertiseSection} /> */}
-			{/* <MediaSection {...testimonialsSection} /> */}
+			<YourSpace {...twoColumnTextSection} />
+			<ExpertiseCards {...expertiseSection} />
+			<MediaSection {...testimonialsSection} />
 			<BottomLayout>
-				{/* <StartYourSpace {...startYourSpace} />
-				<SocialSection {...socialSection} /> */}
+				<StartYourSpace {...startYourSpace} />
+				<SocialSection {...socialSection} />
 			</BottomLayout>
-			{/* {newsletterSection && <SignupSection {...newsletterSection} />} */}
+			{newsletterSection && <SignupSection {...newsletterSection} />}
 			<Footer />
 		</motion.div>
 	);
