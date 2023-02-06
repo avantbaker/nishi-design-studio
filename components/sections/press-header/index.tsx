@@ -61,7 +61,7 @@ const CustomImage = styled(Image)`
 export default function PressHeader({
 	pressfeaturedimg: img = {
 		sourceUrl:
-			'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/beaver-or-storm4.jpg',
+			'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/beaver-or-storm4.jpg',
 	},
 	pressfeaturedpost: post,
 	presstestimonial:

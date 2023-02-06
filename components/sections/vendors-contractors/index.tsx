@@ -135,7 +135,7 @@ export default function VendorsContractors({
 	vendorscontent:
 		content = '<p><b> </b><span style="font-weight: 400;">It takes a monumental team effort to construct a firm, functional, and fetching space. That’s why we like to partner with the best of the best when it comes to our projects. If you’re looking for a team to finish the interiors of your new build or have a fabulous new line of throw pillows, drop us a line! We’d love to talk shop.</span></p>\n',
 	vendorslink: link = {
-		url: 'https://dev-nishi-design-studio.pantheonsite.io/contact/',
+		url: 'https://live-nishi-design-studio.pantheonsite.io/contact/',
 		title: 'connect with us',
 	},
 	vendorstitlelineone: lineOne = 'vendors +',

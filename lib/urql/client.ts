@@ -10,7 +10,7 @@ const isServerSide = typeof window === undefined;
 const ssrCache = ssrExchange({ isClient: !isServerSide });
 
 const clientConfig = {
-	url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+	url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 	exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
 	fetchOptions: () => {
 		return {

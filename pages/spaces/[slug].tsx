@@ -376,7 +376,7 @@ const ResidencePage = ({ slug, error }) => {
 // 	// Call an external API endpoint to get posts
 // 	const client = initUrqlClient(
 // 		{
-// 			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+// 			url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 // 			exchanges: [dedupExchange, cacheExchange, fetchExchange],
 // 		},
 // 		true
@@ -427,7 +427,7 @@ export async function getServerSideProps(ctx) {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
-			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
 		},
 		true
@@ -456,7 +456,7 @@ export async function getServerSideProps(ctx) {
 
 export default withUrqlClient(
 	(_) => ({
-		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+		url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 	}),
 	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
 )(ResidencePage);

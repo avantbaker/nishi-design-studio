@@ -122,42 +122,42 @@ const DEFAULT_SLIDES = [
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/renderings.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/renderings.jpeg',
 		},
 		caption: 'Renderings',
 	},
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/project-management-scaled.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/project-management-scaled.jpeg',
 		},
 		caption: 'Project Management',
 	},
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/room-boards-approval-scaled.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/room-boards-approval-scaled.jpeg',
 		},
 		caption: 'Room Boards Approval',
 	},
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/design-book-scaled.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/design-book-scaled.jpeg',
 		},
 		caption: 'Design Book',
 	},
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/space-planning-scaled.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/space-planning-scaled.jpeg',
 		},
 		caption: 'Space Planning',
 	},
 	{
 		image: {
 			sourceUrl:
-				'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/trade-partners-100s-more-scaled.jpeg',
+				'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/04/trade-partners-100s-more-scaled.jpeg',
 		},
 		caption: 'Trading Partners + 100s More',
 	},

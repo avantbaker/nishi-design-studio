@@ -1,4 +1,4 @@
-const root = 'https://dev-nishi-design-studio.pantheonsite.io/';
+const root = 'https://live-nishi-design-studio.pantheonsite.io/';
 const path = 'wp-content/uploads/2022/03/';
 const image = 'spaces-slide-image.png';
 const DEFAULT_IMG = `${root}${path}${image}`;

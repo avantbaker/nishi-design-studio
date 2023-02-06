@@ -136,7 +136,7 @@ export default function Designers({
 	designerscontent:
 		content = '<p><span style="font-weight: 400;">If you’re a believer that &#8220;more is more&#8221; and something about championing humanity through design is what gets you out of bed in the morning, we might have something in common. We’re always on the lookout for kind people with a keen eye. Reach out to learn more about career opportunities. </span></p>\n',
 	designerslink: link = {
-		url: 'https://dev-nishi-design-studio.pantheonsite.io/contact/',
+		url: 'https://live-nishi-design-studio.pantheonsite.io/contact/',
 		title: 'career inquiries',
 		__typename: 'AcfLink',
 	},

@@ -52,7 +52,7 @@ export default function TeamCard({
 	teamCaption: description = 'Does amazing things for Homes',
 	teamImage: src = {
 		sourceUrl:
-			'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/nishi-profile.png',
+			'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/nishi-profile.png',
 	},
 	teamTitle: title = 'CEO',
 	...rest

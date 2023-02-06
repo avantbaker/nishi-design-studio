@@ -76,7 +76,7 @@ export default function MeetTheBoss({
 		contentDescription = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper odio eunum dignissim porta.</p>\n',
 	imgOverlayImage: img = {
 		sourceUrl:
-			'https://dev-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/nishi-profile.png',
+			'https://live-nishi-design-studio.pantheonsite.io/wp-content/uploads/2022/03/nishi-profile.png',
 	},
 	imgOverlayLineOne: line1 = 'nishi',
 	imgOverlayLineTwo: line2 = 'donovan',

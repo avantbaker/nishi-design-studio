@@ -263,7 +263,7 @@ export async function getStaticProps() {
 	const ssrCache = ssrExchange({ isClient: false });
 	const client = initUrqlClient(
 		{
-			url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+			url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 			exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
 		},
 		true
@@ -282,7 +282,7 @@ export async function getStaticProps() {
 
 export default withUrqlClient(
 	(_) => ({
-		url: 'https://dev-nishi-design-studio.pantheonsite.io/graphql',
+		url: 'https://live-nishi-design-studio.pantheonsite.io/graphql',
 	}),
 	{ ssr: false, staleWhileRevalidate: true } // Important so we don't wrap our component in getInitialProps
 )(Blog);
