@@ -56,6 +56,7 @@ export function GoogleFormSection() {
             PROJECT SPECS
           </Text>
           <RadioGroup id="342455953" mt={rem(12)} mb={rem(48)} />
+          <RadioGroup id="1459655826" mt={rem(12)} mb={rem(48)} />
           <SecondaryFormGroup>
             <Input id="565594435" placeholder="Property Sq. Footage" />
             <Input id="1065012954" placeholder="Design Space Square Footage" />
@@ -80,9 +81,6 @@ export function GoogleFormSection() {
           <CheckboxGroup id="1634221037" mt={rem(12)} mb={rem(48)} />
         </FormSection>
         <FormSection>
-          <CheckboxGroup id="910891781" mt={rem(12)} mb={rem(48)} />
-        </FormSection>
-        <FormSection>
           <RadioGroup id="1807642229" mt={rem(12)} mb={rem(48)} />
         </FormSection>
         <FormSection>
@@ -94,6 +92,12 @@ export function GoogleFormSection() {
             BUDGET
           </Text>
           <CheckboxGroup id="910891781" mt={rem(12)} mb={rem(48)} />
+
+          <InputLong
+            id="177277701"
+            placeholder="Additional notes you would like us to know about the project"
+            type="textarea"
+          />
         </FormSection>
       </StyledForm>
     </Container>

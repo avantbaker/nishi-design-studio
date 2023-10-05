@@ -18,15 +18,21 @@ export const Input = ({ name, placeholder, id, ...inputRest }: IInputProps) => {
     />
   );
 };
-export const InputLong = ({ name, placeholder, id }: IInputProps) => {
+export const InputLong = ({
+  name,
+  placeholder,
+  id,
+  type = "text",
+}: IInputProps) => {
   const { register, ...rest } = useLongAnswerInput(id);
   return (
     <StyledField
-      type="text"
       name={name}
       placeholder={placeholder}
       {...rest}
       {...register()}
+      type={type}
+      rows={5}
     />
   );
 };

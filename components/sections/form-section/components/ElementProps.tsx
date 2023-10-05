@@ -13,4 +13,5 @@ export interface IInputProps extends ElementProps {
   pattern?: string;
   mt?: string;
   mb?: string;
+  type?: string;
 }

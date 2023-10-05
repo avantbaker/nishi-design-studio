@@ -29,6 +29,7 @@ import {
 } from "urql";
 
 import form from "lib/form.json";
+import { useState } from "react";
 
 const HeaderWrap = styled.div`
   background-color: ${theme.colors.lightTan};
@@ -96,16 +97,53 @@ const BottomLayout = styled.div`
 `;
 
 export const useGoogleFormHook = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   // @ts-expect-error
   const methods = useGoogleForm({ form });
+
   const onSubmit = async (data) => {
-    await methods.submitToGoogleForms(data);
+    const completeData = {
+      ...data,
+      timestamp: new Date().toISOString(),
+      score: "",
+      email: data[48971740],
+      call: "",
+      secondaryEmal: data[1926078686],
+    };
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch("/api/google-forms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(completeData),
+      });
+      const res = await response.json();
+
+      if (res?.data?.updates?.updatedRows === 1) {
+        setShowSuccess(true);
+        setShowError(false);
+      }
+    } catch (e) {
+      console.error(e);
+      setShowError(true);
+    }
+
+    setIsSubmitting(false);
   };
 
   return {
     methods,
     form,
     onSubmit,
+    isSubmitting,
+    showError,
+    showSuccess,
   };
 };
 
@@ -179,15 +217,12 @@ function ContactFormFooterContainer({
     bannerText = "thank you for taking the time to fill this form out.",
   contactintrotext:
     introText = "If you have submitted the above form and feel confident that you’re ready to begin a project with Nishi Design + Studio, you can then book an intro call with Nishi.",
+  showError,
+  showSuccess,
+  isSubmitting,
 }) {
-  const { submitForm, isSubmitting } = useFormikContext();
-  const { showError, showSuccess } = useStatus();
-
   return (
     <Flex flexDirection="column" textAlign="center" alignItems="center">
-      <Text variant="heading" className="ty-text">
-        {bannerText}
-      </Text>
       {showError && (
         <Text
           variant="cardBody"
@@ -198,19 +233,33 @@ function ContactFormFooterContainer({
           Sorry. Please correct the errors above and re-submit your inquiry.
         </Text>
       )}
-      {showSuccess && (
-        <Text variant="cardBody" mb={[rem(36)]} color={theme.colors.orange}>
-          Thank you for you&amp;re contact submission. We will review your
-          submission, and contact you shortly.
-        </Text>
-      )}
-      <PrimaryButton mb={rem(62)} large onClick={() => {}}>
+      <PrimaryButton
+        mb={rem(62)}
+        large
+        onClick={() => {}}
+        type="submit"
+        disabled={isSubmitting || showSuccess}
+      >
         {showSuccess
           ? "submitted"
           : isSubmitting
           ? "submitting..."
           : "submit form"}
       </PrimaryButton>
+      {showSuccess && (
+        <Text
+          variant="cardBody"
+          mb={[rem(36)]}
+          maxWidth={rem(500)}
+          color={theme.colors.orange}
+        >
+          Thank you for your contact submission. We will review your submission,
+          and contact you shortly.
+        </Text>
+      )}
+      <Text variant="heading" className="ty-text" pb={rem(62)}>
+        {bannerText}
+      </Text>
     </Flex>
   );
 }
@@ -231,7 +280,8 @@ function Contact() {
     newsletterSection,
   } = result?.data?.page;
 
-  const { methods, onSubmit } = useGoogleFormHook();
+  const { methods, onSubmit, isSubmitting, showSuccess, showError } =
+    useGoogleFormHook();
   return (
     <motion.div {...framerOptions}>
       <HeaderWrap>
@@ -244,6 +294,11 @@ function Contact() {
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               <FormHeaderContainer {...titleTwoColumn} />
               <GoogleFormSection />
+              <ContactFormFooterContainer
+                isSubmitting={isSubmitting}
+                showSuccess={showSuccess}
+                showError={showError}
+              />
             </form>
           </GoogleFormProvider>
         </PageContent>
@@ -251,10 +306,11 @@ function Contact() {
       <VendorsContractors {...vendors} />
       <Designers {...designers} />
       <BottomLayout>
-        <StartYourSpace {...startYourSpace} />
         <SocialSection {...socialSection} />
       </BottomLayout>
       <SignupSection {...newsletterSection} />
+      <StartYourSpace {...startYourSpace} />
+      <StartYourSpace {...startYourSpace} />
       <Footer />
     </motion.div>
   );

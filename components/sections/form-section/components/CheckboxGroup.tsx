@@ -31,7 +31,7 @@ export const CheckboxGroup = ({
         {radioOptions?.map(({ registerOption, label }, index) => {
           return (
             <RadioLabel key={index}>
-              <RadioInput type="radio" {...registerOption()} />
+              <RadioInput type="checkbox" {...registerOption()} />
               {label}
             </RadioLabel>
           );
