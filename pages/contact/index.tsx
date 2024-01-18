@@ -207,6 +207,17 @@ function FormHeaderContainer({
           mb={[rem(24), rem(24)]}
           dangerouslySetInnerHTML={{ __html: content }}
         />
+        <PrimaryButton
+          mb={rem(24)}
+          large
+          onClick={() => {
+            window.location.href =
+              "https://pro.houzz.com/lead-form/nishi-design-studio?c=MTM2NQ%3D%3D";
+          }}
+          type="submit"
+        >
+          Contact Form
+        </PrimaryButton>
       </Box>
     </FormHeader>
   );
@@ -288,26 +299,26 @@ function Contact() {
         <Nav />
         <ContactHeaderContainer {...simpleBanner} />
       </HeaderWrap>
-      <PageBackground>
-        <PageContent>
-          <GoogleFormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
-              <FormHeaderContainer {...titleTwoColumn} />
-              <GoogleFormSection />
+      {/* <PageBackground> */}
+      <PageContent>
+        <GoogleFormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <FormHeaderContainer {...titleTwoColumn} />
+            {/* <GoogleFormSection />
               <ContactFormFooterContainer
                 isSubmitting={isSubmitting}
                 showSuccess={showSuccess}
                 showError={showError}
-              />
-            </form>
-          </GoogleFormProvider>
-        </PageContent>
-      </PageBackground>
-      <VendorsContractors {...vendors} />
-      <Designers {...designers} />
+              /> */}
+          </form>
+        </GoogleFormProvider>
+      </PageContent>
+      {/* </PageBackground> */}
       <BottomLayout>
         <SocialSection {...socialSection} />
       </BottomLayout>
+      <VendorsContractors {...vendors} />
+      <Designers {...designers} />
       <SignupSection {...newsletterSection} />
       <StartYourSpace {...startYourSpace} />
       <StartYourSpace {...startYourSpace} />
