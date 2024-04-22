@@ -212,7 +212,7 @@ function FormHeaderContainer({
           large
           onClick={() => {
             window.location.href =
-              "https://pro.houzz.com/lead-form/nishi-design-studio?c=MTM2NQ%3D%3D";
+              "https://nishidesignstudio.hbportal.co/public/discoveryform";
           }}
           type="submit"
         >
