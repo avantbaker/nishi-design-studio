@@ -321,7 +321,6 @@ function Contact() {
       <Designers {...designers} />
       <SignupSection {...newsletterSection} />
       <StartYourSpace {...startYourSpace} />
-      <StartYourSpace {...startYourSpace} />
       <Footer />
     </motion.div>
   );
