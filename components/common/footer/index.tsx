@@ -260,7 +260,7 @@ export default function FooterComponent({
               variant={["captionMobile", "captionMobile", "caption"]}
               textAlign="right"
             >
-              Copyright © 2022 - NISHI design+studio
+              Copyright © 2024 - NISHI design+studio
             </Text>
           </Flex>
         </Flex>

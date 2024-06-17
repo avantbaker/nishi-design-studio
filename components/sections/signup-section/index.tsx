@@ -14,8 +14,12 @@ import { useState, useEffect, useMemo } from "react";
 const Container = styled.div`
   background: ${theme.colors.brown};
   position: relative;
-  padding: ${rem(43)} ${rem(28)} ${rem(118)} ${rem(28)};
 
+  ${({ isHideLogoBottom }) => `
+  padding: ${isHideLogoBottom ? rem(101) : rem(43)} ${rem(28)} ${rem(
+    118
+  )} ${rem(28)};
+  `}
   .center-image {
     z-index: 1;
   }
@@ -33,8 +37,10 @@ const Container = styled.div`
   }
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
+    ${({ isHideLogoBottom }) => `
     padding-top: ${rem(101)};
-    padding-bottom: ${rem(203)};
+    padding-bottom: ${isHideLogoBottom ? rem(140) : rem(203)};
+    `}
   }
 `;
 
@@ -76,8 +82,10 @@ const GoldLineLeft = styled.img`
   height: ${rem(37.62)};
   width: ${rem(182.73)};
   transform: scaleX(-1) rotate(-9deg);
+  display: none;
 
   @media only screen and (min-width: ${breakpoints.tablet}) {
+    display: block;
     transform: scaleY(1) scaleX(-1);
     width: 35%;
     height: ${rem(75.78)};
@@ -87,13 +95,14 @@ const GoldLineLeft = styled.img`
 `;
 const GoldLineRight = styled.img`
   width: 33%;
-  top: ${rem(350)};
+  top: 50%;
   position: absolute;
   right: -${rem(95)};
-
+  display: none;
   @media only screen and (min-width: ${breakpoints.tablet}) {
+    display: block;
     right: 0;
-    top: ${rem(300)};
+    top: 40%;
   }
 `;
 
@@ -104,6 +113,8 @@ const myLoader = ({ src, width, quality }) => {
 export default function SignupSection({
   newsletterTitle: title,
   newsletterImage: image,
+  isHideLogoBottom = false,
+  children,
 }) {
   const isTablet = useMediaQuery(queries.minTablet);
   const [state, handleSubmit] = useForm("mzbojlrn");
@@ -126,7 +137,7 @@ export default function SignupSection({
   }, [image]);
 
   return (
-    <Container>
+    <Container isHideLogoBottom={true}>
       <Flex flexDirection="column" maxWidth="890px" m="0 auto">
         {/* <Flex
 					flexDirection={['column', 'column', 'row']}
@@ -157,7 +168,9 @@ export default function SignupSection({
 					</Form>
 				</Flex> */}
         <Flex justifyContent="center" px={[rem(20), rem(20), 0]}>
-          {isTablet ? (
+          {children ? (
+            children
+          ) : isTablet ? (
             <Image
               quality="100"
               className="center-image"
@@ -181,27 +194,28 @@ export default function SignupSection({
           <GoldLineRight src="/images/gold-line-four.png" />
         </Flex>
       </Flex>
-      {isTablet ? (
-        <div className="nishi-logo">
-          <Image
-            quality="100"
-            alt="Nishi"
-            width="138px"
-            height="178px"
-            src="/images/nishi-gold.png"
-          />
-        </div>
-      ) : (
-        <div className="nishi-logo-mobile">
-          <Image
-            quality="100"
-            alt="Nishi"
-            width="76px"
-            height="98px"
-            src="/images/nishi-gold-mobile.png"
-          />
-        </div>
-      )}
+      {!isHideLogoBottom &&
+        (isTablet ? (
+          <div className="nishi-logo">
+            <Image
+              quality="100"
+              alt="Nishi"
+              width="138px"
+              height="178px"
+              src="/images/nishi-gold.png"
+            />
+          </div>
+        ) : (
+          <div className="nishi-logo-mobile">
+            <Image
+              quality="100"
+              alt="Nishi"
+              width="76px"
+              height="98px"
+              src="/images/nishi-gold-mobile.png"
+            />
+          </div>
+        ))}
     </Container>
   );
 }

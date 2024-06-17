@@ -99,41 +99,69 @@ function Home() {
       <TopSection>
         <Nav />
         {showSliderSection && <SliderSection {...heroSlider} isFeatured />}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "7rem",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <Text
-              mb={[rem(16), rem(29)]}
-              width={[rem(250), rem(250), "auto"]}
-              variant={["headingMobile", "headingMobile", "heading"]}
+        <SignupSection {...newsletterSection} isHideLogoBottom={true}>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                textAlign: "center",
+                marginBottom: rem(30),
+              }}
             >
-              NDS Showhouse 2024
-            </Text>
-            <Text
-              maxWidth={rem(554)}
-              variant={["body", "body", "bodyLarge"]}
-              style={{ margin: "auto", marginBottom: rem(30) }}
+              <Text
+                mb={[rem(16), rem(29)]}
+                width={["100%"]}
+                variant={["headingMobile", "headingMobile", "heading"]}
+                style={{ color: "#FFB000" }}
+              >
+                NDS Showhouse 2024
+              </Text>
+              <Text
+                maxWidth={rem(554)}
+                variant={["body", "body", "bodyLarge"]}
+                style={{
+                  margin: "auto",
+                  marginBottom: rem(30),
+                  color: "#FFB000",
+                }}
+              >
+                If you’re looking for something decisively different, you’ve
+                come to the right place.
+              </Text>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 1000000,
+                width: "100%",
+                height: 0,
+                paddingTop: "56.25%",
+                position: "relative",
+              }}
             >
-              If you’re looking for something decisively different, you’ve come
-              to the right place.
-            </Text>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <ReactPlayer
+                  url="https://youtu.be/n87F5Qgcw4A"
+                  height="100%"
+                  width="100%"
+                />
+              </div>
+            </div>
           </div>
-          <ReactPlayer url="https://youtu.be/n87F5Qgcw4A" />
-        </div>
+        </SignupSection>
       </TopSection>
       <section style={{ position: "relative" }}></section>
       <YourSpace {...twoColumnTextSection} />
