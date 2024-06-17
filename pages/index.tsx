@@ -1,6 +1,7 @@
 import ExpertiseCards from "components/common/expertise-cards";
 import Footer from "components/common/footer";
 import Nav from "components/common/nav";
+import Text from "components/common/text";
 import MediaSection from "components/sections/media-section";
 import SignupSection from "components/sections/signup-section";
 import SliderSection from "components/sections/slider-section";
@@ -12,12 +13,11 @@ import { framerOptions } from "lib/framer";
 import { HomepageQuery } from "lib/urql/queries/pages";
 import { getPageData } from "lib/utils";
 import { initUrqlClient, withUrqlClient } from "next-urql";
-import { margin, rem } from "polished";
+import { rem } from "polished";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
 import { breakpoints } from "styles/media";
 import theme from "styles/theme";
-import Text from "components/common/text";
 
 import {
   cacheExchange,
@@ -157,6 +157,10 @@ function Home() {
                   url="https://youtu.be/UnMECfyjXvc"
                   height="100%"
                   width="100%"
+                  muted={true}
+                  volume={1}
+                  playing={true}
+                  loop={true}
                 />
               </div>
             </div>
