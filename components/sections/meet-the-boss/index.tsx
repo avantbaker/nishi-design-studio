@@ -117,6 +117,7 @@ export default function MeetTheBoss({
 					layout="responsive"
 					width="786px"
 					height="948px"
+					objectFit="cover"
 				/>
 				<StyledOrangeBadge />
 			</ImageWrap>
