@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import theme from 'styles/theme';
 
 const HONEYBOOK_URL = 'https://nishidesignstudio.hbportal.co/public/discoveryform';
-const CONTACT_EMAIL = 'info@nishidesignstudio.com';
+const CONTACT_EMAIL = 'interiors@nishidesignstudio.com';
 const INSTAGRAM_URL = 'https://www.instagram.com/nishidesignstudio';
 
 const fadeUp = keyframes`
@@ -300,12 +300,6 @@ const Display = styled.h1`
 	em {
 		font-style: italic;
 		color: ${theme.colors.orange};
-	}
-
-	span.amp {
-		font-style: italic;
-		color: ${theme.colors.green};
-		font-weight: 500;
 	}
 `;
 
@@ -631,7 +625,7 @@ function Home() {
 				<TextColumn>
 					<SectionLabel>Under Construction</SectionLabel>
 					<Display>
-						A new chapter <em>is being</em> <span className="amp">&amp;</span> written.
+						A new chapter <em>is being</em> written.
 					</Display>
 					<Rule />
 					<Body>
