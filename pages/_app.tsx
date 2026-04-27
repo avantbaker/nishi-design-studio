@@ -1,73 +1,65 @@
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from 'styles/globalStyles';
-import theme from 'styles/theme';
-import { useRouter } from 'next/router';
-import { AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import Head from 'next/head';
-import SimpleReactLightbox from 'simple-react-lightbox';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import theme from 'styles/theme';
 
-function adjustViewportForHugeScreens() {
-	let fw = 0;
-	let sw = screen.width;
-	let sh = screen.height;
-	if (window.matchMedia('(orientation: landscape)').matches) {
-		let fw = sh;
-	} else {
-		let fw = sw;
+const GlobalStyles = createGlobalStyle`
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
 	}
-	if (fw < 1440) {
-		return {
-			id: 'nds-viewport',
-			name: 'viewport',
-			content: 'width=device-width,initial-scale=1',
-		};
-	} else {
-		return {
-			id: 'nds-viewport',
-			name: 'viewport',
-			content: 'width=1600, viewport-fit=contain',
-		};
+
+	html,
+	body,
+	#__next {
+		margin: 0;
+		padding: 0;
 	}
-}
+
+	html {
+		background: ${theme.colors.lightTan};
+	}
+
+	body {
+		font-family: ${theme.typography.fonts.primary};
+		background: ${theme.colors.lightTan};
+		color: ${theme.colors.black};
+		font-weight: 400;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	::selection {
+		background: ${theme.colors.orange};
+		color: ${theme.colors.lightTan};
+	}
+`;
+
 function App({ Component, pageProps }) {
-	const { route } = useRouter();
-	const [renderViewport, setRenderViewport]: [any, any] = useState(false);
-
-	function activateCursor() {
-		const circle = document.getElementById('circularcursor');
-		const circleStyle = circle.style;
-		document.addEventListener('mousemove', (e) => {
-			window.requestAnimationFrame(() => {
-				circleStyle.top = `${e.clientY - circle.offsetHeight / 2 + 22}px`;
-				circleStyle.left = `${e.clientX - circle.offsetHeight / 2 + 22}px`;
-			});
-		});
-	}
-	useEffect(() => {
-		activateCursor();
-		const options = adjustViewportForHugeScreens();
-		setRenderViewport(options as any);
-	}, [setRenderViewport]);
-
-	useEffect(() => {
-		const htmlEl = document.documentElement.classList;
-		htmlEl.remove('is-locked');
-	}, []);
-
 	return (
 		<ThemeProvider theme={theme}>
-			<SimpleReactLightbox>
-				<Head>
-					{renderViewport && <meta {...renderViewport} />}
-					<title>Nishi Design Studio</title>
-				</Head>
-				<div id="circularcursor"></div>
-				<GlobalStyles />
-				<AnimatePresence exitBeforeEnter initial={false}>
-					<Component {...pageProps} key={route} />
-				</AnimatePresence>
-			</SimpleReactLightbox>
+			<Head>
+				<title>Nishi Design + Studio — A new chapter</title>
+				<meta name="viewport" content="width=device-width,initial-scale=1" />
+				<meta
+					name="description"
+					content="Nishi Design + Studio is rewriting its digital home. Get in touch to begin a project — Atlanta, Georgia."
+				/>
+				<meta property="og:title" content="Nishi Design + Studio" />
+				<meta
+					property="og:description"
+					content="A new chapter is being written. Get in touch to begin a project."
+				/>
+				<meta name="theme-color" content="#FBF9F2" />
+			</Head>
+			<GlobalStyles />
+			<Component {...pageProps} />
 		</ThemeProvider>
 	);
 }
