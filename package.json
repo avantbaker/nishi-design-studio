@@ -2,6 +2,9 @@
   "name": "nishi-design-studio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24 <25"
+  },
   "scripts": {
     "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && next dev",
     "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && next build",
